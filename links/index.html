@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Casa do Camarão — Frutos do Mar</title>
+<meta name="description" content="Cardápio digital, endereços e WhatsApp da Casa do Camarão, frutos do mar em Manaus.">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" href="favicon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Archivo+Black&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: #000000;
+    font-family: 'Oswald', sans-serif;
+  }
+  a { color: #2699A6; text-decoration: none; }
+  a:hover { color: #1F7A85; }
+
+  .page {
+    min-height: 100vh;
+    background: #000000;
+    display: flex;
+    justify-content: center;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 440px;
+    min-height: 100vh;
+    background: linear-gradient(180deg, #CC0000 0%, #990000 40%, #1F7A85 100%);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 48px 24px;
+  }
+
+  .wave {
+    position: absolute;
+    top: 220px;
+    left: 0;
+    width: 100%;
+    height: 140px;
+    opacity: 0.12;
+    z-index: 0;
+  }
+
+  .logo {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: #CC0000;
+    border: 5px solid #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 22px;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  }
+
+  h1 {
+    margin: 0;
+    text-align: center;
+    color: #ffffff;
+    font-family: 'Archivo Black', 'Oswald', sans-serif;
+    font-size: 30px;
+    line-height: 1.15;
+    letter-spacing: 0.2px;
+    text-transform: uppercase;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.25);
+    position: relative;
+    z-index: 1;
+  }
+
+  .subtitle {
+    margin: 10px 0 44px;
+    color: rgba(255,255,255,0.85);
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 1;
+  }
+
+  .links {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+  }
+
+  .btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 20px 20px;
+    background: #ffffff;
+    color: #990000;
+    border-radius: 10px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+  }
+  .btn:hover { color: #990000; }
+
+  .store {
+    width: 100%;
+    background: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+  }
+
+  .store-toggle {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 20px 20px;
+    cursor: pointer;
+    color: #000000;
+    font-weight: 700;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    background: none;
+    border: none;
+    font-family: 'Oswald', sans-serif;
+    text-align: left;
+  }
+
+  .store-toggle span.label { flex: 1; }
+
+  .chevron {
+    font-size: 13px;
+    color: #808080;
+    transition: transform 0.2s;
+  }
+  .store-toggle[aria-expanded="true"] .chevron {
+    transform: rotate(180deg);
+  }
+
+  .store-options {
+    display: none;
+    gap: 8px;
+    padding: 0 16px 16px;
+  }
+  .store-options.open { display: flex; }
+
+  .map-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    text-align: center;
+    padding: 12px 8px;
+    color: #ffffff;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+  }
+  .map-btn:hover { color: #ffffff; }
+  .map-btn.maps { background: #CC0000; }
+  .map-btn.waze { background: #990000; }
+
+  .whatsapp-btn {
+    background: #25D366;
+    color: #ffffff;
+  }
+  .whatsapp-btn:hover { color: #ffffff; }
+
+  .sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .footer {
+    margin-top: 44px;
+    color: rgba(255,255,255,0.65);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    position: relative;
+    z-index: 1;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="card">
+
+    <svg class="wave" viewBox="0 0 440 120" preserveAspectRatio="none">
+      <path d="M0,60 C110,110 330,10 440,60 L440,120 L0,120 Z" fill="#ffffff"></path>
+    </svg>
+
+    <div class="logo">
+      <img src="logo.png" alt="Casa do Camarão — Frutos do Mar" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
+    </div>
+
+    <h1 class="sr-only">Casa do Camarão — Frutos do Mar</h1>
+    <p class="subtitle">Manaus, AM</p>
+
+    <div class="links">
+
+      <a class="btn" href="https://www.invictaerp.com.br/casa_do_camarao/" target="_blank" rel="noopener">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 3h9l3 3v15H6z" stroke="#990000" stroke-width="1.8" stroke-linejoin="round"></path><path d="M9 9h6M9 13h6M9 17h4" stroke="#990000" stroke-width="1.8" stroke-linecap="round"></path></svg>
+        Ver Cardápio Digital
+      </a>
+
+      <div class="store">
+        <button class="store-toggle" data-target="store1" aria-expanded="false">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6.8 7-12a7 7 0 1 0-14 0c0 5.2 7 12 7 12Z" stroke="#CC0000" stroke-width="1.8" stroke-linejoin="round"></path><circle cx="12" cy="9" r="2.4" stroke="#CC0000" stroke-width="1.8"></circle></svg>
+          <span class="label">Loja Boulevard — Ver no Mapa</span>
+          <span class="chevron">▾</span>
+        </button>
+        <div class="store-options" id="store1">
+          <a class="map-btn maps" href="https://maps.google.com/maps?vet=10CAAQoqAOahcKEwjYlvz24v-VAxUAAAAAHQAAAAAQDA..i&pvq=CgwvZy8xcHR6OXI0cnkiFQoPY2FzYSBkbyBjYW1hcmFvEAIYAw&lqi=Cg9jYXNhIGRvIGNhbWFyYW9I_aXu5OeVgIAIWh0QABABEAIYABgBGAIiD2Nhc2EgZG8gY2FtYXJhb5IBDnNlYWZvb2RfbWFya2V0&fvr=1&cs=1&um=1&ie=UTF-8&fb=1&gl=br&sa=X&ftid=0x926c055948017b15:0x652a143f5b2ae6d8" target="_blank" rel="noopener">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6.8 7-12a7 7 0 1 0-14 0c0 5.2 7 12 7 12Z" stroke="#ffffff" stroke-width="1.8" stroke-linejoin="round"></path><circle cx="12" cy="9" r="2.4" stroke="#ffffff" stroke-width="1.8"></circle></svg>
+            Google Maps
+          </a>
+          <a class="map-btn waze" href="https://waze.com/ul?q=Casa%20do%20Camarão%20Boulevard%20Manaus&navigate=yes" target="_blank" rel="noopener">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M3 12h13M12 6l6 6-6 6" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            Waze
+          </a>
+        </div>
+      </div>
+
+      <div class="store">
+        <button class="store-toggle" data-target="store2" aria-expanded="false">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6.8 7-12a7 7 0 1 0-14 0c0 5.2 7 12 7 12Z" stroke="#CC0000" stroke-width="1.8" stroke-linejoin="round"></path><circle cx="12" cy="9" r="2.4" stroke="#CC0000" stroke-width="1.8"></circle></svg>
+          <span class="label">Loja Morada do Sol — Ver no Mapa</span>
+          <span class="chevron">▾</span>
+        </button>
+        <div class="store-options" id="store2">
+          <a class="map-btn maps" href="https://maps.google.com/maps?vet=10CAAQoqAOahcKEwjYlvz24v-VAxUAAAAAHQAAAAAQGw..i&pvq=Cg0vZy8xMW55MjZreHlnIhUKD2Nhc2EgZG8gY2FtYXJhbxACGAM&lqi=Cg9jYXNhIGRvIGNhbWFyYW9Iruejo_S0gIAIWh0QABABEAIYABgBGAIiD2Nhc2EgZG8gY2FtYXJhb5IBEnNlYWZvb2Rfd2hvbGVzYWxlcg&fvr=1&cs=1&um=1&ie=UTF-8&fb=1&gl=br&sa=X&ftid=0x926c1bce7ed4b2f3:0x51f60887d58de678" target="_blank" rel="noopener">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6.8 7-12a7 7 0 1 0-14 0c0 5.2 7 12 7 12Z" stroke="#ffffff" stroke-width="1.8" stroke-linejoin="round"></path><circle cx="12" cy="9" r="2.4" stroke="#ffffff" stroke-width="1.8"></circle></svg>
+            Google Maps
+          </a>
+          <a class="map-btn waze" href="https://waze.com/ul?q=Casa%20do%20Camarão%20Morada%20do%20Sol%20Manaus&navigate=yes" target="_blank" rel="noopener">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M3 12h13M12 6l6 6-6 6" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            Waze
+          </a>
+        </div>
+      </div>
+
+      <a class="btn whatsapp-btn" href="https://wa.me/5592981990444" target="_blank" rel="noopener">
+        <svg width="21" height="21" viewBox="0 0 24 24" fill="#ffffff"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.29-1.39a9.9 9.9 0 0 0 4.75 1.21h.01c5.46 0 9.9-4.45 9.9-9.91C21.96 6.45 17.5 2 12.04 2Zm5.8 14.06c-.25.69-1.44 1.32-1.98 1.4-.51.08-1.13.11-1.83-.12-.42-.13-.96-.31-1.65-.6-2.91-1.26-4.81-4.19-4.96-4.39-.15-.2-1.18-1.57-1.18-3 0-1.42.75-2.12 1.02-2.41.27-.29.58-.36.78-.36.2 0 .39 0 .56.01.18.01.42-.07.65.5.25.6.85 2.08.92 2.23.07.15.12.32.02.52-.09.19-.14.31-.28.48-.14.17-.29.37-.42.5-.14.14-.28.29-.12.57.16.28.71 1.17 1.52 1.9 1.05.94 1.93 1.23 2.21 1.37.28.14.44.12.6-.07.16-.19.68-.79.87-1.06.18-.27.36-.22.6-.13.25.09 1.58.75 1.85.88.27.14.45.2.51.32.07.11.07.65-.18 1.35Z"></path></svg>
+        Falar no WhatsApp
+      </a>
+
+    </div>
+
+    <p class="footer">© Casa do Camarão — Manaus, AM</p>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll('.store-toggle').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var target = document.getElementById(btn.getAttribute('data-target'));
+      var isOpen = target.classList.toggle('open');
+      btn.setAttribute('aria-expanded', isOpen);
+    });
+  });
+</script>
+</body>
+</html>
