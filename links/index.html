@@ -118,6 +118,16 @@
     box-shadow: 0 6px 16px rgba(0,0,0,0.2);
   }
   .btn:hover { color: #990000; }
+  .btn-text { display: flex; flex-direction: column; gap: 4px; }
+  .btn-desc {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: none;
+    letter-spacing: 0.2px;
+    color: #1a1a1a;
+  }
+  .whatsapp-btn .btn-desc { color: #ffffff; }
 
   .store {
     width: 100%;
@@ -147,21 +157,62 @@
 
   .store-toggle span.label { flex: 1; }
 
-  .chevron {
-    font-size: 13px;
-    color: #808080;
-    transition: transform 0.2s;
+  .store-hours {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    padding: 11px 13px;
+    background: rgba(0,0,0,0.06);
+    border-radius: 8px;
   }
+  .store-hours svg { flex-shrink: 0; margin-top: 2px; }
+  .store-hours-text { display: flex; flex-direction: column; gap: 3px; }
+  .store-hours-title {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    color: #1a1a1a;
+    margin-bottom: 1px;
+  }
+  .store-hours-row {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 500;
+    font-size: 12.5px;
+    letter-spacing: 0.2px;
+    color: #1a1a1a;
+  }
+
+  .chevron {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.06);
+    flex-shrink: 0;
+    transition: transform 0.25s ease, background-color 0.25s ease;
+  }
+  .chevron svg { display: block; transition: stroke 0.25s ease; }
   .store-toggle[aria-expanded="true"] .chevron {
     transform: rotate(180deg);
+    background: #990000;
+  }
+  .store-toggle[aria-expanded="true"] .chevron svg path {
+    stroke: #ffffff;
   }
 
   .store-options {
     display: none;
-    gap: 8px;
+    flex-direction: column;
+    gap: 12px;
     padding: 0 16px 16px;
   }
   .store-options.open { display: flex; }
+
+  .map-btns { display: flex; gap: 8px; }
 
   .map-btn {
     flex: 1;
@@ -183,7 +234,7 @@
   .map-btn.waze { background: #990000; }
 
   .whatsapp-btn {
-    background: #25D366;
+    background: #1DA851;
     color: #ffffff;
   }
   .whatsapp-btn:hover { color: #ffffff; }
@@ -228,24 +279,38 @@
 
       <a class="btn" href="https://www.invictaerp.com.br/casa_do_camarao/" target="_blank" rel="noopener">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 3h9l3 3v15H6z" stroke="#990000" stroke-width="1.8" stroke-linejoin="round"></path><path d="M9 9h6M9 13h6M9 17h4" stroke="#990000" stroke-width="1.8" stroke-linecap="round"></path></svg>
-        Peça pelo Catálogo Digital
+        <span class="btn-text">
+          Peça pelo Catálogo Digital
+          <span class="btn-desc">Conheça nossos produtos e faça seu pedido de forma rápida e prática</span>
+        </span>
       </a>
 
       <div class="store">
         <button class="store-toggle" data-target="store1" aria-expanded="false">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6.8 7-12a7 7 0 1 0-14 0c0 5.2 7 12 7 12Z" stroke="#CC0000" stroke-width="1.8" stroke-linejoin="round"></path><circle cx="12" cy="9" r="2.4" stroke="#CC0000" stroke-width="1.8"></circle></svg>
           <span class="label">Loja Boulevard — Ver no Mapa</span>
-          <span class="chevron">▾</span>
+          <span class="chevron"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="#990000" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
         </button>
         <div class="store-options" id="store1">
-          <a class="map-btn maps" href="https://maps.google.com/maps?vet=10CAAQoqAOahcKEwjYlvz24v-VAxUAAAAAHQAAAAAQDA..i&pvq=CgwvZy8xcHR6OXI0cnkiFQoPY2FzYSBkbyBjYW1hcmFvEAIYAw&lqi=Cg9jYXNhIGRvIGNhbWFyYW9I_aXu5OeVgIAIWh0QABABEAIYABgBGAIiD2Nhc2EgZG8gY2FtYXJhb5IBDnNlYWZvb2RfbWFya2V0&fvr=1&cs=1&um=1&ie=UTF-8&fb=1&gl=br&sa=X&ftid=0x926c055948017b15:0x652a143f5b2ae6d8" target="_blank" rel="noopener">
-            <img src="google_maps.png" alt="" width="15" height="15" style="flex-shrink: 0;">
-            Google Maps
-          </a>
-          <a class="map-btn waze" href="https://waze.com/ul?q=Casa%20do%20Camarão%20Boulevard%20Manaus&navigate=yes" target="_blank" rel="noopener">
-            <img src="waze-icon-logo.png" alt="" width="15" height="15" style="flex-shrink: 0;">
-            Waze
-          </a>
+          <div class="store-hours">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#1a1a1a" stroke-width="1.8"></circle><path d="M12 7v5l3.5 2" stroke="#1a1a1a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            <span class="store-hours-text">
+              <span class="store-hours-title">Horário de funcionamento</span>
+              <span class="store-hours-row">Seg a sex: 8:30 - 17:30</span>
+              <span class="store-hours-row">Sábado: 8:30 - 17:30</span>
+              <span class="store-hours-row">Domingo e feriados: 8:00 - 12:00</span>
+            </span>
+          </div>
+          <div class="map-btns">
+            <a class="map-btn maps" href="https://maps.google.com/maps?vet=10CAAQoqAOahcKEwjYlvz24v-VAxUAAAAAHQAAAAAQDA..i&pvq=CgwvZy8xcHR6OXI0cnkiFQoPY2FzYSBkbyBjYW1hcmFvEAIYAw&lqi=Cg9jYXNhIGRvIGNhbWFyYW9I_aXu5OeVgIAIWh0QABABEAIYABgBGAIiD2Nhc2EgZG8gY2FtYXJhb5IBDnNlYWZvb2RfbWFya2V0&fvr=1&cs=1&um=1&ie=UTF-8&fb=1&gl=br&sa=X&ftid=0x926c055948017b15:0x652a143f5b2ae6d8" target="_blank" rel="noopener">
+              <img src="google_maps.png" alt="" width="15" height="15" style="flex-shrink: 0;">
+              Google Maps
+            </a>
+            <a class="map-btn waze" href="https://waze.com/ul?q=Casa%20do%20Camarão%20Boulevard%20Manaus&navigate=yes" target="_blank" rel="noopener">
+              <img src="waze-icon-logo.png" alt="" width="15" height="15" style="flex-shrink: 0;">
+              Waze
+            </a>
+          </div>
         </div>
       </div>
 
@@ -253,23 +318,37 @@
         <button class="store-toggle" data-target="store2" aria-expanded="false">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6.8 7-12a7 7 0 1 0-14 0c0 5.2 7 12 7 12Z" stroke="#CC0000" stroke-width="1.8" stroke-linejoin="round"></path><circle cx="12" cy="9" r="2.4" stroke="#CC0000" stroke-width="1.8"></circle></svg>
           <span class="label">Loja Morada do Sol — Ver no Mapa</span>
-          <span class="chevron">▾</span>
+          <span class="chevron"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="#990000" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
         </button>
         <div class="store-options" id="store2">
-          <a class="map-btn maps" href="https://maps.google.com/maps?vet=10CAAQoqAOahcKEwjYlvz24v-VAxUAAAAAHQAAAAAQGw..i&pvq=Cg0vZy8xMW55MjZreHlnIhUKD2Nhc2EgZG8gY2FtYXJhbxACGAM&lqi=Cg9jYXNhIGRvIGNhbWFyYW9Iruejo_S0gIAIWh0QABABEAIYABgBGAIiD2Nhc2EgZG8gY2FtYXJhb5IBEnNlYWZvb2Rfd2hvbGVzYWxlcg&fvr=1&cs=1&um=1&ie=UTF-8&fb=1&gl=br&sa=X&ftid=0x926c1bce7ed4b2f3:0x51f60887d58de678" target="_blank" rel="noopener">
-            <img src="google_maps.png" alt="" width="15" height="15" style="flex-shrink: 0;">
-            Google Maps
-          </a>
-          <a class="map-btn waze" href="https://waze.com/ul?q=Casa%20do%20Camarão%20Morada%20do%20Sol%20Manaus&navigate=yes" target="_blank" rel="noopener">
-            <img src="waze-icon-logo.png" alt="" width="15" height="15" style="flex-shrink: 0;">
-            Waze
-          </a>
+          <div class="store-hours">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#1a1a1a" stroke-width="1.8"></circle><path d="M12 7v5l3.5 2" stroke="#1a1a1a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            <span class="store-hours-text">
+              <span class="store-hours-title">Horário de funcionamento</span>
+              <span class="store-hours-row">Seg a sex: 9:30 - 18:30</span>
+              <span class="store-hours-row">Sábado: 8:30 - 17:30</span>
+              <span class="store-hours-row">Domingo e feriados: 8:00 - 12:00</span>
+            </span>
+          </div>
+          <div class="map-btns">
+            <a class="map-btn maps" href="https://maps.google.com/maps?vet=10CAAQoqAOahcKEwjYlvz24v-VAxUAAAAAHQAAAAAQGw..i&pvq=Cg0vZy8xMW55MjZreHlnIhUKD2Nhc2EgZG8gY2FtYXJhbxACGAM&lqi=Cg9jYXNhIGRvIGNhbWFyYW9Iruejo_S0gIAIWh0QABABEAIYABgBGAIiD2Nhc2EgZG8gY2FtYXJhb5IBEnNlYWZvb2Rfd2hvbGVzYWxlcg&fvr=1&cs=1&um=1&ie=UTF-8&fb=1&gl=br&sa=X&ftid=0x926c1bce7ed4b2f3:0x51f60887d58de678" target="_blank" rel="noopener">
+              <img src="google_maps.png" alt="" width="15" height="15" style="flex-shrink: 0;">
+              Google Maps
+            </a>
+            <a class="map-btn waze" href="https://waze.com/ul?q=Casa%20do%20Camarão%20Morada%20do%20Sol%20Manaus&navigate=yes" target="_blank" rel="noopener">
+              <img src="waze-icon-logo.png" alt="" width="15" height="15" style="flex-shrink: 0;">
+              Waze
+            </a>
+          </div>
         </div>
       </div>
 
       <a class="btn whatsapp-btn" href="https://wa.me/5592981990444" target="_blank" rel="noopener">
         <svg width="21" height="21" viewBox="0 0 24 24" fill="#ffffff"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.29-1.39a9.9 9.9 0 0 0 4.75 1.21h.01c5.46 0 9.9-4.45 9.9-9.91C21.96 6.45 17.5 2 12.04 2Zm5.8 14.06c-.25.69-1.44 1.32-1.98 1.4-.51.08-1.13.11-1.83-.12-.42-.13-.96-.31-1.65-.6-2.91-1.26-4.81-4.19-4.96-4.39-.15-.2-1.18-1.57-1.18-3 0-1.42.75-2.12 1.02-2.41.27-.29.58-.36.78-.36.2 0 .39 0 .56.01.18.01.42-.07.65.5.25.6.85 2.08.92 2.23.07.15.12.32.02.52-.09.19-.14.31-.28.48-.14.17-.29.37-.42.5-.14.14-.28.29-.12.57.16.28.71 1.17 1.52 1.9 1.05.94 1.93 1.23 2.21 1.37.28.14.44.12.6-.07.16-.19.68-.79.87-1.06.18-.27.36-.22.6-.13.25.09 1.58.75 1.85.88.27.14.45.2.51.32.07.11.07.65-.18 1.35Z"></path></svg>
-        Atendimento via WhatsApp
+        <span class="btn-text">
+          Atendimento via WhatsApp
+          <span class="btn-desc">Fale com um especialista e receba seu pedido</span>
+        </span>
       </a>
 
     </div>
