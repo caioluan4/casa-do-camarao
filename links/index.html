@@ -82,7 +82,7 @@
   }
 
   .subtitle {
-    margin: 10px 0 44px;
+    margin: 10px 0 18px;
     color: rgba(255,255,255,0.85);
     font-size: 15px;
     font-weight: 500;
@@ -91,6 +91,23 @@
     position: relative;
     z-index: 1;
   }
+
+  .site-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0 0 26px;
+    color: rgba(255,255,255,0.75);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    position: relative;
+    z-index: 1;
+  }
+  .site-link:hover { color: #ffffff; }
 
   .links {
     display: flex;
@@ -295,6 +312,11 @@
 
     <h1 class="sr-only">Casa do Camarão — Frutos do Mar</h1>
     <p class="subtitle">Camarão, bacalhau e frutos do mar</p>
+
+    <a href="../" class="site-link" data-goatcounter-click="clique-site-oficial">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M14 5h5v5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path><path d="M19 5 10 14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path><path d="M12 5H7a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+      Visite nosso site oficial
+    </a>
 
     <div class="links">
 
