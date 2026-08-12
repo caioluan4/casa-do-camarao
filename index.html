@@ -127,17 +127,14 @@
   }
   .carousel-dots button.active { background: #C7092B; }
 
-  .store-media { display: flex; gap: 12px; }
-  .store-media > div { position: relative; flex: 1; aspect-ratio: 4 / 3; overflow: hidden; }
+  .store-media { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .store-media > div { position: relative; aspect-ratio: 4 / 3; overflow: hidden; }
   .store-video, .store-photo {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-  }
-  @media (max-width: 640px) {
-    .store-media { flex-direction: column; }
   }
 
   .recipe-preview-card {
@@ -522,6 +519,16 @@
                 <img class="wm-badge" src="images/links/logo.png" alt="">
               </div>
               <div>
+                <div class="photo-placeholder">Interior — Loja Boulevard</div>
+                <img class="store-photo" src="images/landing/lojaboulevardFotoInterna1.jpeg" alt="Interior Loja Boulevard" onerror="this.style.display='none'">
+                <img class="wm-badge" src="images/links/logo.png" alt="">
+              </div>
+              <div>
+                <div class="photo-placeholder">Interior — Loja Boulevard</div>
+                <img class="store-photo" src="images/landing/lojaboulevardFotoInterna2.jpeg" alt="Interior Loja Boulevard" onerror="this.style.display='none'">
+                <img class="wm-badge" src="images/links/logo.png" alt="">
+              </div>
+              <div>
                 <div class="photo-placeholder">Vídeo de entrada — Loja Boulevard</div>
                 <video class="store-video" autoplay muted loop playsinline onerror="this.style.display='none'">
                   <source src="images/landing/loja-boulevard-entrada.mp4" type="video/mp4">
@@ -555,8 +562,8 @@
           <div style="background: #262626; border: 1px solid #333333; padding: 28px 24px; display: flex; flex-direction: column; gap: 20px;">
             <div class="store-media" style="margin: -28px -24px 0;">
               <div>
-                <div class="photo-placeholder">Foto da fachada — Loja Morada do Sol</div>
-                <img class="store-photo" src="images/landing/loja-morada-fachada.jpg" alt="Fachada Loja Morada do Sol" onerror="this.style.display='none'">
+                <div class="photo-placeholder">Interior — Loja Morada do Sol</div>
+                <img class="store-photo" src="images/landing/lojamoradaFotoInterna.jpeg" alt="Interior Loja Morada do Sol" onerror="this.style.display='none'">
                 <img class="wm-badge" src="images/links/logo.png" alt="">
               </div>
               <div>
