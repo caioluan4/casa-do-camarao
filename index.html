@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Casa do Camarão</title>
+<meta name="description" content="Camarão, peixe e frutos do mar frescos em Manaus. Duas lojas — Boulevard e Morada do Sol. Peça pelo WhatsApp ou catálogo digital.">
+<link rel="icon" href="images/links/favicon.ico" sizes="any">
+<link rel="icon" href="images/links/favicon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="images/links/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Archivo+Black&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #1c1c1c; font-family: 'Oswald', sans-serif; color: #f2f2f0; }
+  a { color: #2699A6; text-decoration: none; }
+  a:hover { color: #4db4c0; }
+  ::selection { background: #C7092B; color: #fff; }
+  .nav-link:hover { color: #C7092B !important; }
+  .photo-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 12px;
+    background: #262626;
+    border: 1px dashed #3d3d3d;
+    color: #7d7d7d;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .coin-wrap {
+    position: relative;
+    perspective: 1000px;
+    width: min(420px, 88%);
+    aspect-ratio: 1 / 1;
+    margin: 0 auto;
+  }
+  .coin {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    animation: spin 28s linear infinite;
+  }
+  .coin-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    backface-visibility: hidden;
+    object-fit: cover;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  }
+  .coin-back {
+    transform: rotateY(180deg);
+  }
+  @keyframes spin {
+    from { transform: rotateY(0deg); }
+    to { transform: rotateY(360deg); }
+  }
+  @media (max-width: 640px) {
+    .coin-wrap { width: 220px; }
+  }
+
+  .carousel {
+    position: relative;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  .carousel-track {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .carousel-track::-webkit-scrollbar { display: none; }
+  .carousel-slide {
+    position: relative;
+    flex: 0 0 100%;
+    aspect-ratio: 2 / 3;
+    scroll-snap-align: center;
+    overflow: hidden;
+  }
+  .carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.25);
+    border: none;
+    cursor: pointer;
+    z-index: 2;
+    opacity: 0.7;
+    transition: opacity 0.2s, background-color 0.2s;
+  }
+  .carousel-arrow svg { width: 12px; height: 12px; }
+  .carousel-arrow:hover { opacity: 1; background: rgba(0,0,0,0.4); }
+  .carousel-prev { left: 8px; }
+  .carousel-next { right: 8px; }
+  .carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 14px;
+  }
+  .carousel-dots button {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    padding: 0;
+    background: #3d3d3d;
+    border: none;
+    cursor: pointer;
+  }
+  .carousel-dots button.active { background: #C7092B; }
+
+  .store-media { display: flex; gap: 12px; }
+  .store-media > div { position: relative; flex: 1; aspect-ratio: 4 / 3; overflow: hidden; }
+  .store-video, .store-photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  @media (max-width: 640px) {
+    .store-media { flex-direction: column; }
+  }
+
+  .recipe-preview-card {
+    position: relative;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    display: block;
+    background: #262626;
+    color: #f2f2f0;
+  }
+  .recipe-preview-card img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+  .recipe-preview-card:hover img { transform: scale(1.06); }
+  .recipe-preview-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(0deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.15) 55%, rgba(0,0,0,0) 75%);
+  }
+  .recipe-preview-soon::after { display: none; }
+  .wm-badge {
+    position: absolute !important;
+    inset: auto 6px 6px auto !important;
+    width: 26px !important;
+    height: 26px !important;
+    object-fit: contain !important;
+    transition: none !important;
+    opacity: 0.55;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .recipe-preview-body {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    z-index: 1;
+    padding: 16px;
+  }
+  .recipe-preview-title {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 16px;
+    line-height: 1.15;
+    text-transform: uppercase;
+    color: #ffffff;
+  }
+
+  .nav-toggle {
+    display: none;
+    width: 36px;
+    height: 36px;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 1.5px solid #3d3d3d;
+    color: #f2f2f0;
+    cursor: pointer;
+    flex-shrink: 0;
+    padding: 0;
+  }
+  .mobile-menu { display: none; flex-direction: column; border-top: 1px solid #2e2e2e; }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 24px;
+    color: #f2f2f0;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    border-bottom: 1px solid #262626;
+  }
+  .mobile-menu-socials { display: flex; gap: 10px; padding: 16px 24px; }
+  @media (max-width: 860px) {
+    .desktop-nav { display: none !important; }
+    .nav-toggle { display: flex !important; }
+  }
+
+  @media (max-width: 760px) {
+    .hero-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+    .hero-grid > div:last-child { justify-content: center !important; }
+    .sobre-grid { grid-template-columns: 1fr !important; gap: 28px !important; }
+    .acai-grid { grid-template-columns: 1fr !important; gap: 28px !important; padding: 28px 20px !important; }
+    .acai-grid .carousel { max-width: 100% !important; }
+    .delivery-grid { grid-template-columns: 1fr !important; gap: 28px !important; }
+    .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)) !important; }
+    .stores-grid { grid-template-columns: 1fr !important; }
+  }
+</style>
+</head>
+<body>
+
+  <header style="position: sticky; top: 0; z-index: 10; background: rgba(28,28,28,0.92); backdrop-filter: blur(6px); border-bottom: 1px solid #2e2e2e;">
+    <div style="width: 100%; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px;">
+      <a href="#topo" style="display: flex; align-items: center; gap: 10px; color: #f2f2f0;">
+        <img src="images/links/logo.png" alt="Casa do Camarão" style="width: 36px; height: 36px; object-fit: cover;">
+        <span style="display: flex; align-items: baseline; gap: 8px;">
+          <span style="font-family: 'Archivo Black', sans-serif; font-size: 15px; letter-spacing: 0.3px; text-transform: uppercase; color: #f2f2f0;">Casa do Camarão</span>
+          <span style="font-size: 10px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; color: #7d7d7d;">Manaus · AM</span>
+        </span>
+      </a>
+      <nav class="desktop-nav" style="display: flex; align-items: center; gap: 12px;">
+        <a href="https://www.instagram.com/casadocamaraoam/" target="_blank" rel="noopener" aria-label="Instagram" style="display: flex; align-items: center; justify-content: center; width: 28px; height: 28px; background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); border: none; color: #ffffff;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" stroke="currentColor" stroke-width="1.8"></rect><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8"></circle><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor"></circle></svg>
+        </a>
+        <a href="https://www.facebook.com/casadocamaraoam/?locale=pt_BR" target="_blank" rel="noopener" aria-label="Facebook" style="display: flex; align-items: center; justify-content: center; width: 28px; height: 28px; background: #1877F2; border: none; color: #ffffff; margin-right: 6px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M14 8.5h2.5V5h-2.5C11.8 5 10.5 6.3 10.5 8.5V11H8v3.5h2.5V21H14v-6.5h2.5l.5-3.5h-3V8.7c0-.6.2-.2.5-.2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        </a>
+        <a class="nav-link" href="#sobre" style="color: #f2f2f0; font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;">Sobre</a>
+        <a class="nav-link" href="#lojas" style="color: #f2f2f0; font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;">Lojas</a>
+        <a class="nav-link" href="#atacado" style="color: #f2f2f0; font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; margin-right: 10px;">Atacado</a>
+        <a href="https://www.invictaerp.com.br/casa_do_camarao/" target="_blank" rel="noopener" style="display: flex; align-items: center; gap: 7px; background: #C7092B; color: #ffffff; padding: 10px 16px; font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;">Catálogo Digital</a>
+        <a href="https://wa.me/5592981990444" target="_blank" rel="noopener" style="display: flex; align-items: center; gap: 7px; background: transparent; color: #25D366; border: 1.5px solid #25D366; padding: 8.5px 16px; font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#25D366" style="flex-shrink: 0;"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.29-1.39a9.9 9.9 0 0 0 4.75 1.21h.01c5.46 0 9.9-4.45 9.9-9.91C21.96 6.45 17.5 2 12.04 2Zm5.8 14.06c-.25.69-1.44 1.32-1.98 1.4-.51.08-1.13.11-1.83-.12-.42-.13-.96-.31-1.65-.6-2.91-1.26-4.81-4.19-4.96-4.39-.15-.2-1.18-1.57-1.18-3 0-1.42.75-2.12 1.02-2.41.27-.29.58-.36.78-.36.2 0 .39 0 .56.01.18.01.42-.07.65.5.25.6.85 2.08.92 2.23.07.15.12.32.02.52-.09.19-.14.31-.28.48-.14.17-.29.37-.42.5-.14.14-.28.29-.12.57.16.28.71 1.17 1.52 1.9 1.05.94 1.93 1.23 2.21 1.37.28.14.44.12.6-.07.16-.19.68-.79.87-1.06.18-.27.36-.22.6-.13.25.09 1.58.75 1.85.88.27.14.45.2.51.32.07.11.07.65-.18 1.35Z"></path></svg>
+          WhatsApp
+        </a>
+      </nav>
+      <button type="button" class="nav-toggle" aria-label="Abrir menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+    <div id="mobileMenu" class="mobile-menu">
+      <a href="#sobre">Sobre</a>
+      <a href="#lojas">Lojas</a>
+      <a href="#atacado">Atacado</a>
+      <a href="https://www.invictaerp.com.br/casa_do_camarao/" target="_blank" rel="noopener">Catálogo Digital</a>
+      <a href="https://wa.me/5592981990444" target="_blank" rel="noopener" style="color: #25D366;">WhatsApp</a>
+      <div class="mobile-menu-socials">
+        <a href="https://www.instagram.com/casadocamaraoam/" target="_blank" rel="noopener" aria-label="Instagram" style="display: flex; align-items: center; justify-content: center; width: 30px; height: 30px; background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); border: none; color: #ffffff;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" stroke="currentColor" stroke-width="1.8"></rect><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8"></circle><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor"></circle></svg>
+        </a>
+        <a href="https://www.facebook.com/casadocamaraoam/?locale=pt_BR" target="_blank" rel="noopener" aria-label="Facebook" style="display: flex; align-items: center; justify-content: center; width: 30px; height: 30px; background: #1877F2; border: none; color: #ffffff;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M14 8.5h2.5V5h-2.5C11.8 5 10.5 6.3 10.5 8.5V11H8v3.5h2.5V21H14v-6.5h2.5l.5-3.5h-3V8.7c0-.6.2-.2.5-.2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="topo">
+
+    <section style="padding: 72px 24px 88px;">
+      <div class="hero-grid" style="max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.15fr; gap: 56px; align-items: center;">
+
+        <div style="display: flex; flex-direction: column; gap: 24px;">
+          <h1 style="margin: 0; font-family: 'Archivo Black', sans-serif; font-size: clamp(38px, 5.5vw, 62px); line-height: 1.02; letter-spacing: -1px; text-transform: uppercase; color: #f2f2f0; text-wrap: balance;">Frutos do mar <span style="color: #C7092B;">frescos</span>, direto pra sua mesa</h1>
+          <p style="margin: 0; max-width: 440px; font-size: 17px; font-weight: 400; line-height: 1.55; color: #a3a3a3; text-wrap: pretty;">Camarão, peixe e frutos do mar selecionados todos os dias, com entrega rápida para você receber no conforto da sua casa.</p>
+          <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px;">
+            <a href="https://www.invictaerp.com.br/casa_do_camarao/" target="_blank" rel="noopener" style="display: flex; align-items: center; gap: 10px; background: #C7092B; color: #ffffff; padding: 16px 26px; font-weight: 700; font-size: 15px; letter-spacing: 0.5px; text-transform: uppercase;">Pedir pelo Catálogo Digital</a>
+            <a href="#lojas" style="display: flex; align-items: center; gap: 10px; background: transparent; color: #f2f2f0; border: 1.5px solid #3d3d3d; padding: 15px 24px; font-weight: 700; font-size: 15px; letter-spacing: 0.5px; text-transform: uppercase;">Visite uma de nossas lojas</a>
+          </div>
+        </div>
+
+        <div style="display: flex; align-items: center; justify-content: flex-end;">
+          <div class="coin-wrap">
+            <div class="coin">
+              <img src="images/links/logo.png" alt="Casa do Camarão" class="coin-face coin-front">
+              <img src="images/links/logo.png" alt="" class="coin-face coin-back">
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section style="background: #202020; border-top: 1px solid #2e2e2e; border-bottom: 1px solid #2e2e2e;">
+      <div style="max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
+
+        <div style="padding: 36px 28px; border-right: 1px solid #2e2e2e; display: flex; flex-direction: column; gap: 10px;">
+          <span style="font-family: 'Archivo Black', sans-serif; font-size: 26px; line-height: 1; color: #C7092B;">01</span>
+          <h3 style="margin: 0; font-size: 16px; font-weight: 700; letter-spacing: 0.3px; text-transform: uppercase; color: #f2f2f0;">Frescor diário</h3>
+          <p style="margin: 0; font-size: 14px; font-weight: 400; line-height: 1.5; color: #999999; text-wrap: pretty;">Recebimento diário direto dos fornecedores. Nada de estoque parado.</p>
+        </div>
+
+        <div style="padding: 36px 28px; border-right: 1px solid #2e2e2e; display: flex; flex-direction: column; gap: 10px;">
+          <span style="font-family: 'Archivo Black', sans-serif; font-size: 26px; line-height: 1; color: #2699A6;">02</span>
+          <h3 style="margin: 0; font-size: 16px; font-weight: 700; letter-spacing: 0.3px; text-transform: uppercase; color: #f2f2f0;">Variedade</h3>
+          <p style="margin: 0; font-size: 14px; font-weight: 400; line-height: 1.5; color: #999999; text-wrap: pretty;">Camarão de vários tamanhos, peixes regionais, lula, polvo e mais.</p>
+        </div>
+
+        <div style="padding: 36px 28px; border-right: 1px solid #2e2e2e; display: flex; flex-direction: column; gap: 10px;">
+          <span style="font-family: 'Archivo Black', sans-serif; font-size: 26px; line-height: 1; color: #C7092B;">03</span>
+          <h3 style="margin: 0; font-size: 16px; font-weight: 700; letter-spacing: 0.3px; text-transform: uppercase; color: #f2f2f0;">Atendimento</h3>
+          <p style="margin: 0; font-size: 14px; font-weight: 400; line-height: 1.5; color: #999999; text-wrap: pretty;">Uma equipe treinada  para ajudar você a escolher o produto certo, orientar sobre quantidades e compartilhar dicas e receitas que tornam o preparo muito mais simples.</p>
+        </div>
+
+        <div style="padding: 36px 28px; display: flex; flex-direction: column; gap: 10px;">
+          <span style="font-family: 'Archivo Black', sans-serif; font-size: 26px; line-height: 1; color: #2699A6;">04</span>
+          <h3 style="margin: 0; font-size: 16px; font-weight: 700; letter-spacing: 0.3px; text-transform: uppercase; color: #f2f2f0;">Tradição</h3>
+          <p style="margin: 0; font-size: 14px; font-weight: 400; line-height: 1.5; color: #999999; text-wrap: pretty;">Há mais de três décadas, a Casa do Camarão faz parte da mesa dos amazonenses, oferecendo uma seleção cuidadosa de camarões, pescados e frutos do mar. Uma história construída com confiança, conhecimento e clientes que atravessam gerações.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="sobre" style="padding: 72px 24px;">
+      <div class="sobre-grid" style="max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.1fr; gap: 56px; align-items: center;">
+
+        <div style="position: relative; aspect-ratio: 4 / 3; overflow: hidden;">
+          <div class="photo-placeholder">Foto — fachada ou equipe da loja</div>
+          <img src="images/landing/fotoEquipe.jpeg" alt="Equipe Casa do Camarão" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'">
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 18px;">
+          <h2 style="margin: 0; font-family: 'Archivo Black', sans-serif; font-size: clamp(28px, 4.5vw, 42px); line-height: 1.05; letter-spacing: -0.5px; text-transform: uppercase; color: #f2f2f0;">Sobre a <span style="color: #C7092B;">Casa do Camarão</span></h2>
+          <p style="margin: 0; max-width: 480px; font-size: 15px; font-weight: 400; line-height: 1.6; color: #a3a3a3; text-wrap: pretty;">A Casa do Camarão é referência em camarões, pescados e frutos do mar em Manaus. Aqui você encontra uma das maiores variedades da cidade, dos clássicos aos ingredientes da alta gastronomia, cuidadosamente selecionados para diferentes receitas e ocasiões.</p>
+          <p style="margin: 0; max-width: 480px; font-size: 15px; font-weight: 400; line-height: 1.6; color: #a3a3a3; text-wrap: pretty;">Tudo em um só lugar, com variedade, confiança e praticidade.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <section style="padding: 72px 24px;">
+      <div style="max-width: 1100px; margin: 0 auto;">
+        <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-bottom: 28px;">
+          <h2 style="margin: 0; font-family: 'Archivo Black', sans-serif; font-size: clamp(28px, 4.5vw, 42px); line-height: 1; letter-spacing: -0.5px; text-transform: uppercase; color: #f2f2f0;">Frutos do mar <span style="color: #2699A6;">frescos</span></h2>
+          <span style="font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: #7d7d7d;">Seleção da casa</span>
+        </div>
+
+        <div class="gallery-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 10px;">
+          <div style="position: relative; aspect-ratio: 3 / 4; overflow: hidden;">
+            <div class="photo-placeholder">Camarão fresco</div>
+            <img src="images/landing/Camarao.jpeg" alt="Camarão fresco" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'">
+          </div>
+          <div style="position: relative; aspect-ratio: 3 / 4; overflow: hidden;">
+            <div class="photo-placeholder">Camarão rosa inteiro</div>
+            <img src="images/landing/CamaraoRosaInteiro.jpeg" alt="Camarão rosa inteiro" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'">
+          </div>
+          <div style="position: relative; aspect-ratio: 3 / 4; overflow: hidden;">
+            <div class="photo-placeholder">Camarão embalado</div>
+            <img src="images/landing/CamaraoEmbalado.jpeg" alt="Camarão embalado" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'">
+          </div>
+          <div style="position: relative; aspect-ratio: 3 / 4; overflow: hidden;">
+            <div class="photo-placeholder">Pargo inteiro</div>
+            <img src="images/landing/Pargo.jpeg" alt="Pargo inteiro" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'">
+          </div>
+          <div style="position: relative; aspect-ratio: 3 / 4; overflow: hidden;">
+            <div class="photo-placeholder">Filé de lagosta</div>
+            <img src="images/landing/FileLagosta.jpeg" alt="Filé de lagosta" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'">
+          </div>
+          <div style="position: relative; aspect-ratio: 3 / 4; overflow: hidden;">
+            <div class="photo-placeholder">Cauda de lagosta</div>
+            <img src="images/landing/CaudaLagosta.jpeg" alt="Cauda de lagosta" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'">
+          </div>
+          <div style="position: relative; aspect-ratio: 3 / 4; overflow: hidden;">
+            <div class="photo-placeholder">Vieiras</div>
+            <img src="images/landing/Vieira.jpeg" alt="Vieiras" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'">
+          </div>
+          <div style="position: relative; aspect-ratio: 3 / 4; overflow: hidden;">
+            <div class="photo-placeholder">Bacalhau desfiado</div>
+            <img src="images/landing/BacalhauPronto.jpeg" alt="Bacalhau desfiado" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'">
+          </div>
+          <div style="position: relative; aspect-ratio: 3 / 4; overflow: hidden;">
+            <div class="photo-placeholder">Bacalhau em pedaços</div>
+            <img src="images/landing/BacalhauPedacos.jpeg" alt="Bacalhau em pedaços" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'">
+          </div>
+          <div style="position: relative; aspect-ratio: 3 / 4; overflow: hidden;">
+            <div class="photo-placeholder">Filé de salmão</div>
+            <img src="images/landing/fileSalmao.JPG" alt="Filé de salmão" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'">
+          </div>
+          <div style="position: relative; aspect-ratio: 3 / 4; overflow: hidden;">
+            <div class="photo-placeholder">Polvo inteiro</div>
+            <img src="images/landing/polvoInteiro.JPG" alt="Polvo inteiro" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'">
+          </div>
+          <div style="position: relative; aspect-ratio: 3 / 4; overflow: hidden;">
+            <div class="photo-placeholder">Lombo de bacalhau</div>
+            <img src="images/landing/lomboBacalhau.JPG" alt="Lombo de bacalhau" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'">
+          </div>
+          <div style="position: relative; aspect-ratio: 3 / 4; overflow: hidden;">
+            <div class="photo-placeholder">Bacalhau em manta</div>
+            <img src="images/landing/manta.JPG" alt="Bacalhau em manta" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'">
+          </div>
+          <div style="position: relative; aspect-ratio: 3 / 4; overflow: hidden;">
+            <div class="photo-placeholder">Camarões limpos</div>
+            <img src="images/landing/camaroes.JPG" alt="Camarões limpos" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="padding: 56px 24px;">
+      <div style="max-width: 1100px; margin: 0 auto;">
+        <div class="acai-grid" style="background: #262626; border: 1px solid #333333; padding: 40px; display: grid; grid-template-columns: 1fr 0.85fr; gap: 40px; align-items: center;">
+
+          <div style="display: flex; flex-direction: column; gap: 18px;">
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <img src="images/landing/bandeira-para.svg" alt="Bandeira do Pará" style="width: 44px; aspect-ratio: 3 / 2; object-fit: cover; box-shadow: 0 3px 8px rgba(0,0,0,0.35); flex-shrink: 0;">
+              <h2 style="margin: 0; font-family: 'Archivo Black', sans-serif; font-size: clamp(26px, 4vw, 38px); line-height: 1.05; letter-spacing: -0.5px; text-transform: uppercase; color: #f2f2f0;">Açaí do <span style="color: #C7092B;">Pará</span></h2>
+            </div>
+            <p style="margin: 0; max-width: 440px; font-size: 15px; font-weight: 400; line-height: 1.6; color: #a3a3a3; text-wrap: pretty;">Direto do Pará, puro e cremoso — sem adição de água, sem conservantes. O jeito certo de tomar açaí.</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px;">
+              <span style="background: #1c1c1c; border: 1px solid #3d3d3d; padding: 8px 14px; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #d8d8d8;">Teor de polpa 14%</span>
+              <span style="background: #1c1c1c; border: 1px solid #3d3d3d; padding: 8px 14px; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #d8d8d8;">Embalagem 1,02kg</span>
+              <span style="background: #1c1c1c; border: 1px solid #3d3d3d; padding: 8px 14px; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #d8d8d8;">Produzido no Pará</span>
+            </div>
+          </div>
+
+          <div class="carousel" id="acai-carousel" style="max-width: 240px;">
+            <div class="carousel-track">
+              <div class="carousel-slide">
+                <div class="photo-placeholder">Açaí</div>
+                <img src="images/landing/acaiEmbalagem.jpeg" alt="Açaí embalado" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'">
+              </div>
+              <div class="carousel-slide">
+                <div class="photo-placeholder">Açaí</div>
+                <img src="images/landing/acaiServido.JPG" alt="Açaí servido" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'">
+              </div>
+              <div class="carousel-slide">
+                <div class="photo-placeholder">Açaí</div>
+                <img src="images/landing/acai.JPG" alt="Açaí na tigela" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'">
+              </div>
+            </div>
+            <button type="button" class="carousel-arrow carousel-prev" aria-label="Foto anterior">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            </button>
+            <button type="button" class="carousel-arrow carousel-next" aria-label="Próxima foto">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            </button>
+            <div class="carousel-dots"></div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section style="padding: 56px 24px;">
+      <div style="max-width: 1000px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 36px;">
+        <div style="text-align: center; display: flex; flex-direction: column; align-items: center; gap: 18px;">
+          <h2 style="margin: 0; font-family: 'Archivo Black', sans-serif; font-size: clamp(24px, 4vw, 34px); line-height: 1.1; letter-spacing: -0.5px; text-transform: uppercase; color: #f2f2f0; text-wrap: balance;">Conheça nosso catálogo de <span style="color: #2699A6;">receitas</span></h2>
+          <p style="margin: 0; font-size: 15px; font-weight: 400; line-height: 1.6; color: #a3a3a3;">Receitas com passo a passo em texto e vídeo, usando produtos da Casa do Camarão.</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; width: 100%;">
+          <a href="receitas/baguete-de-camarao.html" class="recipe-preview-card">
+            <img src="receitas/videos/baguete-de-camarao-poster.jpg" alt="Baguete de Camarão">
+            <img class="wm-badge" src="images/links/logo.png" alt="">
+            <div class="recipe-preview-body">
+              <span class="recipe-preview-title">Baguete de Camarão</span>
+            </div>
+          </a>
+          <a href="receitas/camarao-internacional.html" class="recipe-preview-card">
+            <img src="receitas/videos/camarao-internacional-poster.jpg" alt="Camarão Internacional">
+            <img class="wm-badge" src="images/links/logo.png" alt="">
+            <div class="recipe-preview-body">
+              <span class="recipe-preview-title">Camarão Internacional</span>
+            </div>
+          </a>
+          <a href="receitas/polvo-panela-pressao.html" class="recipe-preview-card">
+            <img src="receitas/videos/polvo-panela-pressao-poster.jpg" alt="Polvo na Panela de Pressão">
+            <img class="wm-badge" src="images/links/logo.png" alt="">
+            <div class="recipe-preview-body">
+              <span class="recipe-preview-title">Polvo na Panela de Pressão</span>
+            </div>
+          </a>
+        </div>
+
+        <a href="receitas/index.html" style="display: flex; align-items: center; gap: 10px; background: #2699A6; color: #ffffff; padding: 16px 26px; font-weight: 700; font-size: 15px; letter-spacing: 0.5px; text-transform: uppercase;">Ver todas as receitas</a>
+      </div>
+    </section>
+
+    <section id="lojas" style="background: #202020; border-top: 1px solid #2e2e2e; border-bottom: 1px solid #2e2e2e; padding: 72px 0;">
+      <div style="max-width: 1320px; margin: 0 auto;">
+        <div style="padding: 0 24px; margin-bottom: 28px;">
+          <h2 style="margin: 0; font-family: 'Archivo Black', sans-serif; font-size: clamp(28px, 4.5vw, 42px); line-height: 1; letter-spacing: -0.5px; text-transform: uppercase; color: #f2f2f0;">Nossas <span style="color: #C7092B;">lojas</span></h2>
+        </div>
+
+        <div class="stores-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 26px; padding: 0 24px;">
+
+          <div style="background: #262626; border: 1px solid #333333; padding: 28px 24px; display: flex; flex-direction: column; gap: 20px;">
+            <div class="store-media" style="margin: -28px -24px 0;">
+              <div>
+                <div class="photo-placeholder">Foto da fachada — Loja Boulevard</div>
+                <img class="store-photo" src="images/landing/loja-boulevard-fachada.jpg" alt="Fachada Loja Boulevard" onerror="this.style.display='none'">
+                <img class="wm-badge" src="images/links/logo.png" alt="">
+              </div>
+              <div>
+                <div class="photo-placeholder">Vídeo de entrada — Loja Boulevard</div>
+                <video class="store-video" autoplay muted loop playsinline onerror="this.style.display='none'">
+                  <source src="images/landing/loja-boulevard-entrada.mp4" type="video/mp4">
+                </video>
+                <img class="wm-badge" src="images/links/logo.png" alt="">
+              </div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <span style="font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: #d8d8d8;">Unidade 01</span>
+              <h3 style="margin: 4px 0 0; font-family: 'Archivo Black', sans-serif; font-size: 24px; line-height: 1; text-transform: uppercase; color: #f2f2f0;">Boulevard</h3>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 3px; border-left: 3px solid #C7092B; padding-left: 13px;">
+              <span style="font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: #7d7d7d;">Horário</span>
+              <span style="font-size: 14px; font-weight: 500; color: #d8d8d8;">Seg a sáb · 8h30 às 17h30</span>
+              <span style="font-size: 14px; font-weight: 500; color: #d8d8d8;">Dom e feriados · 8h às 12h</span>
+            </div>
+
+            <div style="display: flex; gap: 8px; margin-top: auto;">
+              <a href="https://maps.google.com/maps?vet=10CAAQoqAOahcKEwjYlvz24v-VAxUAAAAAHQAAAAAQDA..i&pvq=CgwvZy8xcHR6OXI0cnkiFQoPY2FzYSBkbyBjYW1hcmFvEAIYAw&lqi=Cg9jYXNhIGRvIGNhbWFyYW9I_aXu5OeVgIAIWh0QABABEAIYABgBGAIiD2Nhc2EgZG8gY2FtYXJhb5IBDnNlYWZvb2RfbWFya2V0&fvr=1&cs=1&um=1&ie=UTF-8&fb=1&gl=br&sa=X&ftid=0x926c055948017b15:0x652a143f5b2ae6d8" target="_blank" rel="noopener" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; background: transparent; border: 1.5px solid #C7092B; color: #ff6b6b; padding: 11.5px 10px; font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;">
+                <img src="images/links/google_maps.png" alt="" width="15" height="15" style="flex-shrink: 0;">
+                Maps
+              </a>
+              <a href="https://waze.com/ul?q=Rod.%20%C3%81lvaro%20Maia%2C%20547%20-%20Nossa%20Sra.%20das%20Gra%C3%A7as%2C%20Manaus%20-%20AM%2C%2069053-385&navigate=yes" target="_blank" rel="noopener" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; background: transparent; border: 1.5px solid #2699A6; color: #4db4c0; padding: 11.5px 10px; font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;">
+                <img src="images/links/waze-icon-logo.png" alt="" width="15" height="15" style="flex-shrink: 0;">
+                Waze
+              </a>
+            </div>
+          </div>
+
+          <div style="background: #262626; border: 1px solid #333333; padding: 28px 24px; display: flex; flex-direction: column; gap: 20px;">
+            <div class="store-media" style="margin: -28px -24px 0;">
+              <div>
+                <div class="photo-placeholder">Foto da fachada — Loja Morada do Sol</div>
+                <img class="store-photo" src="images/landing/loja-morada-fachada.jpg" alt="Fachada Loja Morada do Sol" onerror="this.style.display='none'">
+                <img class="wm-badge" src="images/links/logo.png" alt="">
+              </div>
+              <div>
+                <div class="photo-placeholder">Vídeo de entrada — Loja Morada do Sol</div>
+                <video class="store-video" autoplay muted loop playsinline onerror="this.style.display='none'">
+                  <source src="images/landing/loja-morada-entrada.mp4" type="video/mp4">
+                </video>
+                <img class="wm-badge" src="images/links/logo.png" alt="">
+              </div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <span style="font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: #d8d8d8;">Unidade 02</span>
+              <h3 style="margin: 4px 0 0; font-family: 'Archivo Black', sans-serif; font-size: 24px; line-height: 1; text-transform: uppercase; color: #f2f2f0;">Morada do Sol</h3>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 3px; border-left: 3px solid #C7092B; padding-left: 13px;">
+              <span style="font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: #7d7d7d;">Horário</span>
+              <span style="font-size: 14px; font-weight: 500; color: #d8d8d8;">Seg a sex · 9h30 às 18h30</span>
+              <span style="font-size: 14px; font-weight: 500; color: #d8d8d8;">Sábado · 8h30 às 17h30</span>
+              <span style="font-size: 14px; font-weight: 500; color: #d8d8d8;">Dom e feriados · 8h às 12h</span>
+            </div>
+
+            <div style="display: flex; gap: 8px; margin-top: auto;">
+              <a href="https://maps.google.com/maps?vet=10CAAQoqAOahcKEwjYlvz24v-VAxUAAAAAHQAAAAAQGw..i&pvq=Cg0vZy8xMW55MjZreHlnIhUKD2Nhc2EgZG8gY2FtYXJhbxACGAM&lqi=Cg9jYXNhIGRvIGNhbWFyYW9Iruejo_S0gIAIWh0QABABEAIYABgBGAIiD2Nhc2EgZG8gY2FtYXJhb5IBEnNlYWZvb2Rfd2hvbGVzYWxlcg&fvr=1&cs=1&um=1&ie=UTF-8&fb=1&gl=br&sa=X&ftid=0x926c1bce7ed4b2f3:0x51f60887d58de678" target="_blank" rel="noopener" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; background: transparent; border: 1.5px solid #C7092B; color: #ff6b6b; padding: 11.5px 10px; font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;">
+                <img src="images/links/google_maps.png" alt="" width="15" height="15" style="flex-shrink: 0;">
+                Maps
+              </a>
+              <a href="https://waze.com/ul?q=Casa%20do%20Camarão%20Morada%20do%20Sol%20Manaus&navigate=yes" target="_blank" rel="noopener" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; background: transparent; border: 1.5px solid #2699A6; color: #4db4c0; padding: 11.5px 10px; font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;">
+                <img src="images/links/waze-icon-logo.png" alt="" width="15" height="15" style="flex-shrink: 0;">
+                Waze
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="atacado" style="padding: 72px 24px;">
+      <div style="max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 22px; text-align: center;">
+        <h2 style="margin: 0; font-family: 'Archivo Black', sans-serif; font-size: clamp(28px, 4.5vw, 42px); line-height: 1.05; letter-spacing: -0.5px; text-transform: uppercase; color: #f2f2f0;">Compra no <span style="color: #C7092B;">Atacado</span></h2>
+        <p style="margin: 0; font-size: 15px; font-weight: 400; line-height: 1.6; color: #a3a3a3; text-wrap: pretty;">A Casa do Camarão também atende restaurantes, hotéis, buffets, empresas e outros negócios que buscam camarões, pescados e frutos do mar em maiores quantidades.</p>
+        <p style="margin: 0; font-size: 15px; font-weight: 400; line-height: 1.6; color: #a3a3a3; text-wrap: pretty;">Conte com variedade de produtos, atendimento especializado e condições diferenciadas para compras no atacado.</p>
+        <p style="margin: 0; font-size: 15px; font-weight: 600; line-height: 1.6; color: #d8d8d8;">Fale com nossa equipe e solicite uma cotação.</p>
+        <a href="https://wa.me/5592981990444?text=Ol%C3%A1%21%20Gostaria%20de%20solicitar%20uma%20cota%C3%A7%C3%A3o%20para%20compra%20no%20atacado." target="_blank" rel="noopener" style="display: flex; align-items: center; gap: 10px; background: #1DA851; color: #ffffff; padding: 16px 26px; font-weight: 700; font-size: 15px; letter-spacing: 0.5px; text-transform: uppercase; margin-top: 6px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#ffffff" style="flex-shrink: 0;"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.29-1.39a9.9 9.9 0 0 0 4.75 1.21h.01c5.46 0 9.9-4.45 9.9-9.91C21.96 6.45 17.5 2 12.04 2Zm5.8 14.06c-.25.69-1.44 1.32-1.98 1.4-.51.08-1.13.11-1.83-.12-.42-.13-.96-.31-1.65-.6-2.91-1.26-4.81-4.19-4.96-4.39-.15-.2-1.18-1.57-1.18-3 0-1.42.75-2.12 1.02-2.41.27-.29.58-.36.78-.36.2 0 .39 0 .56.01.18.01.42-.07.65.5.25.6.85 2.08.92 2.23.07.15.12.32.02.52-.09.19-.14.31-.28.48-.14.17-.29.37-.42.5-.14.14-.28.29-.12.57.16.28.71 1.17 1.52 1.9 1.05.94 1.93 1.23 2.21 1.37.28.14.44.12.6-.07.16-.19.68-.79.87-1.06.18-.27.36-.22.6-.13.25.09 1.58.75 1.85.88.27.14.45.2.51.32.07.11.07.65-.18 1.35Z"></path></svg>
+          Solicitar cotação
+        </a>
+      </div>
+    </section>
+
+    <section style="background: #202020; border-top: 1px solid #2e2e2e; padding: 64px 24px;">
+      <div class="delivery-grid" style="max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: center;">
+        <div style="display: flex; flex-direction: column; gap: 24px; align-items: flex-start;">
+          <h2 style="margin: 0; max-width: 560px; font-family: 'Archivo Black', sans-serif; font-size: clamp(28px, 4.5vw, 42px); line-height: 1.05; letter-spacing: -0.5px; text-transform: uppercase; color: #ffffff; text-wrap: balance;">Peça agora e receba no conforto da sua casa</h2>
+          <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+            <a href="https://www.invictaerp.com.br/casa_do_camarao/" target="_blank" rel="noopener" style="display: flex; align-items: center; gap: 10px; background: #C7092B; color: #ffffff; padding: 16px 26px; font-weight: 700; font-size: 15px; letter-spacing: 0.5px; text-transform: uppercase;">Catálogo digital</a>
+            <a href="https://wa.me/5592981990444" target="_blank" rel="noopener" style="display: flex; align-items: center; gap: 10px; background: #1DA851; color: #ffffff; padding: 16px 26px; font-weight: 700; font-size: 15px; letter-spacing: 0.5px; text-transform: uppercase;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="#ffffff" style="flex-shrink: 0;"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.29-1.39a9.9 9.9 0 0 0 4.75 1.21h.01c5.46 0 9.9-4.45 9.9-9.91C21.96 6.45 17.5 2 12.04 2Zm5.8 14.06c-.25.69-1.44 1.32-1.98 1.4-.51.08-1.13.11-1.83-.12-.42-.13-.96-.31-1.65-.6-2.91-1.26-4.81-4.19-4.96-4.39-.15-.2-1.18-1.57-1.18-3 0-1.42.75-2.12 1.02-2.41.27-.29.58-.36.78-.36.2 0 .39 0 .56.01.18.01.42-.07.65.5.25.6.85 2.08.92 2.23.07.15.12.32.02.52-.09.19-.14.31-.28.48-.14.17-.29.37-.42.5-.14.14-.28.29-.12.57.16.28.71 1.17 1.52 1.9 1.05.94 1.93 1.23 2.21 1.37.28.14.44.12.6-.07.16-.19.68-.79.87-1.06.18-.27.36-.22.6-.13.25.09 1.58.75 1.85.88.27.14.45.2.51.32.07.11.07.65-.18 1.35Z"></path></svg>
+              WhatsApp
+            </a>
+          </div>
+        </div>
+
+        <div style="position: relative; aspect-ratio: 4 / 3; overflow: hidden;">
+          <div class="photo-placeholder">Foto — entregador na moto</div>
+          <img src="images/landing/Entregador.jpeg" alt="Entrega Casa do Camarão" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'">
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer style="background: #1c1c1c; border-top: 1px solid #2e2e2e;">
+    <div style="width: 100%; padding: 26px 24px; display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: center;">
+      <span style="font-family: 'Archivo Black', sans-serif; font-size: 12px; letter-spacing: 0.5px; text-transform: uppercase; color: #f2f2f0;">Casa do Camarão</span>
+
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <span style="font-size: 11px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; color: #7d7d7d;">Nos acompanhe nas redes sociais</span>
+        <a href="https://www.instagram.com/casadocamaraoam/" target="_blank" rel="noopener" aria-label="Instagram" style="display: flex; align-items: center; justify-content: center; width: 30px; height: 30px; background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); border: none; color: #ffffff;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" stroke="currentColor" stroke-width="1.8"></rect><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8"></circle><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor"></circle></svg>
+        </a>
+        <a href="https://www.facebook.com/casadocamaraoam/?locale=pt_BR" target="_blank" rel="noopener" aria-label="Facebook" style="display: flex; align-items: center; justify-content: center; width: 30px; height: 30px; background: #1877F2; border: none; color: #ffffff;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M14 8.5h2.5V5h-2.5C11.8 5 10.5 6.3 10.5 8.5V11H8v3.5h2.5V21H14v-6.5h2.5l.5-3.5h-3V8.7c0-.6.2-.2.5-.2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        </a>
+      </div>
+
+      <span style="font-size: 11px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; color: #7d7d7d;">Manaus · AM · 2026</span>
+    </div>
+  </footer>
+
+<script>
+  var navToggle = document.querySelector('.nav-toggle');
+  var mobileMenu = document.getElementById('mobileMenu');
+  if (navToggle && mobileMenu) {
+    navToggle.addEventListener('click', function () {
+      mobileMenu.classList.toggle('open');
+    });
+    mobileMenu.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () { mobileMenu.classList.remove('open'); });
+    });
+  }
+
+  document.querySelectorAll('.carousel').forEach(function (carousel) {
+    var track = carousel.querySelector('.carousel-track');
+    var slides = Array.prototype.slice.call(carousel.querySelectorAll('.carousel-slide'));
+    var dotsWrap = carousel.querySelector('.carousel-dots');
+    var prevBtn = carousel.querySelector('.carousel-prev');
+    var nextBtn = carousel.querySelector('.carousel-next');
+    var current = 0;
+    var autoplayId = null;
+
+    var dots = slides.map(function (_, i) {
+      var dot = document.createElement('button');
+      dot.type = 'button';
+      dot.setAttribute('aria-label', 'Ir para foto ' + (i + 1));
+      if (i === 0) dot.classList.add('active');
+      dot.addEventListener('click', function () { goTo(i); });
+      dotsWrap.appendChild(dot);
+      return dot;
+    });
+
+    function goTo(index) {
+      current = (index + slides.length) % slides.length;
+      track.scrollTo({ left: slides[current].offsetLeft, behavior: 'smooth' });
+    }
+
+    function setActive(index) {
+      current = index;
+      dots.forEach(function (d, i) { d.classList.toggle('active', i === index); });
+    }
+
+    prevBtn.addEventListener('click', function () { goTo(current - 1); restartAutoplay(); });
+    nextBtn.addEventListener('click', function () { goTo(current + 1); restartAutoplay(); });
+
+    var scrollTimeout;
+    track.addEventListener('scroll', function () {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(function () {
+        var closest = 0;
+        var closestDist = Infinity;
+        slides.forEach(function (slide, i) {
+          var dist = Math.abs(slide.offsetLeft - track.scrollLeft);
+          if (dist < closestDist) { closestDist = dist; closest = i; }
+        });
+        setActive(closest);
+      }, 100);
+    });
+
+    track.addEventListener('pointerdown', restartAutoplay);
+
+    function autoplay() {
+      goTo(current + 1);
+    }
+    function restartAutoplay() {
+      clearInterval(autoplayId);
+      autoplayId = setInterval(autoplay, 4000);
+    }
+    restartAutoplay();
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vieira Grelhada — Receitas Casa do Camarão</title>
+<meta name="description" content="Receita de vieira grelhada da Casa do Camarão. Passo a passo com vídeo.">
+<link rel="icon" href="../images/links/favicon.ico" sizes="any">
+<link rel="icon" href="../images/links/favicon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="../images/links/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Archivo+Black&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #1c1c1c; font-family: 'Oswald', sans-serif; color: #f2f2f0; }
+  a { color: #2699A6; text-decoration: none; }
+  a:hover { color: #4db4c0; }
+  ::selection { background: #C7092B; color: #fff; }
+
+  .recipe-layout {
+    display: grid;
+    grid-template-columns: minmax(260px, 320px) 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+  @media (max-width: 760px) {
+    .recipe-layout { grid-template-columns: 1fr; }
+  }
+  .recipe-video { position: sticky; top: 96px; }
+  .wm-badge {
+    position: absolute !important;
+    inset: auto 10px 50px auto !important;
+    width: 30px !important;
+    height: 30px !important;
+    object-fit: contain !important;
+    opacity: 0.55;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .recipe-cols {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 52px;
+    align-items: start;
+  }
+  .ingredient-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 16px; }
+  .ingredient-list li {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    font-size: 17px;
+    line-height: 1.5;
+    color: #e5e5e5;
+  }
+  .ingredient-list li::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    background: #C7092B;
+    flex-shrink: 0;
+    transform: translateY(-3px);
+  }
+  .step-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 34px; }
+  .step-list li {
+    display: flex;
+    gap: 22px;
+    align-items: flex-start;
+  }
+  .step-num {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 32px;
+    line-height: 1;
+    color: #2699A6;
+    flex-shrink: 0;
+    width: 48px;
+  }
+  .step-text {
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1.7;
+    color: #e5e5e5;
+    padding-top: 5px;
+  }
+
+  .nav-toggle {
+    display: none;
+    width: 36px;
+    height: 36px;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 1.5px solid #3d3d3d;
+    color: #f2f2f0;
+    cursor: pointer;
+    flex-shrink: 0;
+    padding: 0;
+  }
+  .mobile-menu { display: none; flex-direction: column; border-top: 1px solid #2e2e2e; }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 24px;
+    color: #f2f2f0;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    border-bottom: 1px solid #262626;
+  }
+  .mobile-menu-socials { display: flex; gap: 10px; padding: 16px 24px; }
+  @media (max-width: 860px) {
+    .desktop-nav { display: none !important; }
+    .nav-toggle { display: flex !important; }
+  }
+
+  .copy-link-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    border: 1.5px solid #2699A6;
+    color: #2699A6;
+    padding: 10px 16px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-bottom: 40px;
+  }
+  .copy-link-btn:hover { background: rgba(38,153,166,0.12); }
+  .copy-link-btn.copied { border-color: #1DA851; color: #1DA851; }
+</style>
+</head>
+<body>
+
+  <header style="position: sticky; top: 0; z-index: 10; background: rgba(28,28,28,0.92); backdrop-filter: blur(6px); border-bottom: 1px solid #2e2e2e;">
+    <div style="width: 100%; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px;">
+      <a href="../index.html" style="display: flex; align-items: center; gap: 10px; color: #f2f2f0;">
+        <img src="../images/links/logo.png" alt="Casa do Camarão" style="width: 36px; height: 36px; object-fit: cover;">
+        <span style="display: flex; align-items: baseline; gap: 8px;">
+          <span style="font-family: 'Archivo Black', sans-serif; font-size: 15px; letter-spacing: 0.3px; text-transform: uppercase; color: #f2f2f0;">Casa do Camarão</span>
+          <span style="font-size: 10px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; color: #7d7d7d;">Manaus · AM</span>
+        </span>
+      </a>
+      <nav class="desktop-nav" style="display: flex; align-items: center; gap: 12px;">
+        <a href="https://www.instagram.com/casadocamaraoam/" target="_blank" rel="noopener" aria-label="Instagram" style="display: flex; align-items: center; justify-content: center; width: 28px; height: 28px; background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); border: none; color: #ffffff;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" stroke="currentColor" stroke-width="1.8"></rect><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8"></circle><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor"></circle></svg>
+        </a>
+        <a href="https://www.facebook.com/casadocamaraoam/?locale=pt_BR" target="_blank" rel="noopener" aria-label="Facebook" style="display: flex; align-items: center; justify-content: center; width: 28px; height: 28px; background: #1877F2; border: none; color: #ffffff; margin-right: 6px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M14 8.5h2.5V5h-2.5C11.8 5 10.5 6.3 10.5 8.5V11H8v3.5h2.5V21H14v-6.5h2.5l.5-3.5h-3V8.7c0-.6.2-.2.5-.2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        </a>
+        <a href="https://www.invictaerp.com.br/casa_do_camarao/" target="_blank" rel="noopener" style="display: flex; align-items: center; gap: 7px; background: #C7092B; color: #ffffff; padding: 10px 16px; font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;">Catálogo Digital</a>
+        <a href="https://wa.me/5592981990444" target="_blank" rel="noopener" style="display: flex; align-items: center; gap: 7px; background: transparent; color: #25D366; border: 1.5px solid #25D366; padding: 8.5px 16px; font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#25D366" style="flex-shrink: 0;"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.29-1.39a9.9 9.9 0 0 0 4.75 1.21h.01c5.46 0 9.9-4.45 9.9-9.91C21.96 6.45 17.5 2 12.04 2Zm5.8 14.06c-.25.69-1.44 1.32-1.98 1.4-.51.08-1.13.11-1.83-.12-.42-.13-.96-.31-1.65-.6-2.91-1.26-4.81-4.19-4.96-4.39-.15-.2-1.18-1.57-1.18-3 0-1.42.75-2.12 1.02-2.41.27-.29.58-.36.78-.36.2 0 .39 0 .56.01.18.01.42-.07.65.5.25.6.85 2.08.92 2.23.07.15.12.32.02.52-.09.19-.14.31-.28.48-.14.17-.29.37-.42.5-.14.14-.28.29-.12.57.16.28.71 1.17 1.52 1.9 1.05.94 1.93 1.23 2.21 1.37.28.14.44.12.6-.07.16-.19.68-.79.87-1.06.18-.27.36-.22.6-.13.25.09 1.58.75 1.85.88.27.14.45.2.51.32.07.11.07.65-.18 1.35Z"></path></svg>
+          WhatsApp
+        </a>
+      </nav>
+      <button type="button" class="nav-toggle" aria-label="Abrir menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+    <div id="mobileMenu" class="mobile-menu">
+      <a href="https://www.invictaerp.com.br/casa_do_camarao/" target="_blank" rel="noopener">Catálogo Digital</a>
+      <a href="https://wa.me/5592981990444" target="_blank" rel="noopener" style="color: #25D366;">WhatsApp</a>
+      <div class="mobile-menu-socials">
+        <a href="https://www.instagram.com/casadocamaraoam/" target="_blank" rel="noopener" aria-label="Instagram" style="display: flex; align-items: center; justify-content: center; width: 30px; height: 30px; background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); border: none; color: #ffffff;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" stroke="currentColor" stroke-width="1.8"></rect><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8"></circle><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor"></circle></svg>
+        </a>
+        <a href="https://www.facebook.com/casadocamaraoam/?locale=pt_BR" target="_blank" rel="noopener" aria-label="Facebook" style="display: flex; align-items: center; justify-content: center; width: 30px; height: 30px; background: #1877F2; border: none; color: #ffffff;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M14 8.5h2.5V5h-2.5C11.8 5 10.5 6.3 10.5 8.5V11H8v3.5h2.5V21H14v-6.5h2.5l.5-3.5h-3V8.7c0-.6.2-.2.5-.2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <section style="padding: 24px 24px 72px;">
+      <div style="max-width: 1320px; margin: 0 auto; display: flex; flex-direction: column; gap: 24px;">
+
+        <a href="index.html" style="display: inline-flex; align-self: flex-start; align-items: center; gap: 8px; color: #7d7d7d; font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; margin-top: 24px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          Todas as receitas
+        </a>
+
+        <article style="background: #202020; border: 1px solid #2e2e2e; padding: 56px 44px 72px;">
+          <h1 style="margin: 0 0 20px; font-family: 'Archivo Black', sans-serif; font-size: clamp(30px, 5.5vw, 46px); line-height: 1.05; letter-spacing: -0.5px; text-transform: uppercase; color: #ffffff; text-wrap: balance;">Vieira Grelhada</h1>
+          <button type="button" class="copy-link-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><rect x="9" y="9" width="12" height="12" stroke="currentColor" stroke-width="1.8"></rect><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1" stroke="currentColor" stroke-width="1.8"></path></svg>
+            <span class="copy-link-label">Copiar link da receita</span>
+          </button>
+
+          <div class="recipe-layout">
+            <div class="recipe-video">
+              <div style="position: relative; aspect-ratio: 9 / 16; overflow: hidden;">
+                <video controls preload="none" poster="videos/vieira-grelhada-poster.jpg" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: #000;">
+                  <source src="videos/vieira-grelhada-web.mp4" type="video/mp4">
+                </video>
+                <img class="wm-badge" src="../images/links/logo.png" alt="">
+              </div>
+            </div>
+
+            <div class="recipe-cols">
+              <div>
+                <h2 style="margin: 0 0 24px; font-family: 'Archivo Black', sans-serif; font-size: 18px; letter-spacing: 0.3px; text-transform: uppercase; color: #C7092B;">Ingredientes</h2>
+                <ul class="ingredient-list">
+                  <li>Vieira</li>
+                  <li>Azeite</li>
+                  <li>Sal a gosto</li>
+                </ul>
+              </div>
+
+              <div>
+                <h2 style="margin: 0 0 28px; font-family: 'Archivo Black', sans-serif; font-size: 18px; letter-spacing: 0.3px; text-transform: uppercase; color: #2699A6;">Modo de preparo</h2>
+                <ol class="step-list">
+                  <li><span class="step-num">01</span><span class="step-text">Retire as vieiras do congelador e deixe descongelar completamente.</span></li>
+                  <li><span class="step-num">02</span><span class="step-text">Seque bem cada vieira com papel-toalha. Esse passo é importante para garantir uma boa selagem.</span></li>
+                  <li><span class="step-num">03</span><span class="step-text">Aqueça uma frigideira com bastante azeite até que esteja bem quente.</span></li>
+                  <li><span class="step-num">04</span><span class="step-text">Adicione as vieiras e deixe dourar sem mexer.</span></li>
+                  <li><span class="step-num">05</span><span class="step-text">Quando estiverem douradas na parte de baixo, vire e deixe dourar rapidamente do outro lado.</span></li>
+                  <li><span class="step-num">06</span><span class="step-text">Tempere apenas com uma pitada de sal para preservar o sabor delicado e natural da vieira.</span></li>
+                  <li><span class="step-num">07</span><span class="step-text">Sirva imediatamente.</span></li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer style="background: #1c1c1c; border-top: 1px solid #2e2e2e;">
+    <div style="width: 100%; padding: 26px 24px; display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: center;">
+      <span style="font-family: 'Archivo Black', sans-serif; font-size: 12px; letter-spacing: 0.5px; text-transform: uppercase; color: #f2f2f0;">Casa do Camarão</span>
+
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <span style="font-size: 11px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; color: #7d7d7d;">Nos acompanhe nas redes sociais</span>
+        <a href="https://www.instagram.com/casadocamaraoam/" target="_blank" rel="noopener" aria-label="Instagram" style="display: flex; align-items: center; justify-content: center; width: 30px; height: 30px; background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); border: none; color: #ffffff;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" stroke="currentColor" stroke-width="1.8"></rect><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8"></circle><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor"></circle></svg>
+        </a>
+        <a href="https://www.facebook.com/casadocamaraoam/?locale=pt_BR" target="_blank" rel="noopener" aria-label="Facebook" style="display: flex; align-items: center; justify-content: center; width: 30px; height: 30px; background: #1877F2; border: none; color: #ffffff;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M14 8.5h2.5V5h-2.5C11.8 5 10.5 6.3 10.5 8.5V11H8v3.5h2.5V21H14v-6.5h2.5l.5-3.5h-3V8.7c0-.6.2-.2.5-.2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        </a>
+      </div>
+
+      <span style="font-size: 11px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; color: #7d7d7d;">Manaus · AM · 2026</span>
+    </div>
+  </footer>
+
+<script>
+  var navToggle = document.querySelector('.nav-toggle');
+  var mobileMenu = document.getElementById('mobileMenu');
+  if (navToggle && mobileMenu) {
+    navToggle.addEventListener('click', function () {
+      mobileMenu.classList.toggle('open');
+    });
+    mobileMenu.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () { mobileMenu.classList.remove('open'); });
+    });
+  }
+</script>
+<script>
+  document.querySelectorAll('.copy-link-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var url = window.location.href;
+      var showCopied = function () {
+        var label = btn.querySelector('.copy-link-label');
+        var original = label.textContent;
+        btn.classList.add('copied');
+        label.textContent = 'Link copiado!';
+        setTimeout(function () {
+          btn.classList.remove('copied');
+          label.textContent = original;
+        }, 2000);
+      };
+      var fallbackCopy = function () {
+        var input = document.createElement('textarea');
+        input.value = url;
+        input.style.position = 'fixed';
+        input.style.opacity = '0';
+        document.body.appendChild(input);
+        input.focus();
+        input.select();
+        try { document.execCommand('copy'); showCopied(); } catch (e) {}
+        document.body.removeChild(input);
+      };
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(url).then(showCopied, fallbackCopy);
+      } else {
+        fallbackCopy();
+      }
+    });
+  });
+</script>
+</body>
+</html>
