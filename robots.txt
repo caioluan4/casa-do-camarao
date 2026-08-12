@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://casadocamaraoam1.com.br/sitemap.xml

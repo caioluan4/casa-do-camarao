@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Polvo na Panela de Pressão — Receitas Casa do Camarão</title>
-<meta name="description" content="Receita de polvo macio na panela de pressão, sem água, da Casa do Camarão. Passo a passo com vídeo.">
-<link rel="icon" href="../images/links/favicon.ico" sizes="any">
-<link rel="icon" href="../images/links/favicon-192.png" type="image/png" sizes="192x192">
-<link rel="apple-touch-icon" href="../images/links/apple-touch-icon.png">
+<title>Camarão Internacional — Receitas Casa do Camarão</title>
+<meta name="description" content="Receita de camarão internacional da Casa do Camarão. Passo a passo com vídeo.">
+<link rel="icon" href="../../images/links/favicon.ico" sizes="any">
+<link rel="icon" href="../../images/links/favicon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="../../images/links/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Archivo+Black&display=swap" rel="stylesheet">
 <style>
@@ -27,6 +27,9 @@
     .recipe-layout { grid-template-columns: 1fr; }
   }
   .recipe-video { position: sticky; top: 96px; }
+  @media (max-width: 760px) {
+    .recipe-video { position: static; }
+  }
   .wm-badge {
     position: absolute !important;
     inset: auto 10px 50px auto !important;
@@ -110,9 +113,25 @@
     border-bottom: 1px solid #262626;
   }
   .mobile-menu-socials { display: flex; gap: 10px; padding: 16px 24px; }
+  .header-mobile-actions { display: none; align-items: center; gap: 8px; flex-shrink: 0; }
+  .header-cta-icon {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+  }
   @media (max-width: 860px) {
     .desktop-nav { display: none !important; }
-    .nav-toggle { display: flex !important; }
+    .header-mobile-actions { display: flex !important; }
+  }
+  @media (max-width: 420px) {
+    .header-sub { display: none !important; }
+  }
+  @media (max-width: 360px) {
+    header > div:first-child { padding-left: 16px !important; padding-right: 16px !important; }
+    .header-mobile-actions { gap: 6px !important; }
   }
 
   .copy-link-btn {
@@ -139,11 +158,11 @@
 
   <header style="position: sticky; top: 0; z-index: 10; background: rgba(28,28,28,0.92); backdrop-filter: blur(6px); border-bottom: 1px solid #2e2e2e;">
     <div style="width: 100%; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px;">
-      <a href="../index.html" style="display: flex; align-items: center; gap: 10px; color: #f2f2f0;">
-        <img src="../images/links/logo.png" alt="Casa do Camarão" style="width: 36px; height: 36px; object-fit: cover;">
+      <a href="../../index.html" style="display: flex; align-items: center; gap: 10px; color: #f2f2f0;">
+        <img src="../../images/links/logo.png" alt="Casa do Camarão" style="width: 36px; height: 36px; object-fit: cover;">
         <span style="display: flex; align-items: baseline; gap: 8px;">
           <span style="font-family: 'Archivo Black', sans-serif; font-size: 15px; letter-spacing: 0.3px; text-transform: uppercase; color: #f2f2f0;">Casa do Camarão</span>
-          <span style="font-size: 10px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; color: #7d7d7d;">Manaus · AM</span>
+          <span class="header-sub" style="font-size: 10px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; color: #7d7d7d;">Manaus · AM</span>
         </span>
       </a>
       <nav class="desktop-nav" style="display: flex; align-items: center; gap: 12px;">
@@ -159,19 +178,18 @@
           WhatsApp
         </a>
       </nav>
-      <button type="button" class="nav-toggle" aria-label="Abrir menu">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
-      </button>
-    </div>
-    <div id="mobileMenu" class="mobile-menu">
-      <a href="https://www.invictaerp.com.br/casa_do_camarao/" target="_blank" rel="noopener">Catálogo Digital</a>
-      <a href="https://wa.me/5592981990444" target="_blank" rel="noopener" style="color: #25D366;">WhatsApp</a>
-      <div class="mobile-menu-socials">
-        <a href="https://www.instagram.com/casadocamaraoam/" target="_blank" rel="noopener" aria-label="Instagram" style="display: flex; align-items: center; justify-content: center; width: 30px; height: 30px; background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); border: none; color: #ffffff;">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" stroke="currentColor" stroke-width="1.8"></rect><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8"></circle><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor"></circle></svg>
+      <div class="header-mobile-actions">
+        <a href="https://www.instagram.com/casadocamaraoam/" target="_blank" rel="noopener" aria-label="Instagram" class="header-cta-icon" style="background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: #ffffff;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" stroke="currentColor" stroke-width="1.8"></rect><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8"></circle><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor"></circle></svg>
         </a>
-        <a href="https://www.facebook.com/casadocamaraoam/?locale=pt_BR" target="_blank" rel="noopener" aria-label="Facebook" style="display: flex; align-items: center; justify-content: center; width: 30px; height: 30px; background: #1877F2; border: none; color: #ffffff;">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M14 8.5h2.5V5h-2.5C11.8 5 10.5 6.3 10.5 8.5V11H8v3.5h2.5V21H14v-6.5h2.5l.5-3.5h-3V8.7c0-.6.2-.2.5-.2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <a href="https://www.facebook.com/casadocamaraoam/?locale=pt_BR" target="_blank" rel="noopener" aria-label="Facebook" class="header-cta-icon" style="background: #1877F2; color: #ffffff;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M14 8.5h2.5V5h-2.5C11.8 5 10.5 6.3 10.5 8.5V11H8v3.5h2.5V21H14v-6.5h2.5l.5-3.5h-3V8.7c0-.6.2-.2.5-.2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        </a>
+        <a href="https://www.invictaerp.com.br/casa_do_camarao/" target="_blank" rel="noopener" aria-label="Catálogo Digital" class="header-cta-icon" style="background: #C7092B; color: #ffffff;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 5a2 2 0 0 1 2-2h6v18H6a2 2 0 0 1-2-2V5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path><path d="M12 3h6a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-6" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path></svg>
+        </a>
+        <a href="https://wa.me/5592981990444" target="_blank" rel="noopener" aria-label="WhatsApp" class="header-cta-icon" style="background: #1DA851; color: #ffffff;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#ffffff"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.29-1.39a9.9 9.9 0 0 0 4.75 1.21h.01c5.46 0 9.9-4.45 9.9-9.91C21.96 6.45 17.5 2 12.04 2Zm5.8 14.06c-.25.69-1.44 1.32-1.98 1.4-.51.08-1.13.11-1.83-.12-.42-.13-.96-.31-1.65-.6-2.91-1.26-4.81-4.19-4.96-4.39-.15-.2-1.18-1.57-1.18-3 0-1.42.75-2.12 1.02-2.41.27-.29.58-.36.78-.36.2 0 .39 0 .56.01.18.01.42-.07.65.5.25.6.85 2.08.92 2.23.07.15.12.32.02.52-.09.19-.14.31-.28.48-.14.17-.29.37-.42.5-.14.14-.28.29-.12.57.16.28.71 1.17 1.52 1.9 1.05.94 1.93 1.23 2.21 1.37.28.14.44.12.6-.07.16-.19.68-.79.87-1.06.18-.27.36-.22.6-.13.25.09 1.58.75 1.85.88.27.14.45.2.51.32.07.11.07.65-.18 1.35Z"></path></svg>
         </a>
       </div>
     </div>
@@ -182,13 +200,13 @@
     <section style="padding: 24px 24px 72px;">
       <div style="max-width: 1320px; margin: 0 auto; display: flex; flex-direction: column; gap: 24px;">
 
-        <a href="index.html" style="display: inline-flex; align-self: flex-start; align-items: center; gap: 8px; color: #7d7d7d; font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; margin-top: 24px;">
+        <a href="../index.html" style="display: inline-flex; align-self: flex-start; align-items: center; gap: 8px; color: #7d7d7d; font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; margin-top: 24px;">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
           Todas as receitas
         </a>
 
         <article style="background: #202020; border: 1px solid #2e2e2e; padding: 56px 44px 72px;">
-          <h1 style="margin: 0 0 20px; font-family: 'Archivo Black', sans-serif; font-size: clamp(30px, 5.5vw, 46px); line-height: 1.05; letter-spacing: -0.5px; text-transform: uppercase; color: #ffffff; text-wrap: balance;">Polvo na Panela de Pressão</h1>
+          <h1 style="margin: 0 0 20px; font-family: 'Archivo Black', sans-serif; font-size: clamp(30px, 5.5vw, 46px); line-height: 1.05; letter-spacing: -0.5px; text-transform: uppercase; color: #ffffff; text-wrap: balance;">Camarão Internacional</h1>
           <button type="button" class="copy-link-btn">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><rect x="9" y="9" width="12" height="12" stroke="currentColor" stroke-width="1.8"></rect><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1" stroke="currentColor" stroke-width="1.8"></path></svg>
             <span class="copy-link-label">Copiar link da receita</span>
@@ -197,10 +215,10 @@
           <div class="recipe-layout">
             <div class="recipe-video">
               <div style="position: relative; aspect-ratio: 9 / 16; overflow: hidden;">
-                <video controls preload="none" poster="videos/polvo-panela-pressao-poster.jpg" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: #000;">
-                  <source src="videos/polvo-panela-pressao-web.mp4" type="video/mp4">
+                <video controls preload="none" poster="../videos/camarao-internacional-poster.jpg" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: #000;">
+                  <source src="../videos/camarao-internacional-web.mp4" type="video/mp4">
                 </video>
-                <img class="wm-badge" src="../images/links/logo.png" alt="">
+                <img class="wm-badge" src="../../images/links/logo.png" alt="">
               </div>
             </div>
 
@@ -208,31 +226,40 @@
               <div>
                 <h2 style="margin: 0 0 24px; font-family: 'Archivo Black', sans-serif; font-size: 18px; letter-spacing: 0.3px; text-transform: uppercase; color: #C7092B;">Ingredientes</h2>
                 <ul class="ingredient-list">
-                  <li>1 polvo de aproximadamente 800 g</li>
-                  <li>1 cebola grande cortada em rodelas</li>
-                  <li>Sal a gosto</li>
+                  <li>1 fio de azeite</li>
+                  <li>1 colher de sopa de manteiga</li>
+                  <li>10 g de alho picado</li>
+                  <li>50 g de cebola picada</li>
+                  <li>150 g de ervilha fresca</li>
+                  <li>50 g de presunto picado</li>
+                  <li>400 g de creme de leite</li>
+                  <li>400 g de requeijão cremoso</li>
+                  <li>400 g de arroz branco cozido</li>
+                  <li>200 g de muçarela picada ou ralada, mais muçarela para gratinar</li>
+                  <li>Pimenta-do-reino ralada a gosto</li>
+                  <li>600 g de camarão refogado</li>
+                  <li>Batata palha para finalizar (caseira ou industrializada)</li>
+                  <li>Camarões descascados, mantendo apenas a ponta do rabo, para decorar</li>
                 </ul>
               </div>
 
               <div>
                 <h2 style="margin: 0 0 28px; font-family: 'Archivo Black', sans-serif; font-size: 18px; letter-spacing: 0.3px; text-transform: uppercase; color: #2699A6;">Modo de preparo</h2>
                 <ol class="step-list">
-                  <li><span class="step-num">01</span><span class="step-text">Forre o fundo da panela de pressão com a cebola.</span></li>
-                  <li><span class="step-num">02</span><span class="step-text">Coloque o polvo por cima e tempere com sal a gosto.</span></li>
-                  <li><span class="step-num">03</span><span class="step-text">Não adicione água. O próprio polvo libera líquido durante o cozimento.</span></li>
-                  <li><span class="step-num">04</span><span class="step-text">Depois que a panela pegar pressão, cozinhe por 15 minutos.</span></li>
-                  <li><span class="step-num">05</span><span class="step-text">Desligue o fogo e espere a pressão sair naturalmente.</span></li>
+                  <li><span class="step-num">01</span><span class="step-text">Aqueça um fio de azeite e a manteiga em uma panela.</span></li>
+                  <li><span class="step-num">02</span><span class="step-text">Refogue o alho e a cebola até ficarem levemente dourados.</span></li>
+                  <li><span class="step-num">03</span><span class="step-text">Acrescente a ervilha fresca.</span></li>
+                  <li><span class="step-num">04</span><span class="step-text">Adicione o presunto picado e misture por cerca de 1 minuto.</span></li>
+                  <li><span class="step-num">05</span><span class="step-text">Acrescente o creme de leite e, em seguida, o requeijão, mexendo até formar um creme homogêneo.</span></li>
+                  <li><span class="step-num">06</span><span class="step-text">Adicione o arroz branco cozido e misture bem.</span></li>
+                  <li><span class="step-num">07</span><span class="step-text">Acrescente a muçarela e mexa até começar a derreter.</span></li>
+                  <li><span class="step-num">08</span><span class="step-text">Tempere com pimenta-do-reino ralada a gosto.</span></li>
+                  <li><span class="step-num">09</span><span class="step-text">Acrescente o camarão refogado e misture delicadamente.</span></li>
+                  <li><span class="step-num">10</span><span class="step-text">Transfira a mistura para um refratário.</span></li>
+                  <li><span class="step-num">11</span><span class="step-text">Cubra com muçarela e leve ao forno preaquecido a 200 °C por aproximadamente 15 a 20 minutos, ou até gratinar.</span></li>
+                  <li><span class="step-num">12</span><span class="step-text">Retire do forno e finalize com batata palha (caseira ou industrializada).</span></li>
+                  <li><span class="step-num">13</span><span class="step-text">Decore com camarões descascados, mantendo apenas a ponta do rabo, e sirva em seguida.</span></li>
                 </ol>
-
-                <div style="border-left: 3px solid #C7092B; padding: 6px 0 6px 18px; margin-top: 40px;">
-                  <span style="font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #7d7d7d;">Como saber se está no ponto?</span>
-                  <p style="margin: 6px 0 0; font-size: 15.5px; line-height: 1.6; color: #d8d8d8;">O tempo pode variar de acordo com o tamanho do polvo. Faça o teste com um palito na parte mais grossa dos tentáculos. Se ele entrar com facilidade, está pronto.</p>
-                </div>
-
-                <div style="border-left: 3px solid #2699A6; padding: 6px 0 6px 18px; margin-top: 24px;">
-                  <span style="font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #7d7d7d;">Finalização</span>
-                  <p style="margin: 6px 0 0; font-size: 15.5px; line-height: 1.6; color: #d8d8d8;">Corte os tentáculos e sele em uma frigideira bem quente com azeite ou manteiga até dourar. Depois é só fatiar e servir.</p>
-                </div>
               </div>
             </div>
           </div>
@@ -274,6 +301,28 @@
   }
 </script>
 <script>
+  function checkStickyVideo() {
+    var video = document.querySelector('.recipe-video');
+    var cols = document.querySelector('.recipe-cols');
+    var header = document.querySelector('header');
+    if (!video || !cols || !header) return;
+    if (window.innerWidth <= 760) { video.style.position = ''; return; }
+
+    var videoH = video.offsetHeight;
+    var headerH = header.offsetHeight;
+    var margin = 16;
+    var colsBottomAbs = cols.getBoundingClientRect().bottom + window.scrollY;
+    var trailingStuff = document.body.scrollHeight - colsBottomAbs;
+    var viewportH = window.innerHeight;
+    var parkPosition = viewportH - videoH - trailingStuff;
+    var safe = parkPosition >= headerH + margin;
+
+    video.style.position = safe ? '' : 'static';
+  }
+  checkStickyVideo();
+  window.addEventListener('resize', checkStickyVideo);
+  window.addEventListener('load', checkStickyVideo);
+
   document.querySelectorAll('.copy-link-btn').forEach(function (btn) {
     btn.addEventListener('click', function () {
       var url = window.location.href;
