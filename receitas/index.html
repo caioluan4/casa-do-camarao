@@ -115,25 +115,9 @@
     border-bottom: 1px solid #262626;
   }
   .mobile-menu-socials { display: flex; gap: 10px; padding: 16px 24px; }
-  .header-mobile-actions { display: none; align-items: center; gap: 8px; flex-shrink: 0; }
-  .header-cta-icon {
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-    width: 34px;
-    height: 34px;
-    flex-shrink: 0;
-  }
   @media (max-width: 860px) {
     .desktop-nav { display: none !important; }
-    .header-mobile-actions { display: flex !important; }
-  }
-  @media (max-width: 420px) {
-    .header-sub { display: none !important; }
-  }
-  @media (max-width: 360px) {
-    header > div:first-child { padding-left: 16px !important; padding-right: 16px !important; }
-    .header-mobile-actions { gap: 6px !important; }
+    .nav-toggle { display: flex !important; }
   }
 </style>
 </head>
@@ -141,7 +125,7 @@
 
   <header style="position: sticky; top: 0; z-index: 10; background: rgba(28,28,28,0.92); backdrop-filter: blur(6px); border-bottom: 1px solid #2e2e2e;">
     <div style="width: 100%; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px;">
-      <a href="../index.html" style="display: flex; align-items: center; gap: 10px; color: #f2f2f0;">
+      <a href="../" style="display: flex; align-items: center; gap: 10px; color: #f2f2f0;">
         <img src="../images/links/logo.png" alt="Casa do Camarão" style="width: 36px; height: 36px; object-fit: cover;">
         <span style="display: flex; align-items: baseline; gap: 8px;">
           <span style="font-family: 'Archivo Black', sans-serif; font-size: 15px; letter-spacing: 0.3px; text-transform: uppercase; color: #f2f2f0;">Casa do Camarão</span>
@@ -161,18 +145,19 @@
           WhatsApp
         </a>
       </nav>
-      <div class="header-mobile-actions">
-        <a href="https://www.instagram.com/casadocamaraoam/" target="_blank" rel="noopener" aria-label="Instagram" class="header-cta-icon" style="background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: #ffffff;">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" stroke="#ffffff" stroke-width="2"></rect><circle cx="12" cy="12" r="4" stroke="#ffffff" stroke-width="2"></circle><circle cx="17.2" cy="6.8" r="1.2" fill="#ffffff"></circle></svg>
+      <button type="button" class="nav-toggle" aria-label="Abrir menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
+      </button>
+    </div>
+    <div id="mobileMenu" class="mobile-menu">
+      <a href="https://www.invictaerp.com.br/casa_do_camarao/" target="_blank" rel="noopener" style="color: #ff6b6b;">Catálogo Digital</a>
+      <a href="https://wa.me/5592981990444" target="_blank" rel="noopener" style="color: #25D366;">WhatsApp</a>
+      <div class="mobile-menu-socials">
+        <a href="https://www.instagram.com/casadocamaraoam/" target="_blank" rel="noopener" aria-label="Instagram" style="display: flex; align-items: center; justify-content: center; width: 30px; height: 30px; background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); border: none; color: #ffffff;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" stroke="#ffffff" stroke-width="2"></rect><circle cx="12" cy="12" r="4" stroke="#ffffff" stroke-width="2"></circle><circle cx="17.2" cy="6.8" r="1.2" fill="#ffffff"></circle></svg>
         </a>
-        <a href="https://www.facebook.com/casadocamaraoam/?locale=pt_BR" target="_blank" rel="noopener" aria-label="Facebook" class="header-cta-icon" style="background: #1877F2; color: #ffffff;">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M14 8.5h2.5V5h-2.5C11.8 5 10.5 6.3 10.5 8.5V11H8v3.5h2.5V21H14v-6.5h2.5l.5-3.5h-3V8.7c0-.6.2-.2.5-.2Z" stroke="#ffffff" stroke-width="1.8" stroke-linejoin="round"></path></svg>
-        </a>
-        <a href="https://www.invictaerp.com.br/casa_do_camarao/" target="_blank" rel="noopener" aria-label="Catálogo Digital" class="header-cta-icon" style="background: #C7092B; color: #ffffff;">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 5a2 2 0 0 1 2-2h6v18H6a2 2 0 0 1-2-2V5Z" stroke="#ffffff" stroke-width="2" stroke-linejoin="round"></path><path d="M12 3h6a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-6" stroke="#ffffff" stroke-width="2" stroke-linejoin="round"></path></svg>
-        </a>
-        <a href="https://wa.me/5592981990444" target="_blank" rel="noopener" aria-label="WhatsApp" class="header-cta-icon" style="background: #1DA851; color: #ffffff;">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="#ffffff"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.29-1.39a9.9 9.9 0 0 0 4.75 1.21h.01c5.46 0 9.9-4.45 9.9-9.91C21.96 6.45 17.5 2 12.04 2Zm5.8 14.06c-.25.69-1.44 1.32-1.98 1.4-.51.08-1.13.11-1.83-.12-.42-.13-.96-.31-1.65-.6-2.91-1.26-4.81-4.19-4.96-4.39-.15-.2-1.18-1.57-1.18-3 0-1.42.75-2.12 1.02-2.41.27-.29.58-.36.78-.36.2 0 .39 0 .56.01.18.01.42-.07.65.5.25.6.85 2.08.92 2.23.07.15.12.32.02.52-.09.19-.14.31-.28.48-.14.17-.29.37-.42.5-.14.14-.28.29-.12.57.16.28.71 1.17 1.52 1.9 1.05.94 1.93 1.23 2.21 1.37.28.14.44.12.6-.07.16-.19.68-.79.87-1.06.18-.27.36-.22.6-.13.25.09 1.58.75 1.85.88.27.14.45.2.51.32.07.11.07.65-.18 1.35Z"></path></svg>
+        <a href="https://www.facebook.com/casadocamaraoam/?locale=pt_BR" target="_blank" rel="noopener" aria-label="Facebook" style="display: flex; align-items: center; justify-content: center; width: 30px; height: 30px; background: #1877F2; border: none; color: #ffffff;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M14 8.5h2.5V5h-2.5C11.8 5 10.5 6.3 10.5 8.5V11H8v3.5h2.5V21H14v-6.5h2.5l.5-3.5h-3V8.7c0-.6.2-.2.5-.2Z" stroke="#ffffff" stroke-width="1.8" stroke-linejoin="round"></path></svg>
         </a>
       </div>
     </div>
