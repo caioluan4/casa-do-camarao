@@ -224,7 +224,7 @@
     .hero-grid > div:last-child { justify-content: center !important; }
     .sobre-grid { grid-template-columns: 1fr !important; gap: 28px !important; }
     .atacado-grid { grid-template-columns: 1fr !important; gap: 28px !important; }
-    .atacado-grid > div:first-child { align-items: center !important; text-align: center !important; }
+    .atacado-text { align-items: center !important; text-align: center !important; }
     .acai-grid { grid-template-columns: 1fr !important; gap: 28px !important; padding: 28px 20px !important; }
     .acai-grid .carousel { max-width: 100% !important; }
     .delivery-grid { grid-template-columns: 1fr !important; gap: 28px !important; }
@@ -289,7 +289,7 @@
       <div class="hero-grid" style="max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.15fr; gap: 56px; align-items: center;">
 
         <div style="display: flex; flex-direction: column; gap: 24px;">
-          <h1 style="margin: 0; font-family: 'Archivo Black', sans-serif; font-size: clamp(38px, 5.5vw, 62px); line-height: 1.02; letter-spacing: -1px; text-transform: uppercase; color: #f2f2f0; text-wrap: balance;">Frutos do mar <span style="color: #C7092B;">selecionados</span>, direto para sua mesa</h1>
+          <h1 style="margin: 0; font-family: 'Archivo Black', sans-serif; font-size: clamp(38px, 5.5vw, 62px); line-height: 1.02; letter-spacing: -1px; text-transform: uppercase; color: #f2f2f0; text-wrap: balance;">Frutos do mar <span style="color: #C7092B;">selecionados</span>, com a qualidade que você merece</h1>
           <p style="margin: 0; max-width: 440px; font-size: 17px; font-weight: 400; line-height: 1.55; color: #a3a3a3; text-wrap: pretty;">Camarão, peixe e frutos do mar selecionados todos os dias, com entrega rápida para você receber no conforto da sua casa.</p>
           <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px;">
             <a href="https://www.invictaerp.com.br/casa_do_camarao/" target="_blank" rel="noopener" style="display: flex; align-items: center; gap: 10px; background: #C7092B; color: #ffffff; padding: 16px 26px; font-weight: 700; font-size: 15px; letter-spacing: 0.5px; text-transform: uppercase;">Peça pelo Catálogo Digital</a>
@@ -603,7 +603,11 @@
 
     <section id="atacado" style="padding: 72px 24px;">
       <div class="atacado-grid" style="max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;">
-        <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 18px;">
+        <div style="position: relative; aspect-ratio: 4 / 3; overflow: hidden;">
+          <img src="images/landing/fotoAtacado.jpeg" alt="Van de entrega da Casa do Camarão para atacado" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;">
+        </div>
+
+        <div class="atacado-text" style="display: flex; flex-direction: column; align-items: flex-start; gap: 18px;">
           <h2 style="margin: 0; font-family: 'Archivo Black', sans-serif; font-size: clamp(28px, 4.5vw, 42px); line-height: 1.05; letter-spacing: -0.5px; text-transform: uppercase; color: #f2f2f0;">Trabalhamos com <span style="color: #C7092B;">Atacado</span></h2>
           <p style="margin: 0; font-size: 15px; font-weight: 400; line-height: 1.6; color: #a3a3a3; text-wrap: pretty;">A Casa do Camarão também atende restaurantes, hotéis, buffets, empresas e outros negócios que buscam camarões, pescados e frutos do mar em maiores quantidades.</p>
           <p style="margin: 0; font-size: 15px; font-weight: 400; line-height: 1.6; color: #a3a3a3; text-wrap: pretty;">Conte com variedade de produtos, atendimento especializado e condições diferenciadas para compras no atacado.</p>
@@ -612,10 +616,6 @@
             <svg width="18" height="18" viewBox="0 0 24 24" fill="#ffffff" style="flex-shrink: 0;"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.29-1.39a9.9 9.9 0 0 0 4.75 1.21h.01c5.46 0 9.9-4.45 9.9-9.91C21.96 6.45 17.5 2 12.04 2Zm5.8 14.06c-.25.69-1.44 1.32-1.98 1.4-.51.08-1.13.11-1.83-.12-.42-.13-.96-.31-1.65-.6-2.91-1.26-4.81-4.19-4.96-4.39-.15-.2-1.18-1.57-1.18-3 0-1.42.75-2.12 1.02-2.41.27-.29.58-.36.78-.36.2 0 .39 0 .56.01.18.01.42-.07.65.5.25.6.85 2.08.92 2.23.07.15.12.32.02.52-.09.19-.14.31-.28.48-.14.17-.29.37-.42.5-.14.14-.28.29-.12.57.16.28.71 1.17 1.52 1.9 1.05.94 1.93 1.23 2.21 1.37.28.14.44.12.6-.07.16-.19.68-.79.87-1.06.18-.27.36-.22.6-.13.25.09 1.58.75 1.85.88.27.14.45.2.51.32.07.11.07.65-.18 1.35Z"></path></svg>
             Solicitar cotação
           </a>
-        </div>
-
-        <div style="position: relative; aspect-ratio: 4 / 3; overflow: hidden;">
-          <img src="images/landing/fotoAtacado.jpeg" alt="Van de entrega da Casa do Camarão para atacado" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;">
         </div>
       </div>
     </section>
