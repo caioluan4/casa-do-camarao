@@ -1,23 +1,23 @@
 {
-  "updated_at": "2026-08-14T13:18:33Z",
+  "updated_at": "2026-08-14T14:57:03Z",
   "totals": {
-    "visits": 603
+    "visits": 610
   },
   "pages": [
     {
       "path": "/links",
       "title": "Casa do Camarão",
-      "count": 316
+      "count": 318
     },
     {
       "path": "/lp-home",
       "title": "",
-      "count": 7
+      "count": 8
     },
     {
       "path": "/",
       "title": "Casa do Camarão",
-      "count": 7
+      "count": 8
     },
     {
       "path": "/receitas/baguete-de-camarao",
@@ -49,7 +49,7 @@
     {
       "path": "clique-cardapio",
       "title": "\n        <span class=\"icon-badge red\">\n          <svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M4 5.5c2-1 4.5-1 7 0v13c-2.5-1-5-1-7 0v-13Z\" stroke=\"#ffffff\" stroke-width=\"1.8\" s",
-      "count": 212
+      "count": 214
     },
     {
       "path": "clique-whatsapp",
@@ -62,14 +62,14 @@
       "count": 5
     },
     {
-      "path": "clique-maps-morada",
+      "path": "clique-maps-boulevard",
       "title": "\n              <img src=\"google_maps.png\" alt=\"\" width=\"15\" height=\"15\" style=\"flex-shrink: 0;\">\n              Google Maps\n            ",
       "count": 5
     },
     {
-      "path": "clique-maps-boulevard",
+      "path": "clique-maps-morada",
       "title": "\n              <img src=\"google_maps.png\" alt=\"\" width=\"15\" height=\"15\" style=\"flex-shrink: 0;\">\n              Google Maps\n            ",
-      "count": 4
+      "count": 5
     },
     {
       "path": "clique-waze-boulevard",
