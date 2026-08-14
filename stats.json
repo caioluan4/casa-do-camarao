@@ -1,7 +1,7 @@
 {
-  "updated_at": "2026-08-14T10:09:38Z",
+  "updated_at": "2026-08-14T11:49:19Z",
   "totals": {
-    "visits": 596
+    "visits": 598
   },
   "pages": [
     {
@@ -12,12 +12,12 @@
     {
       "path": "/lp-home",
       "title": "",
-      "count": 5
+      "count": 6
     },
     {
       "path": "/",
       "title": "Casa do Camarão",
-      "count": 5
+      "count": 6
     },
     {
       "path": "/receitas/baguete-de-camarao",
