@@ -1,23 +1,23 @@
 {
-  "updated_at": "2026-08-14T11:49:19Z",
+  "updated_at": "2026-08-14T13:18:33Z",
   "totals": {
-    "visits": 598
+    "visits": 603
   },
   "pages": [
     {
       "path": "/links",
       "title": "Casa do Camarão",
-      "count": 315
+      "count": 316
     },
     {
       "path": "/lp-home",
       "title": "",
-      "count": 6
+      "count": 7
     },
     {
       "path": "/",
       "title": "Casa do Camarão",
-      "count": 6
+      "count": 7
     },
     {
       "path": "/receitas/baguete-de-camarao",
@@ -57,14 +57,14 @@
       "count": 29
     },
     {
-      "path": "clique-maps-morada",
-      "title": "\n              <img src=\"google_maps.png\" alt=\"\" width=\"15\" height=\"15\" style=\"flex-shrink: 0;\">\n              Google Maps\n            ",
+      "path": "clique-site-oficial",
+      "title": "\n      <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M14 5h5v5\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path><path d=\"M19 5 10 ",
       "count": 5
     },
     {
-      "path": "clique-site-oficial",
-      "title": "\n      <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M14 5h5v5\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path><path d=\"M19 5 10 ",
-      "count": 4
+      "path": "clique-maps-morada",
+      "title": "\n              <img src=\"google_maps.png\" alt=\"\" width=\"15\" height=\"15\" style=\"flex-shrink: 0;\">\n              Google Maps\n            ",
+      "count": 5
     },
     {
       "path": "clique-maps-boulevard",
@@ -84,7 +84,7 @@
     {
       "path": "lp-clique-cardapio",
       "title": "Catálogo Digital",
-      "count": 1
+      "count": 2
     }
   ]
 }
