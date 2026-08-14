@@ -1,13 +1,13 @@
 {
-  "updated_at": "2026-08-14T20:36:00Z",
+  "updated_at": "2026-08-14T21:30:13Z",
   "totals": {
-    "visits": 642
+    "visits": 648
   },
   "pages": [
     {
       "path": "/links",
       "title": "Casa do Camarão",
-      "count": 333
+      "count": 336
     },
     {
       "path": "/lp-home",
@@ -49,12 +49,12 @@
     {
       "path": "clique-cardapio",
       "title": "\n        <span class=\"icon-badge red\">\n          <svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M4 5.5c2-1 4.5-1 7 0v13c-2.5-1-5-1-7 0v-13Z\" stroke=\"#ffffff\" stroke-width=\"1.8\" s",
-      "count": 223
+      "count": 225
     },
     {
       "path": "clique-whatsapp",
       "title": "\n        <span class=\"whatsapp-icon-badge\">\n          <img src=\"wpp.png\" alt=\"\" width=\"26\" height=\"26\" style=\"flex-shrink: 0;\">\n        </span>\n        <span>\n          <span class=\"btn-title\">Peça pe",
-      "count": 29
+      "count": 30
     },
     {
       "path": "clique-site-oficial",
