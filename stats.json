@@ -1,0 +1,90 @@
+{
+  "updated_at": "2026-08-14T04:53:01Z",
+  "totals": {
+    "visits": 593
+  },
+  "pages": [
+    {
+      "path": "/links",
+      "title": "Casa do Camarão",
+      "count": 314
+    },
+    {
+      "path": "/lp-home",
+      "title": "",
+      "count": 4
+    },
+    {
+      "path": "/",
+      "title": "Casa do Camarão",
+      "count": 4
+    },
+    {
+      "path": "/receitas/baguete-de-camarao",
+      "title": "Baguete de Camarão — Receitas Casa do Camarão",
+      "count": 3
+    },
+    {
+      "path": "/receitas",
+      "title": "Receitas — Casa do Camarão",
+      "count": 3
+    },
+    {
+      "path": "/receitas/camarao-internacional",
+      "title": "",
+      "count": 1
+    },
+    {
+      "path": "/receitas/polvo-panela-pressao",
+      "title": "",
+      "count": 1
+    },
+    {
+      "path": "copia-receita/receitas/baguete-de-camarao/",
+      "title": "",
+      "count": 1
+    }
+  ],
+  "events": [
+    {
+      "path": "clique-cardapio",
+      "title": "\n        <span class=\"icon-badge red\">\n          <svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M4 5.5c2-1 4.5-1 7 0v13c-2.5-1-5-1-7 0v-13Z\" stroke=\"#ffffff\" stroke-width=\"1.8\" s",
+      "count": 212
+    },
+    {
+      "path": "clique-whatsapp",
+      "title": "\n        <span class=\"whatsapp-icon-badge\">\n          <img src=\"wpp.png\" alt=\"\" width=\"26\" height=\"26\" style=\"flex-shrink: 0;\">\n        </span>\n        <span>\n          <span class=\"btn-title\">Peça pe",
+      "count": 29
+    },
+    {
+      "path": "clique-maps-morada",
+      "title": "\n              <img src=\"google_maps.png\" alt=\"\" width=\"15\" height=\"15\" style=\"flex-shrink: 0;\">\n              Google Maps\n            ",
+      "count": 5
+    },
+    {
+      "path": "clique-site-oficial",
+      "title": "\n      <svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M14 5h5v5\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"></path><path d=\"M19 5 10 ",
+      "count": 4
+    },
+    {
+      "path": "clique-maps-boulevard",
+      "title": "\n              <img src=\"google_maps.png\" alt=\"\" width=\"15\" height=\"15\" style=\"flex-shrink: 0;\">\n              Google Maps\n            ",
+      "count": 4
+    },
+    {
+      "path": "clique-waze-boulevard",
+      "title": "\n              <img src=\"waze-icon-logo.png\" alt=\"\" width=\"15\" height=\"15\" style=\"flex-shrink: 0;\">\n              Waze\n            ",
+      "count": 4
+    },
+    {
+      "path": "clique-waze-morada",
+      "title": "\n              <img src=\"waze-icon-logo.png\" alt=\"\" width=\"15\" height=\"15\" style=\"flex-shrink: 0;\">\n              Waze\n            ",
+      "count": 3
+    },
+    {
+      "path": "lp-clique-cardapio",
+      "title": "Catálogo Digital",
+      "count": 1
+    }
+  ]
+}
