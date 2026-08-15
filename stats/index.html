@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Painel de Visualizações — Casa do Camarão</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="../images/links/favicon.ico" sizes="any">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Archivo+Black&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body { margin: 0; background: #1c1c1c; font-family: 'Oswald', sans-serif; color: #f2f2f0; }
+
+  #password-gate {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+      linear-gradient(180deg, rgba(25,0,0,0.93), rgba(8,0,0,0.96)),
+      url('../images/landing/fotoExternaBoulevard.jpeg') center 90% / cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    padding: 24px;
+  }
+  .gate-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    width: 100%;
+    max-width: 280px;
+  }
+  .gate-logo { width: 170px; height: 170px; object-fit: contain; }
+  #gate-input, #gate-button {
+    width: 260px;
+    max-width: 100%;
+    padding: 10px 14px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px;
+    border-radius: 0;
+  }
+  #gate-input {
+    background: rgba(255,255,255,0.92);
+    color: #1c1c1c;
+    border: 1px solid rgba(255,255,255,0.5);
+  }
+  #gate-input:focus { outline: none; border-color: #ffffff; background: #ffffff; }
+  #gate-button {
+    background: #ffffff;
+    color: #CC0000;
+    border: 1px solid #ffffff;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+  }
+  #gate-button:hover { background: #f2f2f0; color: #990000; }
+  #gate-error {
+    background: #ffffff;
+    color: #990000;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+    width: 100%;
+    margin: 0;
+    padding: 8px 12px;
+  }
+
+  #dashboard-content { padding: 40px 24px 80px; }
+  .dash-header { display: flex; align-items: center; gap: 20px; max-width: 1100px; margin: 0 auto 32px; flex-wrap: wrap; }
+  .dash-logo { width: 76px; height: 76px; object-fit: cover; flex-shrink: 0; }
+  .dash-heading { margin-right: auto; }
+  .dash-title { font-family: 'Archivo Black', sans-serif; font-size: 38px; line-height: 1; text-transform: uppercase; color: #f2f2f0; margin: 0; }
+  .dash-updated { font-size: 12px; color: #999999; margin: 8px 0 0; }
+
+  .social-badges { display: flex; gap: 26px; }
+  .social-badge { display: flex; align-items: center; gap: 10px; }
+  .social-icon { width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+  .social-icon.instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+  .social-icon.facebook { background: #1877F2; }
+  .social-icon svg { width: 17px; height: 17px; }
+  .social-text { display: flex; flex-direction: column; align-items: flex-start; }
+  .social-label { font-size: 10px; letter-spacing: 0.8px; text-transform: uppercase; color: #7d7d7d; }
+  .social-value-row { display: flex; align-items: baseline; gap: 5px; }
+  .social-value { font-family: 'Archivo Black', sans-serif; font-size: 24px; line-height: 1.25; }
+  .social-value.instagram { color: #dc2743; }
+  .social-value.facebook { color: #1877F2; }
+  .social-unit { font-size: 10px; color: #7d7d7d; text-transform: uppercase; letter-spacing: 0.3px; }
+
+  .dash-controls {
+    max-width: 1100px;
+    margin: 0 auto 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    border-bottom: 1px solid #2e2e2e;
+    padding-bottom: 0;
+  }
+  .tabs { display: flex; gap: 4px; }
+  .tab-btn {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: #999999;
+    font-family: 'Oswald', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    padding: 10px 14px;
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+    white-space: nowrap;
+  }
+  .tab-btn:hover { color: #d8d8d8; }
+  .tab-btn.active { color: #ffffff; border-bottom-color: #CC0000; }
+
+  .period-filter { display: flex; align-items: center; gap: 6px; margin-bottom: 12px; flex-wrap: wrap; }
+  .period-btn {
+    background: transparent;
+    border: 1px solid #3d3d3d;
+    color: #999999;
+    font-family: 'Oswald', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
+  }
+  .period-btn:hover { border-color: #666666; color: #d8d8d8; }
+  .period-btn.active { background: #CC0000; border-color: #CC0000; color: #ffffff; }
+
+  .advanced-toggle {
+    background: transparent;
+    border: 1px solid #3d3d3d;
+    color: #999999;
+    font-family: 'Oswald', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
+  }
+  .advanced-toggle:hover { border-color: #666666; color: #d8d8d8; }
+  .advanced-toggle.active, .advanced-toggle.open { background: #CC0000; border-color: #CC0000; color: #ffffff; }
+
+  .advanced-panel {
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    width: 100%;
+    background: #202020;
+    border: 1px solid #2e2e2e;
+    padding: 14px;
+    margin-top: 8px;
+  }
+  .advanced-panel.open { display: flex; }
+  .advanced-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .advanced-label { font-size: 10.5px; letter-spacing: 0.5px; text-transform: uppercase; color: #7d7d7d; min-width: 70px; }
+
+  .month-picker {
+    background: transparent;
+    border: 1px solid #3d3d3d;
+    color: #999999;
+    font-family: 'Oswald', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    padding: 6px 10px;
+    cursor: pointer;
+  }
+  .month-picker:hover { border-color: #666666; color: #d8d8d8; }
+  .month-picker.active { background: #CC0000; border-color: #CC0000; color: #ffffff; }
+  .month-picker option { background: #1c1c1c; color: #f2f2f0; }
+
+  .date-range { display: flex; align-items: center; gap: 6px; }
+  .date-input {
+    background: transparent;
+    border: 1px solid #3d3d3d;
+    color: #d8d8d8;
+    font-family: 'Oswald', sans-serif;
+    font-size: 11px;
+    padding: 5px 8px;
+    color-scheme: dark;
+  }
+  .date-input:hover, .date-input:focus { border-color: #666666; outline: none; }
+  .date-sep { font-size: 10px; color: #7d7d7d; text-transform: uppercase; }
+  .date-apply {
+    background: transparent;
+    border: 1px solid #3d3d3d;
+    color: #999999;
+    font-family: 'Oswald', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
+  }
+  .date-apply:hover { border-color: #666666; color: #d8d8d8; }
+  .date-apply.active { background: #CC0000; border-color: #CC0000; color: #ffffff; }
+
+  .tab-panel { max-width: 1100px; margin: 0 auto; }
+
+  .visits-block { display: flex; align-items: baseline; gap: 10px; margin-bottom: 28px; }
+  .visits-num { font-family: 'Archivo Black', sans-serif; font-size: 40px; color: #CC0000; line-height: 1; }
+  .visits-label { font-size: 12px; letter-spacing: 0.5px; text-transform: uppercase; color: #999999; }
+
+  .dash-subtitle { font-family: 'Archivo Black', sans-serif; font-size: 14px; text-transform: uppercase; color: #2699A6; margin: 4px 0 16px; }
+  .dash-note { font-size: 11px; color: #7d7d7d; margin: 16px 0 0; }
+
+  .metric-list { display: flex; flex-direction: column; }
+  .metric-row { display: flex; align-items: center; gap: 16px; padding: 12px 4px; border-bottom: 1px solid #262626; transition: background 0.15s; }
+  .metric-row:hover { background: rgba(255,255,255,0.025); }
+  .metric-info { flex: 1; min-width: 0; }
+  .metric-name { font-size: 13.5px; color: #e5e5e5; margin-bottom: 7px; }
+  .metric-track { height: 3px; background: #262626; overflow: hidden; }
+  .metric-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #2699A6, #1F7A85); transition: width 0.6s ease; }
+  .metric-value { font-family: 'Archivo Black', sans-serif; font-size: 17px; color: #f2f2f0; min-width: 36px; text-align: right; flex-shrink: 0; }
+
+  .recipe-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; }
+  .recipe-card { background: #202020; border: 1px solid #2e2e2e; padding: 18px; }
+  .recipe-card h4 { margin: 0 0 14px; font-size: 13.5px; font-weight: 600; color: #f2f2f0; line-height: 1.35; min-height: 36px; }
+  .recipe-stat { display: flex; justify-content: space-between; align-items: baseline; font-size: 11.5px; letter-spacing: 0.3px; text-transform: uppercase; color: #999999; padding: 6px 0; border-top: 1px solid #262626; }
+  .recipe-stat:first-of-type { border-top: none; }
+  .recipe-stat b { font-family: 'Archivo Black', sans-serif; font-size: 16px; color: #f2f2f0; text-transform: none; letter-spacing: 0; }
+
+  .dash-empty { text-align: center; color: #999999; padding: 40px; display: none; }
+
+  @media (max-width: 480px) {
+    .gate-logo { width: 120px; height: 120px; }
+    #gate-input, #gate-button { width: 100%; }
+    #dashboard-content { padding: 28px 16px 60px; }
+    .dash-logo { width: 52px; height: 52px; }
+    .dash-title { font-size: 24px; }
+    .social-badges { gap: 18px; }
+    .social-value { font-size: 18px; }
+    .visits-num { font-size: 32px; }
+    .tab-btn { font-size: 11.5px; padding: 8px 10px; }
+    .period-btn { font-size: 10px; padding: 5px 9px; }
+    .metric-name { font-size: 12.5px; }
+    .date-range { width: 100%; margin-left: 0; }
+    .date-input { flex: 1; min-width: 0; font-size: 10px; padding: 5px 4px; }
+    .date-apply { font-size: 10px; padding: 5px 9px; }
+  }
+</style>
+</head>
+<body>
+
+<div id="password-gate">
+  <div class="gate-card">
+    <img src="../images/links/logo.png" alt="Casa do Camarão" class="gate-logo">
+    <input type="password" id="gate-input" placeholder="Senha" autocomplete="off">
+    <button id="gate-button">Entrar</button>
+    <p id="gate-error" style="display:none;">Senha incorreta</p>
+  </div>
+</div>
+
+<div id="dashboard-content" style="display:none;">
+  <div class="dash-header">
+    <img src="../images/links/logo.png" alt="Casa do Camarão" class="dash-logo">
+    <div class="dash-heading">
+      <h1 class="dash-title">Painel de Visualizações</h1>
+      <p class="dash-updated" id="dash-updated"></p>
+    </div>
+    <div class="social-badges">
+      <div class="social-badge">
+        <span class="social-icon instagram">
+          <svg viewBox="0 0 24 24"><path fill="#ffffff" d="M12 2c2.7 0 3.1 0 4.1.1 1.1.1 1.8.2 2.5.5.7.3 1.2.6 1.8 1.2.6.6.9 1.1 1.2 1.8.3.7.5 1.4.5 2.5.1 1 .1 1.4.1 4.1s0 3.1-.1 4.1c-.1 1.1-.2 1.8-.5 2.5-.3.7-.6 1.2-1.2 1.8-.6.6-1.1.9-1.8 1.2-.7.3-1.4.5-2.5.5-1 .1-1.4.1-4.1.1s-3.1 0-4.1-.1c-1.1-.1-1.8-.2-2.5-.5-.7-.3-1.2-.6-1.8-1.2-.6-.6-.9-1.1-1.2-1.8-.3-.7-.5-1.4-.5-2.5C2 15.1 2 14.7 2 12s0-3.1.1-4.1c.1-1.1.2-1.8.5-2.5.3-.7.6-1.2 1.2-1.8.6-.6 1.1-.9 1.8-1.2.7-.3 1.4-.5 2.5-.5C8.9 2 9.3 2 12 2Zm0 1.8c-2.7 0-3 0-4 .1-.9.1-1.4.2-1.7.3-.4.2-.7.3-1 .6-.3.3-.5.6-.6 1-.1.3-.3.8-.3 1.7-.1 1-.1 1.3-.1 4s0 3 .1 4c.1.9.2 1.4.3 1.7.2.4.3.7.6 1 .3.3.6.5 1 .6.3.1.8.3 1.7.3 1 .1 1.3.1 4 .1s3 0 4-.1c.9-.1 1.4-.2 1.7-.3.4-.2.7-.3 1-.6.3-.3.5-.6.6-1 .1-.3.3-.8.3-1.7.1-1 .1-1.3.1-4s0-3-.1-4c-.1-.9-.2-1.4-.3-1.7-.2-.4-.3-.7-.6-1-.3-.3-.6-.5-1-.6-.3-.1-.8-.3-1.7-.3-1-.1-1.3-.1-4-.1Zm0 4.5a3.7 3.7 0 1 1 0 7.4 3.7 3.7 0 0 1 0-7.4Zm0 1.8a1.9 1.9 0 1 0 0 3.8 1.9 1.9 0 0 0 0-3.8Zm4.7-2a.9.9 0 1 1 0 1.8.9.9 0 0 1 0-1.8Z"></path></svg>
+        </span>
+        <div class="social-text">
+          <span class="social-label">Instagram</span>
+          <div class="social-value-row">
+            <span class="social-value instagram" id="badge-instagram">0</span>
+            <span class="social-unit">cliques</span>
+          </div>
+        </div>
+      </div>
+      <div class="social-badge">
+        <span class="social-icon facebook">
+          <svg viewBox="0 0 24 24"><path fill="#ffffff" d="M13.5 9H15V6.5h-1.8c-2 0-3.2 1.2-3.2 3.3V11H8v2.5h2v7h2.7v-7H15l.4-2.5h-2.7V9.9c0-.5.3-.9.8-.9Z"></path></svg>
+        </span>
+        <div class="social-text">
+          <span class="social-label">Facebook</span>
+          <div class="social-value-row">
+            <span class="social-value facebook" id="badge-facebook">0</span>
+            <span class="social-unit">cliques</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dash-controls">
+    <div class="tabs" id="tabs">
+      <button class="tab-btn active" data-tab="site">Site Oficial</button>
+      <button class="tab-btn" data-tab="linktree">Linktree</button>
+      <button class="tab-btn" data-tab="receitas">Receitas</button>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="panel-site">
+    <div class="period-filter" data-scope="site">
+      <button class="period-btn" data-period="hoje">Hoje</button>
+      <button class="period-btn" data-period="ontem">Ontem</button>
+      <button class="period-btn" data-period="semana">Essa Semana</button>
+      <button class="period-btn" data-period="mes">Esse Mês</button>
+      <button class="period-btn active" data-period="total">Total</button>
+      <button type="button" class="advanced-toggle" data-scope="site">Avançado</button>
+    </div>
+    <div class="advanced-panel" data-scope="site">
+      <div class="advanced-row">
+        <span class="advanced-label">Mês</span>
+        <select class="month-picker" data-scope="site"><option value="">Escolher mês…</option></select>
+      </div>
+      <div class="advanced-row">
+        <span class="advanced-label">Período</span>
+        <span class="date-range">
+          <input type="date" class="date-input" data-role="start">
+          <span class="date-sep">até</span>
+          <input type="date" class="date-input" data-role="end">
+          <button type="button" class="date-apply">Aplicar</button>
+        </span>
+      </div>
+    </div>
+    <div class="visits-block">
+      <span class="visits-num" id="site-visits">0</span>
+      <span class="visits-label">visitas no site oficial</span>
+    </div>
+    <div class="metric-list" id="site-events"></div>
+  </div>
+
+  <div class="tab-panel" id="panel-linktree" style="display:none;">
+    <div class="period-filter" data-scope="linktree">
+      <button class="period-btn" data-period="hoje">Hoje</button>
+      <button class="period-btn" data-period="ontem">Ontem</button>
+      <button class="period-btn" data-period="semana">Essa Semana</button>
+      <button class="period-btn" data-period="mes">Esse Mês</button>
+      <button class="period-btn active" data-period="total">Total</button>
+      <button type="button" class="advanced-toggle" data-scope="linktree">Avançado</button>
+    </div>
+    <div class="advanced-panel" data-scope="linktree">
+      <div class="advanced-row">
+        <span class="advanced-label">Mês</span>
+        <select class="month-picker" data-scope="linktree"><option value="">Escolher mês…</option></select>
+      </div>
+      <div class="advanced-row">
+        <span class="advanced-label">Período</span>
+        <span class="date-range">
+          <input type="date" class="date-input" data-role="start">
+          <span class="date-sep">até</span>
+          <input type="date" class="date-input" data-role="end">
+          <button type="button" class="date-apply">Aplicar</button>
+        </span>
+      </div>
+    </div>
+    <div class="visits-block">
+      <span class="visits-num" id="linktree-visits">0</span>
+      <span class="visits-label">visitas na página de links</span>
+    </div>
+    <div class="metric-list" id="linktree-events"></div>
+  </div>
+
+  <div class="tab-panel" id="panel-receitas" style="display:none;">
+    <div class="period-filter" data-scope="receitas">
+      <button class="period-btn" data-period="hoje">Hoje</button>
+      <button class="period-btn" data-period="ontem">Ontem</button>
+      <button class="period-btn" data-period="semana">Essa Semana</button>
+      <button class="period-btn" data-period="mes">Esse Mês</button>
+      <button class="period-btn active" data-period="total">Total</button>
+      <button type="button" class="advanced-toggle" data-scope="receitas">Avançado</button>
+    </div>
+    <div class="advanced-panel" data-scope="receitas">
+      <div class="advanced-row">
+        <span class="advanced-label">Mês</span>
+        <select class="month-picker" data-scope="receitas"><option value="">Escolher mês…</option></select>
+      </div>
+      <div class="advanced-row">
+        <span class="advanced-label">Período</span>
+        <span class="date-range">
+          <input type="date" class="date-input" data-role="start">
+          <span class="date-sep">até</span>
+          <input type="date" class="date-input" data-role="end">
+          <button type="button" class="date-apply">Aplicar</button>
+        </span>
+      </div>
+    </div>
+    <div class="visits-block">
+      <span class="visits-num" id="receitas-visits">0</span>
+      <span class="visits-label">visitas na página de receitas</span>
+    </div>
+    <div class="dash-subtitle">Cada receita</div>
+    <div class="recipe-grid" id="recipe-grid"></div>
+  </div>
+
+  <div class="dash-empty" id="dash-empty">Estatísticas ainda não disponíveis, volte em breve.</div>
+</div>
+
+<script>
+  var GIST_ID = '6e4d1c038df3765a25a28fe87c593639';
+  var CORRECT_HASH = "90c4b93f71465d6f3b89098f1efdf9a54a23e31d34d0a152f91a9080e9d4fbf5";
+
+  var LINKTREE_PAGE = '/links';
+  var LINKTREE_EVENTS = [
+    ['clique-site-oficial', 'Foi para o Site Oficial'],
+    ['clique-cardapio', 'Cardápio Digital'],
+    ['clique-whatsapp', 'WhatsApp'],
+    ['clique-maps-boulevard', 'Maps — Loja Boulevard'],
+    ['clique-waze-boulevard', 'Waze — Loja Boulevard'],
+    ['clique-maps-morada', 'Maps — Loja Morada do Sol'],
+    ['clique-waze-morada', 'Waze — Loja Morada do Sol']
+  ];
+
+  var SITE_PAGE = '/';
+  var SITE_EVENTS = [
+    ['lp-clique-cardapio', 'Cardápio Digital'],
+    ['lp-clique-whatsapp', 'WhatsApp'],
+    ['lp-clique-maps-boulevard', 'Maps — Loja Boulevard'],
+    ['lp-clique-waze-boulevard', 'Waze — Loja Boulevard'],
+    ['lp-clique-maps-morada', 'Maps — Loja Morada do Sol'],
+    ['lp-clique-waze-morada', 'Waze — Loja Morada do Sol']
+  ];
+
+  var RECEITAS_PAGE = '/receitas';
+  var RECEITAS = [
+    { path: '/receitas/baguete-de-camarao', name: 'Baguete de Camarão' },
+    { path: '/receitas/camarao-internacional', name: 'Camarão Internacional' },
+    { path: '/receitas/cauda-lagosta-mostarda-limao', name: 'Cauda de Lagosta com Molho de Mostarda e Limão' },
+    { path: '/receitas/polvo-panela-pressao', name: 'Polvo na Panela de Pressão' },
+    { path: '/receitas/vieira-grelhada', name: 'Vieira Grelhada' }
+  ];
+
+  var MONTH_NAMES = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+
+  var STATS = null;
+  var currentTab = 'site';
+  var currentPeriod = { linktree: 'total', site: 'total', receitas: 'total' };
+
+  async function sha256(text) {
+    var buffer = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text));
+    return Array.from(new Uint8Array(buffer)).map(function (b) { return b.toString(16).padStart(2, '0'); }).join('');
+  }
+
+  function showDashboard() {
+    document.getElementById('password-gate').style.display = 'none';
+    document.getElementById('dashboard-content').style.display = 'block';
+    loadStats();
+  }
+
+  if (localStorage.getItem('cdc_dashboard_auth') === CORRECT_HASH) {
+    showDashboard();
+  }
+
+  document.getElementById('gate-button').addEventListener('click', async function () {
+    var input = document.getElementById('gate-input').value;
+    var hash = await sha256(input);
+    if (hash === CORRECT_HASH) {
+      localStorage.setItem('cdc_dashboard_auth', CORRECT_HASH);
+      showDashboard();
+    } else {
+      document.getElementById('gate-error').style.display = 'block';
+    }
+  });
+
+  document.getElementById('gate-input').addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') document.getElementById('gate-button').click();
+  });
+
+  document.querySelectorAll('.tab-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.tab-btn').forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      currentTab = btn.getAttribute('data-tab');
+      document.querySelectorAll('.tab-panel').forEach(function (p) { p.style.display = 'none'; });
+      document.getElementById('panel-' + currentTab).style.display = 'block';
+    });
+  });
+
+  ['site', 'linktree', 'receitas'].forEach(function (scope) {
+    var periodButtons = document.querySelectorAll('.period-filter[data-scope="' + scope + '"] .period-btn');
+    var toggle = document.querySelector('.advanced-toggle[data-scope="' + scope + '"]');
+    var panel = document.querySelector('.advanced-panel[data-scope="' + scope + '"]');
+    var picker = document.querySelector('.month-picker[data-scope="' + scope + '"]');
+    var startInput = panel.querySelector('.date-input[data-role="start"]');
+    var endInput = panel.querySelector('.date-input[data-role="end"]');
+    var applyBtn = panel.querySelector('.date-apply');
+
+    periodButtons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        periodButtons.forEach(function (b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        picker.value = '';
+        picker.classList.remove('active');
+        applyBtn.classList.remove('active');
+        currentPeriod[scope] = btn.getAttribute('data-period');
+        renderDashboard();
+      });
+    });
+
+    toggle.addEventListener('click', function () {
+      var isOpen = panel.classList.toggle('open');
+      toggle.classList.toggle('open', isOpen);
+    });
+
+    picker.addEventListener('change', function () {
+      if (!picker.value) return;
+      periodButtons.forEach(function (b) { b.classList.remove('active'); });
+      picker.classList.add('active');
+      applyBtn.classList.remove('active');
+      startInput.value = '';
+      endInput.value = '';
+      currentPeriod[scope] = 'month:' + picker.value;
+      renderDashboard();
+    });
+
+    applyBtn.addEventListener('click', function () {
+      if (!startInput.value || !endInput.value) return;
+      periodButtons.forEach(function (b) { b.classList.remove('active'); });
+      picker.value = '';
+      picker.classList.remove('active');
+      applyBtn.classList.add('active');
+      currentPeriod[scope] = 'range:' + startInput.value + ':' + endInput.value;
+      renderDashboard();
+    });
+  });
+
+  function isoDate(d) {
+    return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+  }
+
+  function getRange(key) {
+    var today = new Date();
+    var todayStr = isoDate(today);
+    if (key === 'hoje') return [todayStr, todayStr];
+    if (key === 'ontem') {
+      var y = new Date(today);
+      y.setDate(y.getDate() - 1);
+      return [isoDate(y), isoDate(y)];
+    }
+    if (key === 'semana') {
+      var sinceMonday = (today.getDay() + 6) % 7;
+      var mon = new Date(today);
+      mon.setDate(mon.getDate() - sinceMonday);
+      return [isoDate(mon), todayStr];
+    }
+    if (key === 'mes') {
+      var first = new Date(today.getFullYear(), today.getMonth(), 1);
+      return [isoDate(first), todayStr];
+    }
+    if (key === 'total') return [null, null];
+    if (key.indexOf('month:') === 0) {
+      var parts = key.slice(6).split('-');
+      var y2 = parseInt(parts[0], 10), m2 = parseInt(parts[1], 10);
+      var first2 = new Date(y2, m2 - 1, 1);
+      var last2 = new Date(y2, m2, 0);
+      return [isoDate(first2), isoDate(last2)];
+    }
+    if (key.indexOf('range:') === 0) {
+      var rp = key.slice(6).split(':');
+      return [rp[0], rp[1]];
+    }
+    return [null, null];
+  }
+
+  function populateMonthPickers() {
+    if (!STATS || !STATS.items) return;
+    var monthSet = {};
+    STATS.items.forEach(function (item) {
+      Object.keys(item.days || {}).forEach(function (day) {
+        monthSet[day.slice(0, 7)] = true;
+      });
+    });
+    var keys = Object.keys(monthSet).sort().reverse();
+    document.querySelectorAll('.month-picker').forEach(function (picker) {
+      keys.forEach(function (key) {
+        var parts = key.split('-');
+        var label = MONTH_NAMES[parseInt(parts[1], 10) - 1] + ' de ' + parts[0];
+        var opt = document.createElement('option');
+        opt.value = key;
+        opt.textContent = label;
+        picker.appendChild(opt);
+      });
+    });
+  }
+
+  function setDateInputBounds() {
+    if (!STATS || !STATS.items) return;
+    var minDay = null;
+    var maxDay = isoDate(new Date());
+    STATS.items.forEach(function (item) {
+      Object.keys(item.days || {}).forEach(function (day) {
+        if (!minDay || day < minDay) minDay = day;
+      });
+    });
+    document.querySelectorAll('.date-input').forEach(function (input) {
+      if (minDay) input.min = minDay;
+      input.max = maxDay;
+    });
+  }
+
+  function resolvePeriod(scope) {
+    if (!STATS || !STATS.items) return null;
+    var range = getRange(currentPeriod[scope]);
+    var pages = [], events = [];
+    STATS.items.forEach(function (item) {
+      var count = 0;
+      var days = item.days || {};
+      if (range[0] === null) {
+        for (var d in days) count += days[d];
+      } else {
+        for (var d2 in days) {
+          if (d2 >= range[0] && d2 <= range[1]) count += days[d2];
+        }
+      }
+      var entry = { path: item.path, title: item.title, count: count };
+      (item.event ? events : pages).push(entry);
+    });
+    pages.sort(function (a, b) { return b.count - a.count; });
+    events.sort(function (a, b) { return b.count - a.count; });
+    return { pages: pages, events: events };
+  }
+
+  function normPath(p) {
+    return (p || '').toLowerCase().replace(/^\/+/, '').replace(/\/+$/, '');
+  }
+
+  function findCount(list, path) {
+    var target = normPath(path);
+    for (var i = 0; i < list.length; i++) {
+      if (normPath(list[i].path) === target) return list[i].count;
+    }
+    return 0;
+  }
+
+  function renderMetricList(containerId, registry, eventsList) {
+    var container = document.getElementById(containerId);
+    container.innerHTML = '';
+    var items = registry.map(function (entry) {
+      return { label: entry[1], count: findCount(eventsList, entry[0]) };
+    });
+    items.sort(function (a, b) { return b.count - a.count; });
+    var max = Math.max.apply(null, items.map(function (x) { return x.count; }).concat([1]));
+    items.forEach(function (item) {
+      var pct = Math.round((item.count / max) * 100);
+      var row = document.createElement('div');
+      row.className = 'metric-row';
+      row.innerHTML =
+        '<div class="metric-info">' +
+          '<div class="metric-name">' + item.label + '</div>' +
+          '<div class="metric-track"><div class="metric-fill" style="width:' + pct + '%"></div></div>' +
+        '</div>' +
+        '<div class="metric-value">' + item.count + '</div>';
+      container.appendChild(row);
+    });
+  }
+
+  function renderRecipeGrid(period) {
+    var container = document.getElementById('recipe-grid');
+    container.innerHTML = '';
+    RECEITAS.forEach(function (r) {
+      var visits = findCount(period.pages, r.path);
+      var copies = findCount(period.events, 'copia-receita' + r.path + '/');
+      var card = document.createElement('div');
+      card.className = 'recipe-card';
+      card.innerHTML =
+        '<h4>' + r.name + '</h4>' +
+        '<div class="recipe-stat"><span>Visitas</span><b>' + visits + '</b></div>' +
+        '<div class="recipe-stat"><span>Link copiado</span><b>' + copies + '</b></div>';
+      container.appendChild(card);
+    });
+  }
+
+  function renderDashboard() {
+    if (!STATS) return;
+
+    var linktreePeriod = resolvePeriod('linktree');
+    if (linktreePeriod) {
+      document.getElementById('linktree-visits').textContent = findCount(linktreePeriod.pages, LINKTREE_PAGE);
+      renderMetricList('linktree-events', LINKTREE_EVENTS, linktreePeriod.events);
+    }
+
+    var sitePeriod = resolvePeriod('site');
+    if (sitePeriod) {
+      document.getElementById('site-visits').textContent = findCount(sitePeriod.pages, SITE_PAGE);
+      renderMetricList('site-events', SITE_EVENTS, sitePeriod.events);
+    }
+
+    var receitasPeriod = resolvePeriod('receitas');
+    if (receitasPeriod) {
+      document.getElementById('receitas-visits').textContent = findCount(receitasPeriod.pages, RECEITAS_PAGE);
+      renderRecipeGrid(receitasPeriod);
+    }
+  }
+
+  function formatDate(iso) {
+    if (!iso) return '';
+    var d = new Date(iso);
+    return d.toLocaleString('pt-BR', { dateStyle: 'short', timeStyle: 'short' });
+  }
+
+  async function loadStats() {
+    try {
+      var res = await fetch('https://api.github.com/gists/' + GIST_ID);
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      var gist = await res.json();
+      STATS = JSON.parse(gist.files['stats.json'].content);
+
+      document.getElementById('dash-updated').textContent = 'Atualizado em: ' + formatDate(STATS.updated_at);
+
+      var allTimeEvents = [];
+      (STATS.items || []).forEach(function (item) {
+        if (!item.event) return;
+        var total = 0;
+        for (var d in (item.days || {})) total += item.days[d];
+        allTimeEvents.push({ path: item.path, title: item.title, count: total });
+      });
+      document.getElementById('badge-instagram').textContent = findCount(allTimeEvents, 'lp-clique-instagram');
+      document.getElementById('badge-facebook').textContent = findCount(allTimeEvents, 'lp-clique-facebook');
+
+      populateMonthPickers();
+      setDateInputBounds();
+      renderDashboard();
+    } catch (err) {
+      document.getElementById('dash-empty').style.display = 'block';
+      console.error(err);
+    }
+  }
+</script>
+
+</body>
+</html>

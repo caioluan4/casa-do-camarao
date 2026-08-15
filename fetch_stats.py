@@ -8,13 +8,12 @@ from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 
 API_BASE = "https://casadocamarao.goatcounter.com/api/v0"
-EVENT_PREFIXES = ("clique-", "lp-clique-")
 HITS_LIMIT = 100
-# /stats/total and /stats/hits default to the last 7 days when no start/end
-# is given; use a far-past start so the numbers reflect all-time totals.
-ALL_TIME_START = "2000-01-01T00:00:00Z"
-
 GITHUB_API = "https://api.github.com"
+
+# GoatCounter tracking went live in August 2026; there's no data before
+# this, so it's a safe (and cheap) lower bound for the daily history.
+ALL_TIME_START = datetime(2026, 8, 1, tzinfo=timezone.utc)
 
 
 def api_get(path, params=None):
@@ -45,16 +44,11 @@ def api_get(path, params=None):
         sys.exit(1)
 
 
-def fetch_total_visits():
-    data = api_get("/stats/total", {"start": ALL_TIME_START})
-    return data.get("total", 0)
-
-
-def fetch_all_hits():
+def fetch_hits_with_daily_breakdown(start):
     hits = []
     exclude_paths = []
     while True:
-        params = {"limit": HITS_LIMIT, "start": ALL_TIME_START}
+        params = {"limit": HITS_LIMIT, "start": start.strftime("%Y-%m-%dT%H:%M:%SZ"), "group": "day"}
         if exclude_paths:
             params["exclude_paths"] = exclude_paths
         data = api_get("/stats/hits", params)
@@ -66,21 +60,23 @@ def fetch_all_hits():
     return hits
 
 
-def classify_hits(hits):
-    pages, events = [], []
+def build_items(hits):
+    items = []
     for hit in hits:
-        path = hit.get("path", "")
-        item = {
-            "path": path,
+        days = {}
+        for entry in hit.get("stats", []):
+            day = entry.get("day")
+            if day:
+                days[day[:10]] = entry.get("daily", 0)
+        items.append({
+            "path": hit.get("path", ""),
             "title": hit.get("title", ""),
-            "count": hit.get("count", 0),
-        }
-        target = events if path.startswith(EVENT_PREFIXES) else pages
-        target.append(item)
-
-    pages.sort(key=lambda x: x["count"], reverse=True)
-    events.sort(key=lambda x: x["count"], reverse=True)
-    return pages, events
+            # GoatCounter itself flags each hit as a page view or a click
+            # event (event=true), more reliable than guessing from the path.
+            "event": bool(hit.get("event")),
+            "days": days,
+        })
+    return items
 
 
 def update_gist(stats):
@@ -118,20 +114,20 @@ def update_gist(stats):
 
 
 def main():
-    visits = fetch_total_visits()
-    hits = fetch_all_hits()
-    pages, events = classify_hits(hits)
+    now = datetime.now(timezone.utc)
+    hits = fetch_hits_with_daily_breakdown(ALL_TIME_START)
+    items = build_items(hits)
 
     stats = {
-        "updated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
-        "totals": {"visits": visits},
-        "pages": pages,
-        "events": events,
+        "updated_at": now.strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "items": items,
     }
 
     update_gist(stats)
 
-    print(f"Gist atualizado: {visits} visitas totais, {len(pages)} páginas, {len(events)} eventos.")
+    pages = sum(1 for i in items if not i["event"])
+    events = sum(1 for i in items if i["event"])
+    print(f"Gist atualizado: {pages} páginas, {events} eventos, com histórico diário completo.")
 
 
 if __name__ == "__main__":
