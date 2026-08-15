@@ -492,6 +492,7 @@
       currentTab = btn.getAttribute('data-tab');
       document.querySelectorAll('.tab-panel').forEach(function (p) { p.style.display = 'none'; });
       document.getElementById('panel-' + currentTab).style.display = 'block';
+      updateSocialBadges();
     });
   });
 
@@ -709,6 +710,17 @@
       document.getElementById('receitas-visits').textContent = findCount(receitasPeriod.pages, RECEITAS_PAGE);
       renderRecipeGrid(receitasPeriod);
     }
+
+    updateSocialBadges();
+  }
+
+  function updateSocialBadges() {
+    // Instagram/Facebook são cliques do site inteiro, não de uma aba
+    // específica — acompanham o filtro de período da aba ativa no momento.
+    var period = resolvePeriod(currentTab);
+    if (!period) return;
+    document.getElementById('badge-instagram').textContent = findCount(period.events, 'lp-clique-instagram');
+    document.getElementById('badge-facebook').textContent = findCount(period.events, 'lp-clique-facebook');
   }
 
   function formatDate(iso) {
@@ -725,16 +737,6 @@
       STATS = JSON.parse(gist.files['stats.json'].content);
 
       document.getElementById('dash-updated').textContent = 'Atualizado em: ' + formatDate(STATS.updated_at);
-
-      var allTimeEvents = [];
-      (STATS.items || []).forEach(function (item) {
-        if (!item.event) return;
-        var total = 0;
-        for (var d in (item.days || {})) total += item.days[d];
-        allTimeEvents.push({ path: item.path, title: item.title, count: total });
-      });
-      document.getElementById('badge-instagram').textContent = findCount(allTimeEvents, 'lp-clique-instagram');
-      document.getElementById('badge-facebook').textContent = findCount(allTimeEvents, 'lp-clique-facebook');
 
       populateMonthPickers();
       setDateInputBounds();
