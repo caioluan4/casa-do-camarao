@@ -30,5 +30,16 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add stats.json
-          git diff --staged --quiet || git commit -m "Atualiza stats.json [skip ci]"
-          git push
+
+          if git diff --staged --quiet; then
+            echo "stats.json sem mudanças, nada a commitar."
+            exit 0
+          fi
+
+          if [ "$(git log -1 --pretty=%an)" = "github-actions[bot]" ]; then
+            git commit --amend --no-edit
+            git push --force-with-lease
+          else
+            git commit -m "Atualiza stats.json [skip ci]"
+            git push
+          fi
