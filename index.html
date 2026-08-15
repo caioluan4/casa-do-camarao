@@ -238,6 +238,22 @@
     .recipe-preview-body { padding: 10px !important; }
     .recipe-grid .wm-badge { width: 18px !important; height: 18px !important; }
   }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.is-visible { opacity: 1; transform: translateY(0); }
+  .reveal:nth-child(2) { transition-delay: 0.08s; }
+  .reveal:nth-child(3) { transition-delay: 0.16s; }
+  .reveal:nth-child(4) { transition-delay: 0.24s; }
+  .reveal:nth-child(5) { transition-delay: 0.32s; }
+  .reveal:nth-child(6) { transition-delay: 0.4s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+  }
 </style>
 </head>
 <body>
@@ -350,12 +366,12 @@
     <section id="sobre" style="padding: 72px 24px;">
       <div class="sobre-grid" style="max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.1fr; gap: 56px; align-items: center;">
 
-        <div style="position: relative; aspect-ratio: 4 / 3; overflow: hidden;">
+        <div class="reveal" style="position: relative; aspect-ratio: 4 / 3; overflow: hidden;">
           <div class="photo-placeholder">Foto — fachada ou equipe da loja</div>
           <img src="images/landing/fotoEquipe.jpeg" alt="Equipe Casa do Camarão" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'">
         </div>
 
-        <div style="display: flex; flex-direction: column; gap: 18px;">
+        <div class="reveal" style="display: flex; flex-direction: column; gap: 18px;">
           <h2 style="margin: 0; font-family: 'Archivo Black', sans-serif; font-size: clamp(28px, 4.5vw, 42px); line-height: 1.05; letter-spacing: -0.5px; text-transform: uppercase; color: #f2f2f0;">Sobre a <span style="color: #C7092B;">Casa do Camarão</span></h2>
           <p style="margin: 0; max-width: 480px; font-size: 15px; font-weight: 400; line-height: 1.6; color: #a3a3a3; text-wrap: pretty;">A Casa do Camarão é referência em camarões, pescados e frutos do mar em Manaus. Aqui você encontra uma das maiores variedades da cidade, dos clássicos aos ingredientes da alta gastronomia, cuidadosamente selecionados para diferentes receitas e ocasiões.</p>
           <p style="margin: 0; max-width: 480px; font-size: 15px; font-weight: 400; line-height: 1.6; color: #a3a3a3; text-wrap: pretty;">Tudo em um só lugar, com variedade, confiança e praticidade.</p>
@@ -366,61 +382,61 @@
 
     <section style="padding: 72px 24px;">
       <div style="max-width: 1100px; margin: 0 auto;">
-        <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-bottom: 28px;">
+        <div class="reveal" style="display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-bottom: 28px;">
           <h2 style="margin: 0; font-family: 'Archivo Black', sans-serif; font-size: clamp(28px, 4.5vw, 42px); line-height: 1; letter-spacing: -0.5px; text-transform: uppercase; color: #f2f2f0;">Frutos do mar <span style="color: #2699A6;">selecionados</span></h2>
           <span style="font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: #7d7d7d;">Seleção da casa</span>
         </div>
 
         <div class="gallery-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 10px;">
-          <div style="position: relative; aspect-ratio: 3 / 4; overflow: hidden;">
+          <div class="reveal" style="position: relative; aspect-ratio: 3 / 4; overflow: hidden;">
             <div class="photo-placeholder">Camarão</div>
             <img src="images/landing/Camarao.jpeg" alt="Camarão" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'">
           </div>
-          <div style="position: relative; aspect-ratio: 3 / 4; overflow: hidden;">
+          <div class="reveal" style="position: relative; aspect-ratio: 3 / 4; overflow: hidden;">
             <div class="photo-placeholder">Camarão rosa inteiro</div>
             <img src="images/landing/CamaraoRosaInteiro.jpeg" alt="Camarão rosa inteiro" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'">
           </div>
-          <div style="position: relative; aspect-ratio: 3 / 4; overflow: hidden;">
+          <div class="reveal" style="position: relative; aspect-ratio: 3 / 4; overflow: hidden;">
             <div class="photo-placeholder">Camarão embalado</div>
             <img src="images/landing/CamaraoEmbalado.jpeg" alt="Camarão embalado" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'">
           </div>
-          <div style="position: relative; aspect-ratio: 3 / 4; overflow: hidden;">
+          <div class="reveal" style="position: relative; aspect-ratio: 3 / 4; overflow: hidden;">
             <div class="photo-placeholder">Pargo inteiro</div>
             <img src="images/landing/Pargo.jpeg" alt="Pargo inteiro" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'">
           </div>
-          <div style="position: relative; aspect-ratio: 3 / 4; overflow: hidden;">
+          <div class="reveal" style="position: relative; aspect-ratio: 3 / 4; overflow: hidden;">
             <div class="photo-placeholder">Filé de lagosta</div>
             <img src="images/landing/FileLagosta.jpeg" alt="Filé de lagosta" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'">
           </div>
-          <div style="position: relative; aspect-ratio: 3 / 4; overflow: hidden;">
+          <div class="reveal" style="position: relative; aspect-ratio: 3 / 4; overflow: hidden;">
             <div class="photo-placeholder">Cauda de lagosta</div>
             <img src="images/landing/CaudaLagosta.jpeg" alt="Cauda de lagosta" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'">
           </div>
-          <div style="position: relative; aspect-ratio: 3 / 4; overflow: hidden;">
+          <div class="reveal" style="position: relative; aspect-ratio: 3 / 4; overflow: hidden;">
             <div class="photo-placeholder">Vieiras</div>
             <img src="images/landing/Vieira.jpeg" alt="Vieiras" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'">
           </div>
-          <div style="position: relative; aspect-ratio: 3 / 4; overflow: hidden;">
+          <div class="reveal" style="position: relative; aspect-ratio: 3 / 4; overflow: hidden;">
             <div class="photo-placeholder">Bacalhau desfiado</div>
             <img src="images/landing/BacalhauPronto.jpeg" alt="Bacalhau desfiado" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'">
           </div>
-          <div style="position: relative; aspect-ratio: 3 / 4; overflow: hidden;">
+          <div class="reveal" style="position: relative; aspect-ratio: 3 / 4; overflow: hidden;">
             <div class="photo-placeholder">Bacalhau em pedaços</div>
             <img src="images/landing/BacalhauPedacos.jpeg" alt="Bacalhau em pedaços" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'">
           </div>
-          <div style="position: relative; aspect-ratio: 3 / 4; overflow: hidden;">
+          <div class="reveal" style="position: relative; aspect-ratio: 3 / 4; overflow: hidden;">
             <div class="photo-placeholder">Filé de salmão</div>
             <img src="images/landing/fileSalmao.JPG" alt="Filé de salmão" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'">
           </div>
-          <div style="position: relative; aspect-ratio: 3 / 4; overflow: hidden;">
+          <div class="reveal" style="position: relative; aspect-ratio: 3 / 4; overflow: hidden;">
             <div class="photo-placeholder">Polvo inteiro</div>
             <img src="images/landing/polvoInteiro.JPG" alt="Polvo inteiro" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'">
           </div>
-          <div style="position: relative; aspect-ratio: 3 / 4; overflow: hidden;">
+          <div class="reveal" style="position: relative; aspect-ratio: 3 / 4; overflow: hidden;">
             <div class="photo-placeholder">Bacalhau em manta</div>
             <img src="images/landing/manta.JPG" alt="Bacalhau em manta" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'">
           </div>
-          <div style="position: relative; aspect-ratio: 3 / 4; overflow: hidden;">
+          <div class="reveal" style="position: relative; aspect-ratio: 3 / 4; overflow: hidden;">
             <div class="photo-placeholder">Camarões limpos</div>
             <img src="images/landing/camaroes.JPG" alt="Camarões limpos" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'">
           </div>
@@ -430,7 +446,7 @@
 
     <section style="padding: 56px 24px;">
       <div style="max-width: 1100px; margin: 0 auto;">
-        <div class="acai-grid" style="background: #262626; border: 1px solid #333333; padding: 40px; display: grid; grid-template-columns: 1fr 0.85fr; gap: 40px; align-items: center;">
+        <div class="acai-grid reveal" style="background: #262626; border: 1px solid #333333; padding: 40px; display: grid; grid-template-columns: 1fr 0.85fr; gap: 40px; align-items: center;">
 
           <div style="display: flex; flex-direction: column; gap: 18px;">
             <div style="display: flex; align-items: center; gap: 12px;">
@@ -475,27 +491,27 @@
 
     <section id="receitas" style="padding: 56px 24px;">
       <div style="max-width: 1000px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 36px;">
-        <div style="text-align: center; display: flex; flex-direction: column; align-items: center; gap: 18px;">
+        <div class="reveal" style="text-align: center; display: flex; flex-direction: column; align-items: center; gap: 18px;">
           <h2 style="margin: 0; font-family: 'Archivo Black', sans-serif; font-size: clamp(24px, 4vw, 34px); line-height: 1.1; letter-spacing: -0.5px; text-transform: uppercase; color: #f2f2f0; text-wrap: balance;">Conheça nosso catálogo de <span style="color: #2699A6;">receitas</span></h2>
           <p style="margin: 0; font-size: 15px; font-weight: 400; line-height: 1.6; color: #a3a3a3;">Receitas com passo a passo em texto e vídeo, usando produtos da Casa do Camarão.</p>
         </div>
 
         <div class="recipe-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; width: 100%;">
-          <a href="receitas/baguete-de-camarao/" class="recipe-preview-card">
+          <a href="receitas/baguete-de-camarao/" class="recipe-preview-card reveal">
             <img src="receitas/videos/baguete-de-camarao-poster.jpg" alt="Baguete de Camarão">
             <img class="wm-badge" src="images/links/logo.png" alt="">
             <div class="recipe-preview-body">
               <span class="recipe-preview-title">Baguete de Camarão</span>
             </div>
           </a>
-          <a href="receitas/camarao-internacional/" class="recipe-preview-card">
+          <a href="receitas/camarao-internacional/" class="recipe-preview-card reveal">
             <img src="receitas/videos/camarao-internacional-poster.jpg" alt="Camarão Internacional">
             <img class="wm-badge" src="images/links/logo.png" alt="">
             <div class="recipe-preview-body">
               <span class="recipe-preview-title">Camarão Internacional</span>
             </div>
           </a>
-          <a href="receitas/polvo-panela-pressao/" class="recipe-preview-card">
+          <a href="receitas/polvo-panela-pressao/" class="recipe-preview-card reveal">
             <img src="receitas/videos/polvo-panela-pressao-poster.jpg" alt="Polvo na Panela de Pressão">
             <img class="wm-badge" src="images/links/logo.png" alt="">
             <div class="recipe-preview-body">
@@ -510,13 +526,13 @@
 
     <section id="lojas" style="background: #202020; border-top: 1px solid #2e2e2e; border-bottom: 1px solid #2e2e2e; padding: 72px 0;">
       <div style="max-width: 1320px; margin: 0 auto;">
-        <div style="padding: 0 24px; margin-bottom: 28px;">
+        <div class="reveal" style="padding: 0 24px; margin-bottom: 28px;">
           <h2 style="margin: 0; font-family: 'Archivo Black', sans-serif; font-size: clamp(28px, 4.5vw, 42px); line-height: 1; letter-spacing: -0.5px; text-transform: uppercase; color: #f2f2f0;">Nossas <span style="color: #C7092B;">lojas</span></h2>
         </div>
 
         <div class="stores-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 26px; padding: 0 24px;">
 
-          <div style="background: #262626; border: 1px solid #333333; padding: 28px 24px; display: flex; flex-direction: column; gap: 20px;">
+          <div class="reveal" style="background: #262626; border: 1px solid #333333; padding: 28px 24px; display: flex; flex-direction: column; gap: 20px;">
             <div class="store-media" style="margin: -28px -24px 0;">
               <div>
                 <div class="photo-placeholder">Foto da fachada — Loja Boulevard</div>
@@ -564,7 +580,7 @@
             </div>
           </div>
 
-          <div style="background: #262626; border: 1px solid #333333; padding: 28px 24px; display: flex; flex-direction: column; gap: 20px;">
+          <div class="reveal" style="background: #262626; border: 1px solid #333333; padding: 28px 24px; display: flex; flex-direction: column; gap: 20px;">
             <div class="store-media" style="margin: -28px -24px 0;">
               <div>
                 <div class="photo-placeholder">Interior — Loja Morada do Sol</div>
@@ -608,7 +624,7 @@
 
     <section style="background: #202020; border-top: 1px solid #2e2e2e; padding: 64px 24px;">
       <div class="delivery-grid" style="max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: center;">
-        <div class="delivery-text" style="display: flex; flex-direction: column; gap: 24px; align-items: flex-start;">
+        <div class="delivery-text reveal" style="display: flex; flex-direction: column; gap: 24px; align-items: flex-start;">
           <h2 class="delivery-title" style="margin: 0; max-width: 560px; font-family: 'Archivo Black', sans-serif; font-size: clamp(28px, 4.5vw, 42px); line-height: 1.05; letter-spacing: -0.5px; text-transform: uppercase; color: #ffffff; text-wrap: balance;">Peça agora e receba no conforto da sua casa</h2>
           <div class="delivery-actions" style="display: flex; flex-wrap: wrap; gap: 12px;">
             <a href="https://www.invictaerp.com.br/casa_do_camarao/" target="_blank" rel="noopener" data-goatcounter-click="lp-clique-cardapio" style="display: flex; align-items: center; gap: 10px; background: #C7092B; color: #ffffff; padding: 16px 26px; font-weight: 700; font-size: 15px; letter-spacing: 0.5px; text-transform: uppercase;">Catálogo digital</a>
@@ -619,7 +635,7 @@
           </div>
         </div>
 
-        <div class="delivery-photo" style="position: relative; aspect-ratio: 4 / 3; overflow: hidden;">
+        <div class="delivery-photo reveal" style="position: relative; aspect-ratio: 4 / 3; overflow: hidden;">
           <div class="photo-placeholder">Foto — entregador na moto</div>
           <img src="images/landing/Entregador.jpeg" alt="Entrega Casa do Camarão" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'">
         </div>
@@ -628,11 +644,11 @@
 
     <section id="atacado" style="padding: 72px 24px;">
       <div class="atacado-grid" style="max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;">
-        <div style="position: relative; aspect-ratio: 4 / 3; overflow: hidden;">
+        <div class="reveal" style="position: relative; aspect-ratio: 4 / 3; overflow: hidden;">
           <img src="images/landing/fotoAtacado.png" alt="Van de entrega da Casa do Camarão para atacado" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain;">
         </div>
 
-        <div class="atacado-text" style="display: flex; flex-direction: column; align-items: flex-start; gap: 18px;">
+        <div class="atacado-text reveal" style="display: flex; flex-direction: column; align-items: flex-start; gap: 18px;">
           <h2 style="margin: 0; font-family: 'Archivo Black', sans-serif; font-size: clamp(28px, 4.5vw, 42px); line-height: 1.05; letter-spacing: -0.5px; text-transform: uppercase; color: #f2f2f0;">Trabalhamos com <span style="color: #C7092B;">Atacado</span></h2>
           <p style="margin: 0; font-size: 15px; font-weight: 400; line-height: 1.6; color: #a3a3a3; text-wrap: pretty;">A Casa do Camarão também atende restaurantes, hotéis, buffets, empresas e outros negócios que buscam camarões, pescados e frutos do mar em maiores quantidades.</p>
           <p style="margin: 0; font-size: 15px; font-weight: 400; line-height: 1.6; color: #a3a3a3; text-wrap: pretty;">Conte com variedade de produtos, atendimento especializado e condições diferenciadas para compras no atacado.</p>
@@ -749,6 +765,23 @@
         encodeURIComponent(link.getAttribute('data-goatcounter-click')) + '&e=true';
     });
   });
+</script>
+
+<script>
+  var revealEls = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window)) {
+    revealEls.forEach(function (el) { el.classList.add('is-visible'); });
+  } else {
+    var revealObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach(function (el) { revealObserver.observe(el); });
+  }
 </script>
 
 </body>

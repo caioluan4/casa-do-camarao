@@ -26,9 +26,13 @@
   @media (max-width: 760px) {
     .recipe-layout { grid-template-columns: 1fr; }
   }
-  .recipe-video { position: sticky; top: 96px; }
+  .recipe-video { align-self: stretch; min-height: 650px; }
+  .recipe-video-inner { position: sticky; top: 96px; }
+  .recipe-video-spacer { height: 380px; }
   @media (max-width: 760px) {
-    .recipe-video { position: static; }
+    .recipe-video { min-height: auto; }
+    .recipe-video-inner { position: static; }
+    .recipe-video-spacer { height: 0; }
   }
   .wm-badge {
     position: absolute !important;
@@ -199,11 +203,13 @@
 
           <div class="recipe-layout">
             <div class="recipe-video">
+              <div class="recipe-video-inner">
               <div style="position: relative; aspect-ratio: 9 / 16; overflow: hidden;">
                 <video controls preload="none" poster="../videos/baguete-de-camarao-poster.jpg" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; background: #000;">
                   <source src="../videos/baguete-de-camarao-web.mp4" type="video/mp4">
                 </video>
                 <img class="wm-badge" src="../../images/links/logo.png" alt="">
+              </div>
               </div>
             </div>
 
@@ -241,6 +247,7 @@
               </div>
             </div>
           </div>
+          <div class="recipe-video-spacer"></div>
         </article>
 
       </div>
@@ -279,28 +286,6 @@
   }
 </script>
 <script>
-  function checkStickyVideo() {
-    var video = document.querySelector('.recipe-video');
-    var cols = document.querySelector('.recipe-cols');
-    var header = document.querySelector('header');
-    if (!video || !cols || !header) return;
-    if (window.innerWidth <= 760) { video.style.position = ''; return; }
-
-    var videoH = video.offsetHeight;
-    var headerH = header.offsetHeight;
-    var margin = 16;
-    var colsBottomAbs = cols.getBoundingClientRect().bottom + window.scrollY;
-    var trailingStuff = document.body.scrollHeight - colsBottomAbs;
-    var viewportH = window.innerHeight;
-    var parkPosition = viewportH - videoH - trailingStuff;
-    var safe = parkPosition >= headerH + margin;
-
-    video.style.position = safe ? '' : 'static';
-  }
-  checkStickyVideo();
-  window.addEventListener('resize', checkStickyVideo);
-  window.addEventListener('load', checkStickyVideo);
-
   document.querySelectorAll('.copy-link-btn').forEach(function (btn) {
     btn.addEventListener('click', function () {
       var url = window.location.href;
