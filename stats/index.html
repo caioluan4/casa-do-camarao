@@ -317,11 +317,11 @@
 
   <div class="tab-panel" id="panel-site">
     <div class="period-filter" data-scope="site">
-      <button class="period-btn" data-period="hoje">Hoje</button>
+      <button class="period-btn active" data-period="hoje">Hoje</button>
       <button class="period-btn" data-period="ontem">Ontem</button>
       <button class="period-btn" data-period="semana">Essa Semana</button>
       <button class="period-btn" data-period="mes">Esse Mês</button>
-      <button class="period-btn active" data-period="total">Total</button>
+      <button class="period-btn" data-period="total">Total</button>
       <button type="button" class="advanced-toggle" data-scope="site">Avançado</button>
     </div>
     <div class="advanced-panel" data-scope="site">
@@ -348,11 +348,11 @@
 
   <div class="tab-panel" id="panel-linktree" style="display:none;">
     <div class="period-filter" data-scope="linktree">
-      <button class="period-btn" data-period="hoje">Hoje</button>
+      <button class="period-btn active" data-period="hoje">Hoje</button>
       <button class="period-btn" data-period="ontem">Ontem</button>
       <button class="period-btn" data-period="semana">Essa Semana</button>
       <button class="period-btn" data-period="mes">Esse Mês</button>
-      <button class="period-btn active" data-period="total">Total</button>
+      <button class="period-btn" data-period="total">Total</button>
       <button type="button" class="advanced-toggle" data-scope="linktree">Avançado</button>
     </div>
     <div class="advanced-panel" data-scope="linktree">
@@ -379,11 +379,11 @@
 
   <div class="tab-panel" id="panel-receitas" style="display:none;">
     <div class="period-filter" data-scope="receitas">
-      <button class="period-btn" data-period="hoje">Hoje</button>
+      <button class="period-btn active" data-period="hoje">Hoje</button>
       <button class="period-btn" data-period="ontem">Ontem</button>
       <button class="period-btn" data-period="semana">Essa Semana</button>
       <button class="period-btn" data-period="mes">Esse Mês</button>
-      <button class="period-btn active" data-period="total">Total</button>
+      <button class="period-btn" data-period="total">Total</button>
       <button type="button" class="advanced-toggle" data-scope="receitas">Avançado</button>
     </div>
     <div class="advanced-panel" data-scope="receitas">
@@ -450,7 +450,7 @@
 
   var STATS = null;
   var currentTab = 'site';
-  var currentPeriod = { linktree: 'total', site: 'total', receitas: 'total' };
+  var currentPeriod = { linktree: 'hoje', site: 'hoje', receitas: 'hoje' };
 
   async function sha256(text) {
     var buffer = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text));
