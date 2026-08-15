@@ -22,18 +22,18 @@
 
   .page {
     min-height: 100vh;
-    background: #000000;
+    background: linear-gradient(180deg, #C7092B 0%, #950720 40%, #1F7A85 100%);
     display: flex;
     justify-content: center;
+    position: relative;
+    overflow: hidden;
   }
 
   .card {
     width: 100%;
-    max-width: 440px;
+    max-width: 500px;
     min-height: 100vh;
-    background: linear-gradient(180deg, #C7092B 0%, #950720 40%, #1F7A85 100%);
     position: relative;
-    overflow: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -129,8 +129,9 @@
     border-radius: 10px;
     font-family: 'Oswald', sans-serif;
     box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
   }
-  .btn:hover { color: #1a1a1a; }
+  .btn:hover { color: #1a1a1a; transform: translateY(-3px); box-shadow: 0 10px 22px rgba(0,0,0,0.3); }
   .icon-badge {
     width: 46px;
     height: 46px;
@@ -156,23 +157,15 @@
     letter-spacing: 0.1px;
     margin-top: 2px;
   }
-  .btn-chevron {
-    margin-left: auto;
-    font-size: 20px;
-    line-height: 1;
-    flex-shrink: 0;
-  }
-  .btn-chevron.red { color: #C7092B; }
-  .btn-chevron.teal { color: #2699A6; }
-  .btn-chevron.green { color: #1DA851; }
-
   .store {
     width: 100%;
     background: #ffffff;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
   }
+  .store:hover { transform: translateY(-3px); box-shadow: 0 10px 22px rgba(0,0,0,0.3); }
 
   .store-toggle {
     display: flex;
@@ -293,18 +286,20 @@
     font-size: 11px;
     font-weight: 500;
     letter-spacing: 0.5px;
+    text-align: center;
+    line-height: 1.6;
     position: relative;
     z-index: 1;
   }
+
 </style>
 </head>
 <body>
 <div class="page">
+  <svg class="wave" viewBox="0 0 440 120" preserveAspectRatio="none">
+    <path d="M0,60 C110,110 330,10 440,60 L440,120 L0,120 Z" fill="#ffffff"></path>
+  </svg>
   <div class="card">
-
-    <svg class="wave" viewBox="0 0 440 120" preserveAspectRatio="none">
-      <path d="M0,60 C110,110 330,10 440,60 L440,120 L0,120 Z" fill="#ffffff"></path>
-    </svg>
 
     <div class="logo">
       <img src="../images/links/logo.png" alt="Casa do Camarão — Frutos do Mar" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
@@ -328,7 +323,6 @@
           <span class="btn-title">Catálogo Digital</span>
           <span class="btn-sub" style="display: block;">Conheça nossos produtos e faça seu pedido de forma rápida e prática</span>
         </span>
-        <span class="btn-chevron red">›</span>
       </a>
 
       <div class="store">
@@ -411,7 +405,6 @@
           <span class="btn-title">Peça pelo WhatsApp</span>
           <span class="btn-sub" style="display: block;">Fale com um especialista e receba seu pedido</span>
         </span>
-        <span class="btn-chevron green">›</span>
       </a>
 
       <a class="btn whatsapp-btn" href="https://wa.me/5592981360380?text=Ol%C3%A1%21%20Gostaria%20de%20solicitar%20uma%20cota%C3%A7%C3%A3o%20para%20compra%20no%20atacado." target="_blank" rel="noopener" data-goatcounter-click="clique-whatsapp-atacado">
@@ -422,12 +415,11 @@
           <span class="btn-title">Atacado</span>
           <span class="btn-sub" style="display: block;">Solicite uma cotação para compras no atacado</span>
         </span>
-        <span class="btn-chevron green">›</span>
       </a>
 
     </div>
 
-    <p class="footer">© Casa do Camarão — Manaus, AM</p>
+    <p class="footer">© Casa do Camarão 2026<br>Boulevard &amp; Morada do Sol</p>
   </div>
 </div>
 
