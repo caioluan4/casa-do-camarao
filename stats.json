@@ -1,23 +1,23 @@
 {
-  "updated_at": "2026-08-15T11:25:34Z",
+  "updated_at": "2026-08-15T12:47:49Z",
   "totals": {
-    "visits": 668
+    "visits": 673
   },
   "pages": [
     {
       "path": "/links",
       "title": "Casa do Camarão",
-      "count": 343
+      "count": 344
     },
     {
       "path": "/lp-home",
       "title": "",
-      "count": 12
+      "count": 13
     },
     {
       "path": "/",
       "title": "Casa do Camarão",
-      "count": 12
+      "count": 13
     },
     {
       "path": "/receitas",
@@ -49,7 +49,7 @@
     {
       "path": "clique-cardapio",
       "title": "\n        <span class=\"icon-badge red\">\n          <svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M4 5.5c2-1 4.5-1 7 0v13c-2.5-1-5-1-7 0v-13Z\" stroke=\"#ffffff\" stroke-width=\"1.8\" s",
-      "count": 230
+      "count": 231
     },
     {
       "path": "clique-whatsapp",
@@ -72,14 +72,14 @@
       "count": 5
     },
     {
-      "path": "clique-waze-boulevard",
-      "title": "\n              <img src=\"waze-icon-logo.png\" alt=\"\" width=\"15\" height=\"15\" style=\"flex-shrink: 0;\">\n              Waze\n            ",
+      "path": "lp-clique-cardapio",
+      "title": "Catálogo Digital",
       "count": 4
     },
     {
-      "path": "lp-clique-cardapio",
-      "title": "Catálogo Digital",
-      "count": 3
+      "path": "clique-waze-boulevard",
+      "title": "\n              <img src=\"waze-icon-logo.png\" alt=\"\" width=\"15\" height=\"15\" style=\"flex-shrink: 0;\">\n              Waze\n            ",
+      "count": 4
     },
     {
       "path": "clique-waze-morada",
