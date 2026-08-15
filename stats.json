@@ -1,7 +1,7 @@
 {
-  "updated_at": "2026-08-15T07:35:24Z",
+  "updated_at": "2026-08-15T08:35:21Z",
   "totals": {
-    "visits": 666
+    "visits": 668
   },
   "pages": [
     {
@@ -12,12 +12,12 @@
     {
       "path": "/lp-home",
       "title": "",
-      "count": 11
+      "count": 12
     },
     {
       "path": "/",
       "title": "Casa do Camarão",
-      "count": 11
+      "count": 12
     },
     {
       "path": "/receitas",
