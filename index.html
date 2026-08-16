@@ -17,6 +17,50 @@
   a:hover { color: #4db4c0; }
   ::selection { background: #C7092B; color: #fff; }
   .nav-link:hover { color: #C7092B !important; }
+
+  .kicker {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #7d7d7d;
+  }
+  .kicker::before {
+    content: "";
+    display: block;
+    width: 26px;
+    height: 1px;
+    background: #3d3d3d;
+    flex-shrink: 0;
+  }
+
+  .layered-photo-wrap { position: relative; }
+  .layered-photo-back {
+    position: absolute;
+    inset: 18px -18px -18px 18px;
+    border: 1px solid #C7092B;
+    z-index: 0;
+  }
+  .layered-photo {
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    box-shadow: 0 18px 40px rgba(0,0,0,0.45);
+  }
+  .layered-photo-caption {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    z-index: 2;
+    padding: 22px 20px 16px;
+    background: linear-gradient(0deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0) 100%);
+  }
+  .layered-photo-caption span { display: block; }
+  .layered-photo-caption .lp-eyebrow { font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: #d8d8d8; margin-bottom: 4px; }
+  .layered-photo-caption .lp-title { font-family: 'Archivo Black', sans-serif; font-size: 18px; text-transform: uppercase; color: #f2f2f0; }
+
   .photo-placeholder {
     position: absolute;
     inset: 0;
@@ -67,65 +111,6 @@
   @media (max-width: 640px) {
     .coin-wrap { width: 220px; }
   }
-
-  .carousel {
-    position: relative;
-    width: 100%;
-    max-width: 300px;
-    margin: 0 auto;
-  }
-  .carousel-track {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-  }
-  .carousel-track::-webkit-scrollbar { display: none; }
-  .carousel-slide {
-    position: relative;
-    flex: 0 0 100%;
-    aspect-ratio: 2 / 3;
-    scroll-snap-align: center;
-    overflow: hidden;
-  }
-  .carousel-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 26px;
-    height: 26px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(0,0,0,0.25);
-    border: none;
-    cursor: pointer;
-    z-index: 2;
-    opacity: 0.7;
-    transition: opacity 0.2s, background-color 0.2s;
-  }
-  .carousel-arrow svg { width: 12px; height: 12px; }
-  .carousel-arrow:hover { opacity: 1; background: rgba(0,0,0,0.4); }
-  .carousel-prev { left: 8px; }
-  .carousel-next { right: 8px; }
-  .carousel-dots {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin-top: 14px;
-  }
-  .carousel-dots button {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    padding: 0;
-    background: #3d3d3d;
-    border: none;
-    cursor: pointer;
-  }
-  .carousel-dots button.active { background: #C7092B; }
 
   .store-media { position: relative; aspect-ratio: 4 / 3; display: grid; grid-template-columns: repeat(2, 1fr); grid-auto-rows: 1fr; gap: 8px; overflow: hidden; }
   .store-media > div { position: relative; overflow: hidden; }
@@ -225,8 +210,6 @@
     .sobre-grid { grid-template-columns: 1fr !important; gap: 28px !important; }
     .atacado-grid { grid-template-columns: 1fr !important; gap: 28px !important; }
     .atacado-text { align-items: center !important; text-align: center !important; }
-    .acai-grid { grid-template-columns: 1fr !important; gap: 28px !important; padding: 28px 20px !important; }
-    .acai-grid .carousel { max-width: 100% !important; }
     .delivery-grid { grid-template-columns: 1fr !important; gap: 28px !important; }
     .delivery-text { align-items: center !important; text-align: center !important; }
     .delivery-actions { justify-content: center !important; }
@@ -314,6 +297,7 @@
       <div class="hero-grid" style="max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.15fr; gap: 56px; align-items: center;">
 
         <div style="display: flex; flex-direction: column; gap: 24px;">
+          <span class="kicker">Bem-vindo</span>
           <h1 style="margin: 0; font-family: 'Archivo Black', sans-serif; font-size: clamp(38px, 5.5vw, 62px); line-height: 1.02; letter-spacing: -1px; text-transform: uppercase; color: #f2f2f0; text-wrap: balance;">Frutos do mar <span style="color: #C7092B;">selecionados</span>, com a qualidade que você merece</h1>
           <p style="margin: 0; max-width: 440px; font-size: 17px; font-weight: 400; line-height: 1.55; color: #a3a3a3; text-wrap: pretty;">Camarão, peixe e frutos do mar selecionados todos os dias, com entrega rápida para você receber no conforto da sua casa.</p>
           <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px;">
@@ -366,12 +350,20 @@
     <section id="sobre" style="padding: 72px 24px;">
       <div class="sobre-grid" style="max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.1fr; gap: 56px; align-items: center;">
 
-        <div class="reveal" style="position: relative; aspect-ratio: 4 / 3; overflow: hidden;">
-          <div class="photo-placeholder">Foto — fachada ou equipe da loja</div>
-          <img src="images/landing/fotoEquipe.jpeg" alt="Equipe Casa do Camarão" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'">
+        <div class="reveal layered-photo-wrap">
+          <div class="layered-photo-back"></div>
+          <div class="layered-photo" style="aspect-ratio: 4 / 3;">
+            <div class="photo-placeholder">Foto — fachada ou equipe da loja</div>
+            <img src="images/landing/fotoEquipe.jpeg" alt="Equipe Casa do Camarão" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'">
+            <div class="layered-photo-caption">
+              <span class="lp-eyebrow">Nossa equipe</span>
+              <span class="lp-title">Casa do Camarão</span>
+            </div>
+          </div>
         </div>
 
         <div class="reveal" style="display: flex; flex-direction: column; gap: 18px;">
+          <span class="kicker">Nossa história</span>
           <h2 style="margin: 0; font-family: 'Archivo Black', sans-serif; font-size: clamp(28px, 4.5vw, 42px); line-height: 1.05; letter-spacing: -0.5px; text-transform: uppercase; color: #f2f2f0;">Sobre a <span style="color: #C7092B;">Casa do Camarão</span></h2>
           <p style="margin: 0; max-width: 480px; font-size: 15px; font-weight: 400; line-height: 1.6; color: #a3a3a3; text-wrap: pretty;">A Casa do Camarão é referência em camarões, pescados e frutos do mar em Manaus. Aqui você encontra uma das maiores variedades da cidade, dos clássicos aos ingredientes da alta gastronomia, cuidadosamente selecionados para diferentes receitas e ocasiões.</p>
           <p style="margin: 0; max-width: 480px; font-size: 15px; font-weight: 400; line-height: 1.6; color: #a3a3a3; text-wrap: pretty;">Tudo em um só lugar, com variedade, confiança e praticidade.</p>
@@ -382,9 +374,9 @@
 
     <section style="padding: 72px 24px;">
       <div style="max-width: 1100px; margin: 0 auto;">
-        <div class="reveal" style="display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-bottom: 28px;">
+        <div class="reveal" style="display: flex; flex-direction: column; gap: 14px; margin-bottom: 28px;">
+          <span class="kicker">Seleção da casa</span>
           <h2 style="margin: 0; font-family: 'Archivo Black', sans-serif; font-size: clamp(28px, 4.5vw, 42px); line-height: 1; letter-spacing: -0.5px; text-transform: uppercase; color: #f2f2f0;">Frutos do mar <span style="color: #2699A6;">selecionados</span></h2>
-          <span style="font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: #7d7d7d;">Seleção da casa</span>
         </div>
 
         <div class="gallery-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 10px;">
@@ -444,54 +436,10 @@
       </div>
     </section>
 
-    <section style="padding: 56px 24px;">
-      <div style="max-width: 1100px; margin: 0 auto;">
-        <div class="acai-grid reveal" style="background: #262626; border: 1px solid #333333; padding: 40px; display: grid; grid-template-columns: 1fr 0.85fr; gap: 40px; align-items: center;">
-
-          <div style="display: flex; flex-direction: column; gap: 18px;">
-            <div style="display: flex; align-items: center; gap: 12px;">
-              <img src="images/landing/bandeira-para.svg" alt="Bandeira do Pará" style="width: 44px; aspect-ratio: 3 / 2; object-fit: cover; box-shadow: 0 3px 8px rgba(0,0,0,0.35); flex-shrink: 0;">
-              <h2 style="margin: 0; font-family: 'Archivo Black', sans-serif; font-size: clamp(26px, 4vw, 38px); line-height: 1.05; letter-spacing: -0.5px; text-transform: uppercase; color: #f2f2f0;">Açaí do <span style="color: #C7092B;">Pará</span></h2>
-            </div>
-            <p style="margin: 0; max-width: 440px; font-size: 15px; font-weight: 400; line-height: 1.6; color: #a3a3a3; text-wrap: pretty;">Direto do Pará, puro e cremoso — sem adição de água, sem conservantes. O jeito certo de tomar açaí.</p>
-            <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px;">
-              <span style="background: #1c1c1c; border: 1px solid #3d3d3d; padding: 8px 14px; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #d8d8d8;">Teor de polpa 14%</span>
-              <span style="background: #1c1c1c; border: 1px solid #3d3d3d; padding: 8px 14px; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #d8d8d8;">Embalagem 1,02kg</span>
-              <span style="background: #1c1c1c; border: 1px solid #3d3d3d; padding: 8px 14px; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #d8d8d8;">Produzido no Pará</span>
-            </div>
-          </div>
-
-          <div class="carousel" id="acai-carousel" style="max-width: 240px;">
-            <div class="carousel-track">
-              <div class="carousel-slide">
-                <div class="photo-placeholder">Açaí</div>
-                <img src="images/landing/acaiEmbalagem.jpeg" alt="Açaí embalado" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'">
-              </div>
-              <div class="carousel-slide">
-                <div class="photo-placeholder">Açaí</div>
-                <img src="images/landing/acaiServido.JPG" alt="Açaí servido" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'">
-              </div>
-              <div class="carousel-slide">
-                <div class="photo-placeholder">Açaí</div>
-                <img src="images/landing/acai.JPG" alt="Açaí na tigela" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'">
-              </div>
-            </div>
-            <button type="button" class="carousel-arrow carousel-prev" aria-label="Foto anterior">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-            </button>
-            <button type="button" class="carousel-arrow carousel-next" aria-label="Próxima foto">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-            </button>
-            <div class="carousel-dots"></div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
     <section id="receitas" style="padding: 56px 24px;">
       <div style="max-width: 1000px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 36px;">
         <div class="reveal" style="text-align: center; display: flex; flex-direction: column; align-items: center; gap: 18px;">
+          <span class="kicker">Aprenda com a gente</span>
           <h2 style="margin: 0; font-family: 'Archivo Black', sans-serif; font-size: clamp(24px, 4vw, 34px); line-height: 1.1; letter-spacing: -0.5px; text-transform: uppercase; color: #f2f2f0; text-wrap: balance;">Conheça nosso catálogo de <span style="color: #2699A6;">receitas</span></h2>
           <p style="margin: 0; font-size: 15px; font-weight: 400; line-height: 1.6; color: #a3a3a3;">Receitas com passo a passo em texto e vídeo, usando produtos da Casa do Camarão.</p>
         </div>
@@ -526,7 +474,8 @@
 
     <section id="lojas" style="background: #202020; border-top: 1px solid #2e2e2e; border-bottom: 1px solid #2e2e2e; padding: 72px 0;">
       <div style="max-width: 1320px; margin: 0 auto;">
-        <div class="reveal" style="padding: 0 24px; margin-bottom: 28px;">
+        <div class="reveal" style="padding: 0 24px; margin-bottom: 28px; display: flex; flex-direction: column; gap: 14px;">
+          <span class="kicker">Onde estamos</span>
           <h2 style="margin: 0; font-family: 'Archivo Black', sans-serif; font-size: clamp(28px, 4.5vw, 42px); line-height: 1; letter-spacing: -0.5px; text-transform: uppercase; color: #f2f2f0;">Nossas <span style="color: #C7092B;">lojas</span></h2>
         </div>
 
@@ -625,7 +574,8 @@
     <section style="background: #202020; border-top: 1px solid #2e2e2e; padding: 64px 24px;">
       <div class="delivery-grid" style="max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: center;">
         <div class="delivery-text reveal" style="display: flex; flex-direction: column; gap: 24px; align-items: flex-start;">
-          <h2 class="delivery-title" style="margin: 0; max-width: 560px; font-family: 'Archivo Black', sans-serif; font-size: clamp(28px, 4.5vw, 42px); line-height: 1.05; letter-spacing: -0.5px; text-transform: uppercase; color: #ffffff; text-wrap: balance;">Peça agora e receba no conforto da sua casa</h2>
+          <span class="kicker">Entrega rápida</span>
+          <h2 class="delivery-title" style="margin: -12px 0 0; max-width: 560px; font-family: 'Archivo Black', sans-serif; font-size: clamp(28px, 4.5vw, 42px); line-height: 1.05; letter-spacing: -0.5px; text-transform: uppercase; color: #ffffff; text-wrap: balance;">Peça agora e receba no conforto da sua casa</h2>
           <div class="delivery-actions" style="display: flex; flex-wrap: wrap; gap: 12px;">
             <a href="https://www.invictaerp.com.br/casa_do_camarao/" target="_blank" rel="noopener" data-goatcounter-click="lp-clique-cardapio" style="display: flex; align-items: center; gap: 10px; background: #C7092B; color: #ffffff; padding: 16px 26px; font-weight: 700; font-size: 15px; letter-spacing: 0.5px; text-transform: uppercase;">Catálogo digital</a>
             <a href="https://wa.me/5592981990444" target="_blank" rel="noopener" data-goatcounter-click="lp-clique-whatsapp" style="display: flex; align-items: center; gap: 10px; background: #1DA851; color: #ffffff; padding: 16px 26px; font-weight: 700; font-size: 15px; letter-spacing: 0.5px; text-transform: uppercase;">
@@ -649,6 +599,7 @@
         </div>
 
         <div class="atacado-text reveal" style="display: flex; flex-direction: column; align-items: flex-start; gap: 18px;">
+          <span class="kicker">Para empresas</span>
           <h2 style="margin: 0; font-family: 'Archivo Black', sans-serif; font-size: clamp(28px, 4.5vw, 42px); line-height: 1.05; letter-spacing: -0.5px; text-transform: uppercase; color: #f2f2f0;">Trabalhamos com <span style="color: #C7092B;">Atacado</span></h2>
           <p style="margin: 0; font-size: 15px; font-weight: 400; line-height: 1.6; color: #a3a3a3; text-wrap: pretty;">A Casa do Camarão também atende restaurantes, hotéis, buffets, empresas e outros negócios que buscam camarões, pescados e frutos do mar em maiores quantidades.</p>
           <p style="margin: 0; font-size: 15px; font-weight: 400; line-height: 1.6; color: #a3a3a3; text-wrap: pretty;">Conte com variedade de produtos, atendimento especializado e condições diferenciadas para compras no atacado.</p>
@@ -693,63 +644,6 @@
     });
   }
 
-  document.querySelectorAll('.carousel').forEach(function (carousel) {
-    var track = carousel.querySelector('.carousel-track');
-    var slides = Array.prototype.slice.call(carousel.querySelectorAll('.carousel-slide'));
-    var dotsWrap = carousel.querySelector('.carousel-dots');
-    var prevBtn = carousel.querySelector('.carousel-prev');
-    var nextBtn = carousel.querySelector('.carousel-next');
-    var current = 0;
-    var autoplayId = null;
-
-    var dots = slides.map(function (_, i) {
-      var dot = document.createElement('button');
-      dot.type = 'button';
-      dot.setAttribute('aria-label', 'Ir para foto ' + (i + 1));
-      if (i === 0) dot.classList.add('active');
-      dot.addEventListener('click', function () { goTo(i); });
-      dotsWrap.appendChild(dot);
-      return dot;
-    });
-
-    function goTo(index) {
-      current = (index + slides.length) % slides.length;
-      track.scrollTo({ left: slides[current].offsetLeft, behavior: 'smooth' });
-    }
-
-    function setActive(index) {
-      current = index;
-      dots.forEach(function (d, i) { d.classList.toggle('active', i === index); });
-    }
-
-    prevBtn.addEventListener('click', function () { goTo(current - 1); restartAutoplay(); });
-    nextBtn.addEventListener('click', function () { goTo(current + 1); restartAutoplay(); });
-
-    var scrollTimeout;
-    track.addEventListener('scroll', function () {
-      clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(function () {
-        var closest = 0;
-        var closestDist = Infinity;
-        slides.forEach(function (slide, i) {
-          var dist = Math.abs(slide.offsetLeft - track.scrollLeft);
-          if (dist < closestDist) { closestDist = dist; closest = i; }
-        });
-        setActive(closest);
-      }, 100);
-    });
-
-    track.addEventListener('pointerdown', restartAutoplay);
-
-    function autoplay() {
-      goTo(current + 1);
-    }
-    function restartAutoplay() {
-      clearInterval(autoplayId);
-      autoplayId = setInterval(autoplay, 4000);
-    }
-    restartAutoplay();
-  });
 </script>
 
 <script data-goatcounter="https://casadocamarao.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
