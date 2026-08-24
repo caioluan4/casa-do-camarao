@@ -433,6 +433,22 @@
       btn.setAttribute('aria-expanded', isOpen);
     });
   });
+
+  (function () {
+    var lastY = 0;
+    document.addEventListener('touchstart', function (e) {
+      lastY = e.touches[0].clientY;
+    }, { passive: true });
+    document.addEventListener('touchmove', function (e) {
+      var y = e.touches[0].clientY;
+      var scrollingDown = y < lastY;
+      var atBottom = (window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 1;
+      if (atBottom && scrollingDown) {
+        e.preventDefault();
+      }
+      lastY = y;
+    }, { passive: false });
+  })();
 </script>
 
 </body>
