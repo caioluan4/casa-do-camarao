@@ -21,12 +21,19 @@
   a { color: #2699A6; text-decoration: none; }
   a:hover { color: #1F7A85; }
 
+  .bg-fixed {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background: linear-gradient(180deg, #C7092B 0%, #950720 40%, #1F7A85 100%);
+  }
+
   .page {
     min-height: 100vh;
-    background: linear-gradient(180deg, #C7092B 0%, #950720 40%, #1F7A85 100%);
     display: flex;
     justify-content: center;
     position: relative;
+    z-index: 1;
     overflow: hidden;
   }
 
@@ -296,6 +303,7 @@
 </style>
 </head>
 <body>
+<div class="bg-fixed"></div>
 <div class="page">
   <svg class="wave" viewBox="0 0 440 120" preserveAspectRatio="none">
     <path d="M0,60 C110,110 330,10 440,60 L440,120 L0,120 Z" fill="#ffffff"></path>
@@ -433,22 +441,6 @@
       btn.setAttribute('aria-expanded', isOpen);
     });
   });
-
-  (function () {
-    var lastY = 0;
-    document.addEventListener('touchstart', function (e) {
-      lastY = e.touches[0].clientY;
-    }, { passive: true });
-    document.addEventListener('touchmove', function (e) {
-      var y = e.touches[0].clientY;
-      var scrollingDown = y < lastY;
-      var atBottom = (window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 1;
-      if (atBottom && scrollingDown) {
-        e.preventDefault();
-      }
-      lastY = y;
-    }, { passive: false });
-  })();
 </script>
 
 </body>
