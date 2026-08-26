@@ -189,17 +189,40 @@
   .month-picker.active { background: #CC0000; border-color: #CC0000; color: #ffffff; }
   .month-picker option { background: #1c1c1c; color: #f2f2f0; }
 
-  .date-range { display: flex; align-items: center; gap: 6px; }
+  .date-range { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+  .date-field {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    border: 1px solid #3d3d3d;
+    padding-right: 7px;
+  }
+  .date-field:hover, .date-field:focus-within { border-color: #666666; }
   .date-input {
     background: transparent;
-    border: 1px solid #3d3d3d;
+    border: none;
     color: #d8d8d8;
     font-family: 'Space Grotesk', sans-serif;
     font-size: 11px;
-    padding: 5px 8px;
+    padding: 5px 4px 5px 8px;
+    width: 80px;
+    outline: none;
+  }
+  .date-input::placeholder { color: #666666; }
+  .date-cal { position: relative; width: 15px; height: 15px; flex-shrink: 0; color: #999999; display: flex; align-items: center; justify-content: center; }
+  .date-cal-icon { pointer-events: none; }
+  .date-native {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
     color-scheme: dark;
   }
-  .date-input:hover, .date-input:focus { border-color: #666666; outline: none; }
   .date-sep { font-size: 10px; color: #7d7d7d; text-transform: uppercase; }
   .date-apply {
     background: transparent;
@@ -257,7 +280,8 @@
     .period-btn { font-size: 10px; padding: 5px 9px; }
     .metric-name { font-size: 12.5px; }
     .date-range { width: 100%; margin-left: 0; }
-    .date-input { flex: 1; min-width: 0; font-size: 10px; padding: 5px 4px; }
+    .date-field { flex: 1; min-width: 0; }
+    .date-input { width: 100%; min-width: 0; font-size: 10px; padding: 5px 4px 5px 6px; }
     .date-apply { font-size: 10px; padding: 5px 9px; }
   }
 </style>
@@ -329,13 +353,26 @@
       <div class="advanced-row">
         <span class="advanced-label">Mês</span>
         <select class="month-picker" data-scope="site"><option value="">Escolher mês…</option></select>
+        <button type="button" class="date-apply month-apply" data-scope="site">Aplicar</button>
       </div>
       <div class="advanced-row">
         <span class="advanced-label">Período</span>
         <span class="date-range">
-          <input type="date" class="date-input" data-role="start">
+          <span class="date-field">
+            <input type="text" class="date-input" inputmode="numeric" placeholder="dd/mm/aaaa" maxlength="10" data-role="start">
+            <span class="date-cal">
+              <svg class="date-cal-icon" width="13" height="13" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.6"></rect><path d="M3 9h18M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+              <input type="date" class="date-native" data-role="start" tabindex="-1" aria-label="Escolher data inicial no calendário">
+            </span>
+          </span>
           <span class="date-sep">até</span>
-          <input type="date" class="date-input" data-role="end">
+          <span class="date-field">
+            <input type="text" class="date-input" inputmode="numeric" placeholder="dd/mm/aaaa" maxlength="10" data-role="end">
+            <span class="date-cal">
+              <svg class="date-cal-icon" width="13" height="13" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.6"></rect><path d="M3 9h18M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+              <input type="date" class="date-native" data-role="end" tabindex="-1" aria-label="Escolher data final no calendário">
+            </span>
+          </span>
           <button type="button" class="date-apply">Aplicar</button>
         </span>
       </div>
@@ -360,13 +397,26 @@
       <div class="advanced-row">
         <span class="advanced-label">Mês</span>
         <select class="month-picker" data-scope="linktree"><option value="">Escolher mês…</option></select>
+        <button type="button" class="date-apply month-apply" data-scope="linktree">Aplicar</button>
       </div>
       <div class="advanced-row">
         <span class="advanced-label">Período</span>
         <span class="date-range">
-          <input type="date" class="date-input" data-role="start">
+          <span class="date-field">
+            <input type="text" class="date-input" inputmode="numeric" placeholder="dd/mm/aaaa" maxlength="10" data-role="start">
+            <span class="date-cal">
+              <svg class="date-cal-icon" width="13" height="13" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.6"></rect><path d="M3 9h18M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+              <input type="date" class="date-native" data-role="start" tabindex="-1" aria-label="Escolher data inicial no calendário">
+            </span>
+          </span>
           <span class="date-sep">até</span>
-          <input type="date" class="date-input" data-role="end">
+          <span class="date-field">
+            <input type="text" class="date-input" inputmode="numeric" placeholder="dd/mm/aaaa" maxlength="10" data-role="end">
+            <span class="date-cal">
+              <svg class="date-cal-icon" width="13" height="13" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.6"></rect><path d="M3 9h18M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+              <input type="date" class="date-native" data-role="end" tabindex="-1" aria-label="Escolher data final no calendário">
+            </span>
+          </span>
           <button type="button" class="date-apply">Aplicar</button>
         </span>
       </div>
@@ -391,13 +441,26 @@
       <div class="advanced-row">
         <span class="advanced-label">Mês</span>
         <select class="month-picker" data-scope="receitas"><option value="">Escolher mês…</option></select>
+        <button type="button" class="date-apply month-apply" data-scope="receitas">Aplicar</button>
       </div>
       <div class="advanced-row">
         <span class="advanced-label">Período</span>
         <span class="date-range">
-          <input type="date" class="date-input" data-role="start">
+          <span class="date-field">
+            <input type="text" class="date-input" inputmode="numeric" placeholder="dd/mm/aaaa" maxlength="10" data-role="start">
+            <span class="date-cal">
+              <svg class="date-cal-icon" width="13" height="13" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.6"></rect><path d="M3 9h18M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+              <input type="date" class="date-native" data-role="start" tabindex="-1" aria-label="Escolher data inicial no calendário">
+            </span>
+          </span>
           <span class="date-sep">até</span>
-          <input type="date" class="date-input" data-role="end">
+          <span class="date-field">
+            <input type="text" class="date-input" inputmode="numeric" placeholder="dd/mm/aaaa" maxlength="10" data-role="end">
+            <span class="date-cal">
+              <svg class="date-cal-icon" width="13" height="13" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.6"></rect><path d="M3 9h18M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"></path></svg>
+              <input type="date" class="date-native" data-role="end" tabindex="-1" aria-label="Escolher data final no calendário">
+            </span>
+          </span>
           <button type="button" class="date-apply">Aplicar</button>
         </span>
       </div>
@@ -497,24 +560,94 @@
     });
   });
 
+  function isoToDisplay(iso) {
+    if (!iso) return '';
+    var p = iso.split('-');
+    return p[2] + '/' + p[1] + '/' + p[0];
+  }
+
+  function displayToIso(str) {
+    var m = /^(\d{2})\/(\d{2})\/(\d{4})$/.exec((str || '').trim());
+    if (!m) return null;
+    var d = m[1], mo = m[2], y = m[3];
+    var iso = y + '-' + mo + '-' + d;
+    var check = new Date(iso + 'T00:00:00');
+    if (isNaN(check.getTime()) || check.getFullYear() != +y || (check.getMonth() + 1) != +mo || check.getDate() != +d) return null;
+    return iso;
+  }
+
+  function maskDateTyping(e) {
+    var input = e.target;
+    var digits = input.value.replace(/\D/g, '').slice(0, 8);
+    var out = digits;
+    if (digits.length > 4) out = digits.slice(0, 2) + '/' + digits.slice(2, 4) + '/' + digits.slice(4);
+    else if (digits.length > 2) out = digits.slice(0, 2) + '/' + digits.slice(2);
+    input.value = out;
+  }
+
   ['site', 'linktree', 'receitas'].forEach(function (scope) {
     var periodButtons = document.querySelectorAll('.period-filter[data-scope="' + scope + '"] .period-btn');
     var toggle = document.querySelector('.advanced-toggle[data-scope="' + scope + '"]');
     var panel = document.querySelector('.advanced-panel[data-scope="' + scope + '"]');
     var picker = document.querySelector('.month-picker[data-scope="' + scope + '"]');
+    var monthApplyBtn = document.querySelector('.month-apply[data-scope="' + scope + '"]');
     var startInput = panel.querySelector('.date-input[data-role="start"]');
     var endInput = panel.querySelector('.date-input[data-role="end"]');
-    var applyBtn = panel.querySelector('.date-apply');
+    var startNative = panel.querySelector('.date-native[data-role="start"]');
+    var endNative = panel.querySelector('.date-native[data-role="end"]');
+    var applyBtn = panel.querySelector('.date-range .date-apply');
 
     function clampRange() {
-      var floor = startInput.dataset.floor || startInput.min;
-      var ceil = endInput.dataset.ceil || endInput.max;
-      endInput.min = startInput.value || floor;
-      startInput.max = endInput.value || ceil;
+      var floor = startInput.dataset.floor || '';
+      var ceil = endInput.dataset.ceil || '';
+      var startIso = startInput.dataset.iso || '';
+      var endIso = endInput.dataset.iso || '';
+      startNative.min = floor;
+      startNative.max = endIso || ceil;
+      endNative.min = startIso || floor;
+      endNative.max = ceil;
     }
 
-    startInput.addEventListener('change', clampRange);
-    endInput.addEventListener('change', clampRange);
+    function clearDateFields() {
+      startInput.value = '';
+      endInput.value = '';
+      startNative.value = '';
+      endNative.value = '';
+      delete startInput.dataset.iso;
+      delete endInput.dataset.iso;
+      applyBtn.classList.remove('active');
+      clampRange();
+    }
+
+    function commitTyped(input, native) {
+      var floor = input.dataset.floor;
+      var ceil = input.dataset.ceil;
+      var iso = displayToIso(input.value);
+      if (iso && (!floor || iso >= floor) && (!ceil || iso <= ceil)) {
+        input.dataset.iso = iso;
+        native.value = iso;
+      } else {
+        delete input.dataset.iso;
+        native.value = '';
+      }
+      clampRange();
+    }
+
+    startInput.addEventListener('input', maskDateTyping);
+    endInput.addEventListener('input', maskDateTyping);
+    startInput.addEventListener('blur', function () { commitTyped(startInput, startNative); });
+    endInput.addEventListener('blur', function () { commitTyped(endInput, endNative); });
+
+    startNative.addEventListener('change', function () {
+      startInput.value = isoToDisplay(startNative.value);
+      if (startNative.value) startInput.dataset.iso = startNative.value; else delete startInput.dataset.iso;
+      clampRange();
+    });
+    endNative.addEventListener('change', function () {
+      endInput.value = isoToDisplay(endNative.value);
+      if (endNative.value) endInput.dataset.iso = endNative.value; else delete endInput.dataset.iso;
+      clampRange();
+    });
 
     periodButtons.forEach(function (btn) {
       btn.addEventListener('click', function () {
@@ -522,9 +655,8 @@
         btn.classList.add('active');
         picker.value = '';
         picker.classList.remove('active');
-        applyBtn.classList.remove('active');
-        startInput.value = '';
-        endInput.value = '';
+        monthApplyBtn.classList.remove('active');
+        clearDateFields();
         currentPeriod[scope] = btn.getAttribute('data-period');
         renderDashboard();
       });
@@ -535,24 +667,25 @@
       toggle.classList.toggle('open', isOpen);
     });
 
-    picker.addEventListener('change', function () {
+    monthApplyBtn.addEventListener('click', function () {
       if (!picker.value) return;
       periodButtons.forEach(function (b) { b.classList.remove('active'); });
       picker.classList.add('active');
-      applyBtn.classList.remove('active');
-      startInput.value = '';
-      endInput.value = '';
+      monthApplyBtn.classList.add('active');
+      clearDateFields();
       currentPeriod[scope] = 'month:' + picker.value;
       renderDashboard();
     });
 
     applyBtn.addEventListener('click', function () {
-      if (!startInput.value || !endInput.value || endInput.value < startInput.value) return;
+      var s = startInput.dataset.iso, e = endInput.dataset.iso;
+      if (!s || !e || e < s) return;
       periodButtons.forEach(function (b) { b.classList.remove('active'); });
       picker.value = '';
       picker.classList.remove('active');
+      monthApplyBtn.classList.remove('active');
       applyBtn.classList.add('active');
-      currentPeriod[scope] = 'range:' + startInput.value + ':' + endInput.value;
+      currentPeriod[scope] = 'range:' + s + ':' + e;
       renderDashboard();
     });
   });
@@ -626,9 +759,12 @@
       });
     });
     document.querySelectorAll('.date-input').forEach(function (input) {
-      if (minDay) { input.min = minDay; input.dataset.floor = minDay; }
-      input.max = maxDay;
+      if (minDay) input.dataset.floor = minDay;
       input.dataset.ceil = maxDay;
+    });
+    document.querySelectorAll('.date-native').forEach(function (input) {
+      if (minDay) input.min = minDay;
+      input.max = maxDay;
     });
   }
 
