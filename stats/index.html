@@ -234,8 +234,6 @@
   }
   .date-apply:hover { border-color: #666666; color: #d8d8d8; }
   .date-apply.active { background: #CC0000; border-color: #CC0000; color: #ffffff; }
-  .date-hint { font-size: 11px; color: #7d7d7d; margin-top: 6px; min-height: 14px; }
-  .date-hint.error { color: #ff6b6b; }
 
   .tab-panel { max-width: 1100px; margin: 0 auto; }
 
@@ -359,7 +357,6 @@
           <button type="button" class="date-apply">Aplicar</button>
         </span>
       </div>
-      <div class="date-hint"></div>
     </div>
     <div class="visits-block">
       <span class="visits-num" id="site-visits">0</span>
@@ -391,7 +388,6 @@
           <button type="button" class="date-apply">Aplicar</button>
         </span>
       </div>
-      <div class="date-hint"></div>
     </div>
     <div class="visits-block">
       <span class="visits-num" id="linktree-visits">0</span>
@@ -423,7 +419,6 @@
           <button type="button" class="date-apply">Aplicar</button>
         </span>
       </div>
-      <div class="date-hint"></div>
     </div>
     <div class="visits-block">
       <span class="visits-num" id="receitas-visits">0</span>
@@ -528,7 +523,6 @@
     var startInput = panel.querySelector('.date-input[data-role="start"]');
     var endInput = panel.querySelector('.date-input[data-role="end"]');
     var applyBtn = panel.querySelector('.date-apply');
-    var hint = panel.querySelector('.date-hint');
 
     function clampRange() {
       var floor = startInput.dataset.floor || startInput.min;
@@ -537,23 +531,8 @@
       startInput.max = endInput.value || ceil;
     }
 
-    function updateHint() {
-      if (!startInput.value || !endInput.value) {
-        hint.textContent = '';
-        hint.classList.remove('error');
-        return;
-      }
-      if (endInput.value < startInput.value) {
-        hint.textContent = 'A data final não pode ser antes da inicial.';
-        hint.classList.add('error');
-        return;
-      }
-      hint.classList.remove('error');
-      hint.textContent = formatShort(startInput.value) + ' até ' + formatShort(endInput.value);
-    }
-
-    startInput.addEventListener('change', function () { clampRange(); updateHint(); });
-    endInput.addEventListener('change', function () { clampRange(); updateHint(); });
+    startInput.addEventListener('change', clampRange);
+    endInput.addEventListener('change', clampRange);
 
     periodButtons.forEach(function (btn) {
       btn.addEventListener('click', function () {
@@ -564,8 +543,6 @@
         applyBtn.classList.remove('active');
         startInput.value = '';
         endInput.value = '';
-        hint.textContent = '';
-        hint.classList.remove('error');
         currentPeriod[scope] = btn.getAttribute('data-period');
         renderDashboard();
       });
@@ -583,17 +560,12 @@
       applyBtn.classList.remove('active');
       startInput.value = '';
       endInput.value = '';
-      hint.textContent = '';
-      hint.classList.remove('error');
       currentPeriod[scope] = 'month:' + picker.value;
       renderDashboard();
     });
 
     applyBtn.addEventListener('click', function () {
-      if (!startInput.value || !endInput.value || endInput.value < startInput.value) {
-        updateHint();
-        return;
-      }
+      if (!startInput.value || !endInput.value || endInput.value < startInput.value) return;
       periodButtons.forEach(function (b) { b.classList.remove('active'); });
       picker.value = '';
       picker.classList.remove('active');
@@ -676,12 +648,6 @@
       input.max = maxDay;
       input.dataset.ceil = maxDay;
     });
-  }
-
-  function formatShort(iso) {
-    if (!iso) return '';
-    var parts = iso.split('-');
-    return parts[2] + '/' + parts[1] + '/' + parts[0].slice(2);
   }
 
   function resolvePeriod(scope) {
