@@ -246,6 +246,78 @@
   .visits-num { font-family: 'Space Grotesk', sans-serif; font-size: 40px; color: #CC0000; line-height: 1; }
   .visits-label { font-size: 12px; letter-spacing: 0.5px; text-transform: uppercase; color: #999999; }
 
+  .cal-widget {
+    background: #202020;
+    border: 1px solid #2e2e2e;
+    border-radius: 16px;
+    padding: 16px;
+    max-width: 280px;
+    margin: 0 0 28px;
+  }
+  @media (min-width: 1500px) {
+    .tab-panel { position: relative; }
+    .cal-widget { position: absolute; top: 0; right: 100%; margin-right: 20px; width: 280px; margin-bottom: 0; }
+  }
+  .cal-caption-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 11px; }
+  .cal-caption { margin: 0; font-size: 10px; letter-spacing: 0.3px; color: #7d7d7d; }
+  .cal-range-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    background: transparent;
+    border: 1px solid #3d3d3d;
+    border-radius: 20px;
+    padding: 4px 9px;
+    color: #999999;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
+  }
+  .cal-range-toggle:hover { border-color: #666666; color: #d8d8d8; }
+  .cal-range-toggle.active { background: #CC0000; border-color: #CC0000; color: #ffffff; }
+  .cal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 11px; }
+  .cal-month-label { font-family: 'Space Grotesk', sans-serif; font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.5px; color: #f2f2f0; }
+  .cal-nav {
+    background: transparent;
+    border: 1px solid #3d3d3d;
+    border-radius: 50%;
+    color: #999999;
+    width: 22px;
+    height: 22px;
+    font-size: 13px;
+    line-height: 1;
+    cursor: pointer;
+    transition: border-color 0.15s, color 0.15s;
+  }
+  .cal-nav:hover { border-color: #666666; color: #d8d8d8; }
+  .cal-weekdays { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3.5px; margin-bottom: 3.5px; }
+  .cal-weekdays span { text-align: center; font-size: 8.5px; color: #7d7d7d; text-transform: uppercase; }
+  .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3.5px; }
+  .cal-day {
+    aspect-ratio: 1;
+    background: #262626;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    cursor: pointer;
+    transition: box-shadow 0.1s;
+  }
+  .cal-day-empty { background: transparent; cursor: default; }
+  .cal-day-today { box-shadow: inset 0 0 0 1.5px rgba(242,242,240,0.5); }
+  .cal-day-selected { box-shadow: inset 0 0 0 2px #ffffff; }
+  .cal-day-pending { box-shadow: inset 0 0 0 2px #ffffff; opacity: 0.85; }
+  .cal-day-num { font-size: 8.25px; color: rgba(255,255,255,0.55); }
+  .cal-day-count { font-family: 'Space Grotesk', sans-serif; font-size: 9px; font-weight: 600; color: #ffffff; line-height: 1; }
+
   .dash-subtitle { font-family: 'Space Grotesk', sans-serif; font-size: 14px; text-transform: uppercase; color: #2699A6; margin: 4px 0 16px; }
   .dash-note { font-size: 11px; color: #7d7d7d; margin: 16px 0 0; }
 
@@ -341,7 +413,7 @@
   </div>
 
   <div class="tab-panel" id="panel-site">
-    <div class="period-filter" data-scope="site">
+        <div class="period-filter" data-scope="site">
       <button class="period-btn active" data-period="hoje">Hoje</button>
       <button class="period-btn" data-period="ontem">Ontem</button>
       <button class="period-btn" data-period="semana">Essa Semana</button>
@@ -381,11 +453,25 @@
       <span class="visits-num" id="site-visits">0</span>
       <span class="visits-label">visitas no site oficial</span>
     </div>
+    <div class="cal-widget" data-scope="site">
+      <div class="cal-caption-row">
+        <p class="cal-caption">Visitas por dia nesta página</p>
+        <button type="button" class="cal-range-toggle" data-scope="site">Período</button>
+      </div>
+      <div class="cal-header">
+        <button type="button" class="cal-nav" data-dir="-1" aria-label="Mês anterior">‹</button>
+        <span class="cal-month-label"></span>
+        <button type="button" class="cal-nav" data-dir="1" aria-label="Próximo mês">›</button>
+      </div>
+      <div class="cal-weekdays"><span>D</span><span>S</span><span>T</span><span>Q</span><span>Q</span><span>S</span><span>S</span></div>
+      <div class="cal-grid"></div>
+    </div>
+
     <div class="metric-list" id="site-events"></div>
   </div>
 
   <div class="tab-panel" id="panel-linktree" style="display:none;">
-    <div class="period-filter" data-scope="linktree">
+        <div class="period-filter" data-scope="linktree">
       <button class="period-btn active" data-period="hoje">Hoje</button>
       <button class="period-btn" data-period="ontem">Ontem</button>
       <button class="period-btn" data-period="semana">Essa Semana</button>
@@ -425,11 +511,25 @@
       <span class="visits-num" id="linktree-visits">0</span>
       <span class="visits-label">visitas na página de links</span>
     </div>
+    <div class="cal-widget" data-scope="linktree">
+      <div class="cal-caption-row">
+        <p class="cal-caption">Visitas por dia nesta página</p>
+        <button type="button" class="cal-range-toggle" data-scope="linktree">Período</button>
+      </div>
+      <div class="cal-header">
+        <button type="button" class="cal-nav" data-dir="-1" aria-label="Mês anterior">‹</button>
+        <span class="cal-month-label"></span>
+        <button type="button" class="cal-nav" data-dir="1" aria-label="Próximo mês">›</button>
+      </div>
+      <div class="cal-weekdays"><span>D</span><span>S</span><span>T</span><span>Q</span><span>Q</span><span>S</span><span>S</span></div>
+      <div class="cal-grid"></div>
+    </div>
+
     <div class="metric-list" id="linktree-events"></div>
   </div>
 
   <div class="tab-panel" id="panel-receitas" style="display:none;">
-    <div class="period-filter" data-scope="receitas">
+        <div class="period-filter" data-scope="receitas">
       <button class="period-btn active" data-period="hoje">Hoje</button>
       <button class="period-btn" data-period="ontem">Ontem</button>
       <button class="period-btn" data-period="semana">Essa Semana</button>
@@ -469,6 +569,20 @@
       <span class="visits-num" id="receitas-visits">0</span>
       <span class="visits-label">visitas na página de receitas</span>
     </div>
+    <div class="cal-widget" data-scope="receitas">
+      <div class="cal-caption-row">
+        <p class="cal-caption">Visitas por dia nesta página</p>
+        <button type="button" class="cal-range-toggle" data-scope="receitas">Período</button>
+      </div>
+      <div class="cal-header">
+        <button type="button" class="cal-nav" data-dir="-1" aria-label="Mês anterior">‹</button>
+        <span class="cal-month-label"></span>
+        <button type="button" class="cal-nav" data-dir="1" aria-label="Próximo mês">›</button>
+      </div>
+      <div class="cal-weekdays"><span>D</span><span>S</span><span>T</span><span>Q</span><span>Q</span><span>S</span><span>S</span></div>
+      <div class="cal-grid"></div>
+    </div>
+
     <div class="dash-subtitle">Cada receita</div>
     <div class="recipe-grid" id="recipe-grid"></div>
   </div>
@@ -657,6 +771,9 @@
         picker.classList.remove('active');
         monthApplyBtn.classList.remove('active');
         clearDateFields();
+        clearCalSelection(scope);
+        panel.classList.remove('open');
+        toggle.classList.remove('open');
         currentPeriod[scope] = btn.getAttribute('data-period');
         renderDashboard();
       });
@@ -673,6 +790,7 @@
       picker.classList.add('active');
       monthApplyBtn.classList.add('active');
       clearDateFields();
+      clearCalSelection(scope);
       currentPeriod[scope] = 'month:' + picker.value;
       renderDashboard();
     });
@@ -685,6 +803,7 @@
       picker.classList.remove('active');
       monthApplyBtn.classList.remove('active');
       applyBtn.classList.add('active');
+      clearCalSelection(scope);
       currentPeriod[scope] = 'range:' + s + ':' + e;
       renderDashboard();
     });
@@ -794,6 +913,178 @@
     return (p || '').toLowerCase().replace(/^\/+/, '').replace(/\/+$/, '');
   }
 
+  var CAL_PAGE = { site: SITE_PAGE, linktree: LINKTREE_PAGE, receitas: RECEITAS_PAGE };
+  var calMonth = {};
+
+  function getPageDays(pagePath) {
+    if (!STATS || !STATS.items) return {};
+    var target = normPath(pagePath);
+    for (var i = 0; i < STATS.items.length; i++) {
+      var item = STATS.items[i];
+      if (!item.event && normPath(item.path) === target) return item.days || {};
+    }
+    return {};
+  }
+
+  function heatColor(ratio) {
+    var cold = [58, 24, 22];
+    var hot = [204, 0, 0];
+    var r = Math.round(cold[0] + (hot[0] - cold[0]) * ratio);
+    var g = Math.round(cold[1] + (hot[1] - cold[1]) * ratio);
+    var b = Math.round(cold[2] + (hot[2] - cold[2]) * ratio);
+    return 'rgb(' + r + ',' + g + ',' + b + ')';
+  }
+
+  var calSelection = {};
+
+  function clearCalSelection(scope) {
+    if (!calSelection[scope]) return;
+    calSelection[scope].pendingStart = null;
+    calSelection[scope].activeStart = null;
+    calSelection[scope].activeEnd = null;
+    calSelection[scope].rangeMode = false;
+    renderCalendar(scope);
+  }
+
+  function applyCalRange(scope, startIso, endIso) {
+    var periodButtons = document.querySelectorAll('.period-filter[data-scope="' + scope + '"] .period-btn');
+    var picker = document.querySelector('.month-picker[data-scope="' + scope + '"]');
+    var monthApplyBtn = document.querySelector('.month-apply[data-scope="' + scope + '"]');
+    var panel = document.querySelector('.advanced-panel[data-scope="' + scope + '"]');
+    var toggle = document.querySelector('.advanced-toggle[data-scope="' + scope + '"]');
+    var dateApplyBtn = panel.querySelector('.date-range .date-apply');
+
+    periodButtons.forEach(function (b) { b.classList.remove('active'); });
+    picker.value = '';
+    picker.classList.remove('active');
+    monthApplyBtn.classList.remove('active');
+    dateApplyBtn.classList.remove('active');
+    panel.classList.remove('open');
+    toggle.classList.remove('open');
+
+    currentPeriod[scope] = 'range:' + startIso + ':' + endIso;
+    calSelection[scope].activeStart = startIso;
+    calSelection[scope].activeEnd = endIso;
+    renderDashboard();
+  }
+
+  function handleCalDayClick(scope, iso) {
+    var sel = calSelection[scope];
+    if (sel.rangeMode) {
+      if (sel.pendingStart) {
+        var start = sel.pendingStart, end = iso;
+        if (end < start) { var tmp = start; start = end; end = tmp; }
+        sel.pendingStart = null;
+        sel.rangeMode = false;
+        applyCalRange(scope, start, end);
+      } else {
+        sel.pendingStart = iso;
+        applyCalRange(scope, iso, iso);
+      }
+    } else {
+      sel.pendingStart = null;
+      applyCalRange(scope, iso, iso);
+    }
+    renderCalendar(scope);
+  }
+
+  function toggleCalRangeMode(scope) {
+    if (!calSelection[scope]) calSelection[scope] = { pendingStart: null, activeStart: null, activeEnd: null, rangeMode: false };
+    var sel = calSelection[scope];
+    sel.rangeMode = !sel.rangeMode;
+    sel.pendingStart = null;
+    renderCalendar(scope);
+  }
+
+  function renderCalendar(scope) {
+    var widget = document.querySelector('.cal-widget[data-scope="' + scope + '"]');
+    if (!widget || !calMonth[scope]) return;
+    var state = calMonth[scope];
+    var y = state.y, m = state.m;
+    var days = getPageDays(CAL_PAGE[scope]);
+    var sel = calSelection[scope] || { pendingStart: null, activeStart: null, activeEnd: null, rangeMode: false };
+
+    widget.querySelector('.cal-month-label').textContent = MONTH_NAMES[m - 1] + ' de ' + y;
+    widget.querySelector('.cal-caption').textContent = sel.pendingStart
+      ? 'Clique em outro dia para fechar o período'
+      : sel.rangeMode
+        ? 'Clique no dia inicial do período'
+        : 'Visitas por dia nesta página';
+    var rangeToggle = widget.querySelector('.cal-range-toggle');
+    if (rangeToggle) {
+      rangeToggle.classList.toggle('active', !!sel.rangeMode);
+      rangeToggle.textContent = sel.rangeMode ? 'Cancelar' : 'Período';
+    }
+
+    var firstWeekday = new Date(y, m - 1, 1).getDay();
+    var daysInMonth = new Date(y, m, 0).getDate();
+    var todayStr = isoDate(new Date());
+
+    var maxCount = 0;
+    for (var d = 1; d <= daysInMonth; d++) {
+      var isoKey = y + '-' + String(m).padStart(2, '0') + '-' + String(d).padStart(2, '0');
+      if ((days[isoKey] || 0) > maxCount) maxCount = days[isoKey] || 0;
+    }
+
+    var grid = widget.querySelector('.cal-grid');
+    grid.innerHTML = '';
+    for (var i = 0; i < firstWeekday; i++) {
+      var blank = document.createElement('div');
+      blank.className = 'cal-day cal-day-empty';
+      grid.appendChild(blank);
+    }
+    for (var d2 = 1; d2 <= daysInMonth; d2++) {
+      var iso2 = y + '-' + String(m).padStart(2, '0') + '-' + String(d2).padStart(2, '0');
+      var count = days[iso2] || 0;
+      var cell = document.createElement('div');
+      cell.className = 'cal-day';
+      if (iso2 === todayStr) cell.classList.add('cal-day-today');
+      if (sel.pendingStart === iso2) {
+        cell.classList.add('cal-day-pending');
+      } else if (sel.activeStart && iso2 >= sel.activeStart && iso2 <= sel.activeEnd) {
+        cell.classList.add('cal-day-selected');
+      }
+      if (count > 0) {
+        cell.style.background = heatColor(maxCount > 0 ? count / maxCount : 0);
+        cell.title = isoToDisplay(iso2) + ': ' + count + (count === 1 ? ' visita' : ' visitas');
+      } else {
+        cell.title = isoToDisplay(iso2) + ': sem visitas';
+      }
+      cell.innerHTML = '<span class="cal-day-num">' + d2 + '</span>' + (count > 0 ? '<span class="cal-day-count">' + count + '</span>' : '');
+      cell.addEventListener('click', function (clickedIso) {
+        return function () { handleCalDayClick(scope, clickedIso); };
+      }(iso2));
+      grid.appendChild(cell);
+    }
+  }
+
+  function renderAllCalendars() {
+    Object.keys(CAL_PAGE).forEach(function (scope) {
+      if (!calSelection[scope]) calSelection[scope] = { pendingStart: null, activeStart: null, activeEnd: null, rangeMode: false };
+      renderCalendar(scope);
+    });
+  }
+
+  document.querySelectorAll('.cal-range-toggle').forEach(function (btn) {
+    var scope = btn.getAttribute('data-scope');
+    btn.addEventListener('click', function () { toggleCalRangeMode(scope); });
+  });
+
+  document.querySelectorAll('.cal-widget').forEach(function (widget) {
+    var scope = widget.getAttribute('data-scope');
+    var today = new Date();
+    calMonth[scope] = { y: today.getFullYear(), m: today.getMonth() + 1 };
+    widget.querySelectorAll('.cal-nav').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var dir = parseInt(btn.getAttribute('data-dir'), 10);
+        var state = calMonth[scope];
+        var d = new Date(state.y, state.m - 1 + dir, 1);
+        calMonth[scope] = { y: d.getFullYear(), m: d.getMonth() + 1 };
+        renderCalendar(scope);
+      });
+    });
+  });
+
   function findCount(list, path) {
     var target = normPath(path);
     for (var i = 0; i < list.length; i++) {
@@ -891,6 +1182,7 @@
       populateMonthPickers();
       setDateInputBounds();
       renderDashboard();
+      renderAllCalendars();
     } catch (err) {
       document.getElementById('dash-empty').style.display = 'block';
       console.error(err);
